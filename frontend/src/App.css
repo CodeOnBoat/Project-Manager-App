@@ -1,7 +1,29 @@
-.App {
+.app-container {
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 1em;
+  padding: 1em;
+  gap: 2em;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color: white;
+  width: 25em;
+  height: 25em;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
+  gap: 5em;
+}
+
+.login-container-title {
+  font-size: 2em;
 }
