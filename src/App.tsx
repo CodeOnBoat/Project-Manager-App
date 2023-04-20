@@ -6,19 +6,8 @@ import {
   TokenResponse,
 } from "@react-oauth/google";
 import "./App.css";
-import Dashboard from "./dashboard/Dashboard";
-import { log } from "console";
-import { Url } from "url";
-
-export interface Profile {
-  email: string;
-  family_name: string;
-  given_name: string;
-  id: number;
-  name: string;
-  picture: string;
-  verified_email: boolean;
-}
+import { Profile } from "./data/Interfaces";
+import Dashboard from "./components/dashboard/Dashboard";
 
 function App() {
   const [user, setUser] = useState<TokenResponse>();
@@ -55,17 +44,18 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1 className="app-title">Project Manager App</h1>
-      <h2 className="app-title">Start less, finish more!</h2>
-
       {profile ? (
         <Dashboard profile={profile} logOut={logOut} />
       ) : (
         <div className="login-container">
-          <h2 className="login-container-title">
-            Start managing your activities like a pro!
-          </h2>
-          <button onClick={() => login()}>Sign in with Google 🚀 </button>
+          <h1 className="app-title">Project Manager App</h1>
+          <h2 className="app-title">Start less, finish more!</h2>
+          <div className="login-bubble-container">
+            <h2 className="login-container-title">
+              Start managing your activities like a pro!
+            </h2>
+            <button onClick={() => login()}>Sign in with Google 🚀 </button>
+          </div>
         </div>
       )}
     </div>

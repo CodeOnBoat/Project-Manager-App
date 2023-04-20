@@ -1,0 +1,32 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+.user-info {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+.input-form-container {
+  margin-top: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  background-color: white;
+  width: 15em;
+  height: 15em;
+  position: relative;
+  border-radius: 20%;
+  box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
+}
+
+.project-description {
+  height: 3em;
+}

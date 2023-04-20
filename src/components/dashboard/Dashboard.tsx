@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
-import { DashbordProps, Profile } from "../data/Interfaces";
+import { DashbordProps, Profile } from "../../data/Interfaces";
 
 function Dashboard(props: DashbordProps) {
   const [projects, setNewProject] = useState<string[]>([]);
