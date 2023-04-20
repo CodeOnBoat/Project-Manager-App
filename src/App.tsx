@@ -8,57 +8,37 @@ import {
 import "./App.css";
 import { Profile } from "./data/Interfaces";
 import Dashboard from "./components/dashboard/Dashboard";
+import { googleLogin, postUser } from "./client/client";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import { Project } from "./components/project/Project";
+import { LandingPage } from "./components/landingPage/LandingPage";
 
 function App() {
-  const [user, setUser] = useState<TokenResponse>();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState<Profile | undefined>();
-
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse: TokenResponse) => setUser(codeResponse),
-    onError: (error) => console.log("Login Failed:", error),
-  });
-  useEffect(() => {
-    if (user) {
-      axios
-        .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          setProfile(res.data);
-          console.log(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [user]);
-
   const logOut = () => {
     googleLogout();
     setProfile(undefined);
+    navigate("/");
   };
 
   return (
-    <div className="app-container">
-      {profile ? (
-        <Dashboard profile={profile} logOut={logOut} />
-      ) : (
-        <div className="login-container">
-          <h1 className="app-title">Project Manager App</h1>
-          <h2 className="app-title">Start less, finish more!</h2>
-          <div className="login-bubble-container">
-            <h2 className="login-container-title">
-              Start managing your activities like a pro!
-            </h2>
-            <button onClick={() => login()}>Sign in with Google 🚀 </button>
-          </div>
-        </div>
-      )}
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={<LandingPage profile={profile} setProfile={setProfile} />}
+      />
+      <Route
+        path="/dashboard"
+        element={<Dashboard profile={profile!} logOut={logOut} />}
+      />
+      <Route path="/project" element={<Project />} />
+    </Routes>
   );
 }
 export default App;

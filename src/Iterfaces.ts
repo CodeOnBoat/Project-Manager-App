@@ -12,3 +12,17 @@ export interface DashbordProps {
   profile: Profile;
   logOut: React.MouseEventHandler<HTMLButtonElement>;
 }
+
+export interface Project {
+  title: string;
+  description: string;
+  tasks?: Task[];
+  owner: string;
+}
+
+export interface Task {
+  title: string;
+  description: string;
+  time: number;
+  state: string;
+}
