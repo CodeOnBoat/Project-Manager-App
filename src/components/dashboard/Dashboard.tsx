@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
-import { DashbordProps, Profile, Project } from "../../data/Interfaces";
+import { DashbordProps, Profile, ProjectType } from "../../data/Interfaces";
 import { addNewProject, getProjectsById } from "../../client/client";
 import { Link } from "react-router-dom";
 
 function Dashboard(props: DashbordProps) {
-  const [projects, setProjects] = useState<Project[]>([]);
-
   const createNewProject = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const newProject: Project = {
+    const newProject: ProjectType = {
       title: formData.get("title") as string,
       description: formData.get("description") as string,
       owner: props.profile.id + "",
     };
-    console.log(newProject.title + "hereeee");
-    addNewProject(newProject);
-    setProjects([...projects, newProject]);
+    const updateProjects = async () => {
+      const newP = await addNewProject(newProject);
+      props.setProjects([...props.projects, newP]);
+    };
+    updateProjects();
   };
 
   useEffect(() => {
     const getProjects = async () => {
       const projectArray = await getProjectsById(props.profile.id);
-      setProjects(projectArray);
+      props.setProjects(projectArray);
     };
     if (props.profile) getProjects();
   }, [props.profile]);
@@ -55,9 +55,9 @@ function Dashboard(props: DashbordProps) {
             </form>
           </div>
           <div className="projects-container">
-            {projects.map((project, index) => (
+            {props.projects.map((project, index) => (
               <div className="project-title" key={index}>
-                <Link to="/project">{project.title}</Link>
+                <Link to={`/project/${project.title}`}>{project.title}</Link>
               </div>
             ))}
           </div>

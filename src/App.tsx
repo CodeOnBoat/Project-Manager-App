@@ -6,9 +6,8 @@ import {
   TokenResponse,
 } from "@react-oauth/google";
 import "./App.css";
-import { Profile } from "./data/Interfaces";
+import { Profile, ProjectType } from "./data/Interfaces";
 import Dashboard from "./components/dashboard/Dashboard";
-import { googleLogin, postUser } from "./client/client";
 import {
   BrowserRouter as Router,
   Route,
@@ -21,6 +20,8 @@ import { LandingPage } from "./components/landingPage/LandingPage";
 function App() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState<Profile | undefined>();
+  const [projects, setProjects] = useState<ProjectType[]>([]);
+
   const logOut = () => {
     googleLogout();
     setProfile(undefined);
@@ -35,9 +36,22 @@ function App() {
       />
       <Route
         path="/dashboard"
-        element={<Dashboard profile={profile!} logOut={logOut} />}
+        element={
+          <Dashboard
+            profile={profile!}
+            logOut={logOut}
+            projects={projects}
+            setProjects={setProjects}
+          />
+        }
       />
-      <Route path="/project" element={<Project />} />
+      {projects.map((p, index) => (
+        <Route
+          path={`/project/${p.title}`}
+          key={index}
+          element={<Project project={p} />}
+        />
+      ))}
     </Routes>
   );
 }

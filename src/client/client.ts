@@ -1,10 +1,12 @@
 import { TokenResponse } from "@react-oauth/google";
 import axios from "axios";
-import { Project } from "../data/Interfaces";
+import { ProjectType, Task } from "../data/Interfaces";
+
+const root = "https://us-central1-taskwise-14398.cloudfunctions.net/app";
 
 export const postUser = async (google_id: string, email: string) => {
   axios
-    .post(`https://us-central1-taskwise-14398.cloudfunctions.net/app/users`, {
+    .post(`${root}/users`, {
       google_id: google_id,
       email: email,
     })
@@ -31,23 +33,29 @@ export const googleLogin = async (user: TokenResponse) => {
 
 export const getProjectsById = async (google_id: number) => {
   console.log(google_id);
-  const res = await axios.get(
-    `https://us-central1-taskwise-14398.cloudfunctions.net/app/projects/${google_id}`
-  );
+  const res = await axios.get(`${root}/projects/${google_id}`);
   console.log(res.status, res.data);
   return res.data;
 };
 
-export const addNewProject = async (newProject: Project) => {
+export const addNewProject = async (newProject: ProjectType) => {
+  const res = await axios.post(`${root}/projects`, {
+    title: newProject.title,
+    description: newProject.description,
+    owner: newProject.owner,
+  });
+  return res.data;
+};
+
+export const addTaskToProject = async (project_id: string, task: Task) => {
+  console.log(project_id, task);
   axios
-    .post(
-      `https://us-central1-taskwise-14398.cloudfunctions.net/app/projects`,
-      {
-        title: newProject.title,
-        description: newProject.description,
-        owner: newProject.owner,
-      }
-    )
+    .post(`${root}/projects/${project_id}`, {
+      title: task.title,
+      time: task.time,
+      state: task.state,
+      assignedTo: task.assignedTo,
+    })
     .then(function (response) {
       console.log(response.status);
     })

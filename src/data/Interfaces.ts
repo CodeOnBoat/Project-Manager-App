@@ -13,10 +13,12 @@ export interface Profile {
 export interface DashbordProps {
   profile: Profile;
   logOut: () => void;
+  projects: ProjectType[];
+  setProjects: (projects: ProjectType[]) => void;
 }
 
-interface ProjectProps {
-  project : Project
+export interface ProjectProps {
+  project: ProjectType;
 }
 
 export interface Profile {
@@ -29,7 +31,8 @@ export interface Profile {
   verified_email: boolean;
 }
 
-export interface Project {
+export interface ProjectType {
+  project_id?: string;
   title: string;
   description: string;
   tasks?: Task[];
@@ -38,7 +41,7 @@ export interface Project {
 
 export interface Task {
   title: string;
-  description: string;
   time: number;
   state: string;
+  assignedTo: "";
 }
