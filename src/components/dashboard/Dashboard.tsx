@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
-import { DashbordProps, Profile } from "../../data/Interfaces";
+import { DashbordProps, Profile, Project } from "../../data/Interfaces";
 import { addNewProject, getProjectsById } from "../../client/client";
-import { Project } from "../../Iterfaces";
 import { Link } from "react-router-dom";
 
 function Dashboard(props: DashbordProps) {

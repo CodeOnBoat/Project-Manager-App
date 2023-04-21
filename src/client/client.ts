@@ -1,6 +1,6 @@
 import { TokenResponse } from "@react-oauth/google";
 import axios from "axios";
-import { Profile, Project } from "../Iterfaces";
+import { Project } from "../data/Interfaces";
 
 export const postUser = async (google_id: string, email: string) => {
   axios

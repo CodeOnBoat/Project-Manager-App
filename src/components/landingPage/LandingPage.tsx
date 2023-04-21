@@ -7,9 +7,9 @@ import {
 } from "@react-oauth/google";
 import { BrowserRouter as Router, Route, useNavigate } from "react-router-dom";
 import { googleLogin } from "../../client/client";
-import { Profile } from "../../Iterfaces";
 import Dashboard from "../dashboard/Dashboard";
 import "./LandingPage.css";
+import { Profile } from "../../data/Interfaces";
 
 interface LandingPageProps {
   profile: Profile | undefined;
