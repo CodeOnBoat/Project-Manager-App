@@ -11,10 +11,7 @@ export interface Profile {
 }
 
 export interface DashbordProps {
-  profile: Profile;
   logOut: () => void;
-  projects: ProjectType[];
-  setProjects: (projects: ProjectType[]) => void;
 }
 
 export interface ProjectProps {
@@ -40,8 +37,20 @@ export interface ProjectType {
 }
 
 export interface Task {
+  taskId?: string;
   title: string;
   time: number;
   state: string;
   assignedTo: "";
+}
+
+export interface OneTaskProps {
+  task: Task;
+  deleteSelf: () => void;
+}
+
+export interface LandingPageProps {
+  profile: Profile | undefined;
+  setProfile: Function;
+  logOut: () => void;
 }

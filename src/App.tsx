@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import {
   googleLogout,
@@ -16,43 +16,46 @@ import {
 } from "react-router-dom";
 import { Project } from "./components/project/Project";
 import { LandingPage } from "./components/landingPage/LandingPage";
+import { AppContext } from "./context/AppContext";
+import { Header } from "./components/header/Header";
 
 function App() {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState<Profile | undefined>();
-  const [projects, setProjects] = useState<ProjectType[]>([]);
+  const { setProfile, profile, projects, setProjects } = useContext(AppContext);
 
   const logOut = () => {
     googleLogout();
     setProfile(undefined);
+    setProjects(undefined);
     navigate("/");
   };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={<LandingPage profile={profile} setProfile={setProfile} />}
-      />
-      <Route
-        path="/dashboard"
-        element={
-          <Dashboard
-            profile={profile!}
-            logOut={logOut}
-            projects={projects}
-            setProjects={setProjects}
-          />
-        }
-      />
-      {projects.map((p, index) => (
+    <>
+      <Header logOut={logOut} />
+      <Routes>
         <Route
-          path={`/project/${p.title}`}
-          key={index}
-          element={<Project project={p} />}
+          path="/"
+          element={
+            <LandingPage
+              logOut={logOut}
+              profile={profile}
+              setProfile={setProfile}
+            />
+          }
         />
-      ))}
-    </Routes>
+        <Route path="/dashboard" element={<Dashboard logOut={logOut} />} />
+        {projects &&
+          projects &&
+          projects.map((p, index) => (
+            <Route
+              path={`/project/${p.title}`}
+              key={index}
+              element={<Project project={p} />}
+            />
+          ))}
+      </Routes>
+    </>
   );
 }
 export default App;

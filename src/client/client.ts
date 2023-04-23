@@ -38,6 +38,12 @@ export const getProjectsById = async (google_id: number) => {
   return res.data;
 };
 
+export const getTasksByProjectId = async (project_id: string) => {
+  const res = await axios.get(`${root}/projects/${project_id}/tasks`);
+  console.log(res.status, res.data);
+  return res.data;
+};
+
 export const addNewProject = async (newProject: ProjectType) => {
   const res = await axios.post(`${root}/projects`, {
     title: newProject.title,
@@ -49,13 +55,23 @@ export const addNewProject = async (newProject: ProjectType) => {
 
 export const addTaskToProject = async (project_id: string, task: Task) => {
   console.log(project_id, task);
+  const res = await axios.post(`${root}/projects/${project_id}`, {
+    title: task.title,
+    time: task.time,
+    state: task.state,
+    assignedTo: task.assignedTo,
+  });
+  return res.data;
+};
+export const deleteProjectById = async (project_id: string) => {
+  console.log(project_id);
+  await axios.delete(`${root}/projects/${project_id}`);
+};
+
+export const deleteTaskById = async (task_id: string, project_id: string) => {
+  console.log({ task_id: task_id, project_id: project_id });
   axios
-    .post(`${root}/projects/${project_id}`, {
-      title: task.title,
-      time: task.time,
-      state: task.state,
-      assignedTo: task.assignedTo,
-    })
+    .delete(`${root}/projects/${project_id}/${task_id}`)
     .then(function (response) {
       console.log(response.status);
     })
