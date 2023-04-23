@@ -1,7 +1,7 @@
-.app-container {
+.landingPage-container {
   min-height: 100vh;
 }
-.login-container {
+.landingPage-login-container {
   min-height: 75vh;
   display: flex;
   flex-direction: column;
@@ -10,21 +10,17 @@
   text-align: center;
   margin-top: 3em;
 }
-.login-bubble-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: whitesmoke;
-  width: 25em;
-  height: 25em;
-  position: relative;
-  border-radius: 50%;
-  box-shadow: 0 0.188em 1.55em rgb(156, 156, 156);
-  gap: 5em;
+
+.landingPage-google-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 }
 
-.login-container-title {
-  font-size: 2em;
+.landingPage-google-button-image:hover {
+  transform: scale(1.1);
+}
+
+.landingPage-google-button-image {
+  cursor: pointer;
+  transition: all 1s;
 }

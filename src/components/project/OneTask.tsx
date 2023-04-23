@@ -1,10 +1,14 @@
-import React from "react";
-import { Task } from "../../data/Interfaces";
+import React, { useContext } from "react";
+import { OneTaskProps, Task } from "../../data/Interfaces";
+import { AppContext } from "../../context/AppContext";
 
-export interface OneTaskProps {
-  task: Task;
-}
-
-export const OneTask = ({ task }: OneTaskProps) => {
-  return <div>{task.title}</div>;
+export const OneTask = ({ task, deleteSelf }: OneTaskProps) => {
+  return (
+    <div className="task-contaner">
+      {task.title}
+      <button type="submit" className="task-btn-delete" onClick={deleteSelf}>
+        Delete
+      </button>
+    </div>
+  );
 };

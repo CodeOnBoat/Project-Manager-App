@@ -1,65 +1,89 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Dashboard.css";
 import { DashbordProps, Profile, ProjectType } from "../../data/Interfaces";
 import { addNewProject, getProjectsById } from "../../client/client";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
+import { Stats } from "../Stats/Stats";
+import { Chart } from "chart.js";
+import { ProjectList } from "../ProjectList/ProjectList";
+import DonautChart from "../chart/DonautChart";
 
 function Dashboard(props: DashbordProps) {
+  const { profile, setProjects, projects } = useContext(AppContext);
+
   const createNewProject = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const newProject: ProjectType = {
       title: formData.get("title") as string,
       description: formData.get("description") as string,
-      owner: props.profile.id + "",
+      owner: profile!.id + "",
     };
     const updateProjects = async () => {
       const newP = await addNewProject(newProject);
-      props.setProjects([...props.projects, newP]);
+      setProjects([...projects!, newP]);
     };
     updateProjects();
   };
 
   useEffect(() => {
+    console.log("here");
     const getProjects = async () => {
-      const projectArray = await getProjectsById(props.profile.id);
-      props.setProjects(projectArray);
+      const projectArray = await getProjectsById(profile!.id);
+      setProjects(projectArray);
     };
-    if (props.profile) getProjects();
-  }, [props.profile]);
+    if (profile) getProjects();
+  }, [profile]);
 
   return (
     <div className="dashboard-container">
-      {props.profile && (
+      {profile && (
         <>
-          <div className="user-info">
-            <img src={props.profile.picture} alt="user image" sizes="60x60" />
-            <p>{props.profile.given_name}</p>
-            <button onClick={props.logOut}>Log out</button>
-          </div>
-          <div className="input-form-container">
-            <form onSubmit={createNewProject}>
-              <input
-                name="title"
-                className="project-title"
-                placeholder="Project title"
-                type="text"
+          <div className="block statc-block">
+            <DonautChart
+              total={100}
+              completed={90}
+              size={200}
+              strokeWidth={12}
+              fontSize={30}
+              fontColor="#fff"
+              trackColor="rgba(0, 200, 0, 0)"
+              progressColor="#fff"
+            />
+            <div className="standard-container stats-container">
+              <Stats
+                completedTasks={4}
+                effectiveTime="12:04"
+                remainingTasks={6}
+                estimatedTime="21:06"
               />
-              <input
-                name="description"
-                className="project-description"
-                placeholder="Project description"
-                type="text"
-              />
-              <button type="submit">submit</button>
-            </form>
+            </div>
           </div>
-          <div className="projects-container">
-            {props.projects.map((project, index) => (
-              <div className="project-title" key={index}>
-                <Link to={`/project/${project.title}`}>{project.title}</Link>
-              </div>
-            ))}
+
+          <div className="block">
+            <div className="standard-container">
+              <form className="newProject-form" onSubmit={createNewProject}>
+                <input
+                  name="title"
+                  className="project-title"
+                  placeholder="Project title"
+                  type="text"
+                />
+                <input
+                  name="description"
+                  className="project-description"
+                  placeholder="Project description"
+                  type="text"
+                />
+                <button type="submit">submit</button>
+              </form>
+            </div>
+          </div>
+          <div className="block">
+            <div className="standard-container">
+              {projects && <ProjectList projects={projects!} />}
+            </div>
           </div>
         </>
       )}
