@@ -7,17 +7,17 @@ import {
 } from "@react-oauth/google";
 import "./App.css";
 import { Profile, ProjectType } from "./data/Interfaces";
-import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   useNavigate,
 } from "react-router-dom";
-import { Project } from "./components/project/Project";
-import { LandingPage } from "./components/landingPage/LandingPage";
+import { Project } from "./components/Pages/Project/Project";
+import { LandingPage } from "./components/Pages/LandingPage/LandingPage";
 import { AppContext } from "./context/AppContext";
-import { Header } from "./components/header/Header";
+import { Header } from "./components/Items/Header/Header";
 
 function App() {
   const navigate = useNavigate();

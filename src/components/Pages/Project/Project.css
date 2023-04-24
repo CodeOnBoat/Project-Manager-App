@@ -1,0 +1,16 @@
+.project-page-container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    border: 1px solid black;
+}
+
+.project-info-container {
+    grid-column: span 2;
+}
+
+.project-standard-container {
+    height: 10em;
+}

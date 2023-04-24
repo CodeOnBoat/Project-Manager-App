@@ -77,3 +77,13 @@ export const deleteTaskById = async (task_id: string, project_id: string) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const updateTaskStatus = async (task_id: string, project_id: string, status: string) => {
+  console.log({ task_id: task_id, project_id: project_id, status: status  });
+
+  const res = await axios.patch(`${root}/projects/${project_id}/${task_id}`, {
+  status: status
+  })
+  console.log(res.status );
+  return res.data;
+}
