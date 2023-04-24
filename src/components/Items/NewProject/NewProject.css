@@ -1,0 +1,78 @@
+.new-project-button {
+  position: absolute;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-bottom: none;
+  border-right: none;
+  color: white;
+  transition: all 0.2s;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.4);
+  background-color: rgb(70, 81, 237);
+  box-shadow: -5px -4px 5px 0px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  bottom: 0;
+  height: 45px;
+}
+
+.new-project-button:hover {
+    filter: brightness(1.2);
+}
+
+.new-project-button.create {
+  right: 0;
+  border-radius: 24px 0 24px 0;
+  font-weight: 100;
+}
+
+.new-project-button.cancel {
+  left: 0;
+  border-left: none;
+  box-shadow: 0px 0Kpx 5px 0px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid white;
+  border-radius: 0 24px 0 24px;
+}
+
+.new-project-button.cancel,
+.new-project-button.create {
+  width: 25%;
+}
+
+.new-project-button.new {
+  border-radius: 24px 0 24px 0;
+  width: 15%;
+  right: 0;
+  font-weight: bold;
+  font-size: medium;
+}
+
+.new-project-input {
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin-top: 15px;
+  width: 90%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  font-size: medium;
+  padding: 5%;
+  resize: none;
+  background-color: rgba(70, 81, 237, .16);
+
+}
+
+.new-project-description {
+  height: 20vh;
+}
+
+.new-project-title {
+  height: 5vh;
+}
+
+.newProject-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

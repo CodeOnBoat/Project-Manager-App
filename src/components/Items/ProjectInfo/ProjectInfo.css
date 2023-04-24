@@ -1,0 +1,19 @@
+.project-name-title{
+    color: black;
+    font-weight: 100;
+
+}
+.project-info-container{
+    gap: 2em;
+}
+.project-info-header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-info-description{
+
+}

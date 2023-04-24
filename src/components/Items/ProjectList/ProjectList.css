@@ -1,0 +1,44 @@
+.project-list {
+  display: flex;
+  gap: 0.5em;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 10%;
+  height: 44vh;
+  overflow: auto;
+  border-radius: 24px;
+  padding-bottom: 10%;
+  overflow-x: hidden;
+  
+}
+.project-list::-webkit-scrollbar {
+  display: none;
+}
+
+.project-list::-webkit-scrollbar-track {
+  background: rgba(108, 108, 108, 0); /* color of the tracking area */
+}
+
+.project-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+
+.projectList-one-project a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+.stats-one-stat.list {
+  height: 5%;
+}
+
+.link-to-project {
+  text-decoration: none;
+  color: #000;
+  padding-left: 1em;
+  font-size: medium;
+}

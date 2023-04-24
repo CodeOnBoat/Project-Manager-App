@@ -1,0 +1,78 @@
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5em;
+  animation-name: slide-in-out;
+  animation-duration: 1s;
+}
+
+.animation-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.circles-container {
+  position: absolute;
+  display: flex;
+  margin-top: 1em;
+  top: 2em;
+  height: 2em;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.circle-header {
+  height: 2em;
+  width: 2em;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  animation: appearWithSlide .5s;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1em;
+}
+
+.circles-container img {
+  height: 1.2em;
+  cursor: pointer;
+}
+
+.user-name-container {
+  display: flex;
+  align-items: center;
+  height: 2em;
+  padding-right: 1em;
+  padding-left: 1em;
+  cursor: pointer;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+.user-name-container img {
+  height: 1.2em;
+  margin-left: 20px;
+}
+
+.user-name {
+  font-size: 1.5em;
+  color: white;
+}
+
+@keyframes appearWithSlide {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}

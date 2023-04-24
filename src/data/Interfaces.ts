@@ -1,4 +1,4 @@
-import { Project } from "../components/project/Project";
+import { Project } from "../components/Pages/Project/Project";
 
 export interface Profile {
   email: string;
@@ -47,6 +47,7 @@ export interface Task {
 export interface OneTaskProps {
   task: Task;
   deleteSelf: () => void;
+  setSelected: (str: string) => void;
 }
 
 export interface LandingPageProps {
