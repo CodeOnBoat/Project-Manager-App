@@ -12,11 +12,13 @@ export interface ProjectListProps {
 export const ProjectList = ({
   projects,
   handleShowNewProject,
-  showNewProject
+  showNewProject,
 }: ProjectListProps) => {
   return (
     <>
-      <h1>Projects</h1>
+      <div className="standard-container-title">
+        <h1>Projects</h1>
+      </div>
       <div className="project-list">
         {projects.map((p) => (
           <div className="stats-one-stat list">
@@ -30,7 +32,7 @@ export const ProjectList = ({
       </div>
       {!showNewProject && (
         <button
-          className="new-project-button new"
+          className="standard-container-button right small"
           onClick={handleShowNewProject}
         >
           +

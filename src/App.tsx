@@ -18,6 +18,10 @@ import { Project } from "./components/Pages/Project/Project";
 import { LandingPage } from "./components/Pages/LandingPage/LandingPage";
 import { AppContext } from "./context/AppContext";
 import { Header } from "./components/Items/Header/Header";
+import {
+  ProjectContext,
+  ProjectContextProvider,
+} from "./context/ProjectContext";
 
 function App() {
   const navigate = useNavigate();
@@ -51,7 +55,13 @@ function App() {
             <Route
               path={`/project/${p.title}`}
               key={index}
-              element={<Project project={p} />}
+              element={
+                <>
+                  <ProjectContextProvider>
+                    <Project project={p} />
+                  </ProjectContextProvider>
+                </>
+              }
             />
           ))}
       </Routes>

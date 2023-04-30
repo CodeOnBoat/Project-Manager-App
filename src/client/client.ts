@@ -3,6 +3,7 @@ import axios from "axios";
 import { ProjectType, Task } from "../data/Interfaces";
 
 const root = "https://us-central1-taskwise-14398.cloudfunctions.net/app";
+// const root = "http://127.0.0.1:5001/taskwise-14398/us-central1/app";
 
 export const postUser = async (google_id: string, email: string) => {
   axios
@@ -14,6 +15,12 @@ export const postUser = async (google_id: string, email: string) => {
       console.log(response.status);
     })
     .catch((err) => console.log(err));
+};
+
+export const getUser = async (user_id: string) => {
+  const res = await axios.get(`${root}/users/${user_id}`);
+  console.log(res.status, res.data);
+  return res.data;
 };
 
 export const googleLogin = async (user: TokenResponse) => {
@@ -45,11 +52,8 @@ export const getTasksByProjectId = async (project_id: string) => {
 };
 
 export const addNewProject = async (newProject: ProjectType) => {
-  const res = await axios.post(`${root}/projects`, {
-    title: newProject.title,
-    description: newProject.description,
-    owner: newProject.owner,
-  });
+  const res = await axios.post(`${root}/projects`, newProject);
+  console.log("asdas");
   return res.data;
 };
 
@@ -63,6 +67,7 @@ export const addTaskToProject = async (project_id: string, task: Task) => {
   });
   return res.data;
 };
+
 export const deleteProjectById = async (project_id: string) => {
   console.log(project_id);
   await axios.delete(`${root}/projects/${project_id}`);
@@ -78,12 +83,70 @@ export const deleteTaskById = async (task_id: string, project_id: string) => {
     .catch((err) => console.log(err));
 };
 
-export const updateTaskStatus = async (task_id: string, project_id: string, status: string) => {
-  console.log({ task_id: task_id, project_id: project_id, status: status  });
+export const updateTaskStatus = async (
+  task_id: string,
+  project_id: string,
+  status: string
+) => {
+  console.log({ task_id: task_id, project_id: project_id, status: status });
 
   const res = await axios.patch(`${root}/projects/${project_id}/${task_id}`, {
-  status: status
-  })
-  console.log(res.status );
+    status: status,
+  });
+  console.log(res.status);
   return res.data;
-}
+};
+
+export const sendNotification = async (
+  user_id: string,
+  collaborator_mail: string,
+  project_id: string
+) => {
+  console.log(user_id, collaborator_mail, project_id);
+
+  const o = {
+    user_id: user_id,
+    collaborator_mail: collaborator_mail,
+    project_id: project_id,
+  };
+
+  console.log(o);
+  const res = await axios.patch(`${root}/projects/sendnotification`, o);
+  console.log(res.status);
+  return res.data;
+};
+
+export const getNotifications = async (user_id: string) => {
+  const res = await axios.get(`${root}/users/${user_id}/notifications`);
+  console.log(res.status, "helooooooo ", res.data);
+  return res.data;
+};
+
+export const addCollaborator = async (
+  project_id: string,
+  collaborator_id: string
+) => {
+  const res = await axios.patch(
+    `${root}/projects/${project_id}/users/${collaborator_id}`,
+    {
+      project_id: project_id,
+      collaborator_id: collaborator_id,
+    }
+  );
+};
+
+export const resolveNotification = async (
+  project_id: string,
+  user_id: string,
+  action: string,
+  user_name: string
+) => {
+  const res = await axios.post(
+    `${root}/users/${user_id}/notifications/${project_id}`,
+    {
+      action: action,
+      user_name: user_name,
+    }
+  );
+  return res.data;
+};

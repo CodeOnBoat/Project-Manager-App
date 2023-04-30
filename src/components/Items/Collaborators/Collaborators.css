@@ -1,0 +1,9 @@
+.collaborators-container {
+  height: 65%;
+  width: 85%;
+  overflow-y: scroll;
+}
+
+.collaborators-container::-webkit-scrollbar {
+  display: none;
+}

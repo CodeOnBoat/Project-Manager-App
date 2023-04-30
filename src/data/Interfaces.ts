@@ -34,19 +34,24 @@ export interface ProjectType {
   description: string;
   tasks?: Task[];
   owner: string;
+  collaborators: CollaboratorType[];
 }
-
+export interface CollaboratorType {
+  user_id: string;
+  user_name: string;
+}
 export interface Task {
   taskId?: string;
   title: string;
   time: number;
   state: string;
+  description: string;
   assignedTo: "";
+  emoji: string;
 }
 
 export interface OneTaskProps {
   task: Task;
-  deleteSelf: () => void;
   setSelected: (str: string) => void;
 }
 
@@ -54,4 +59,14 @@ export interface LandingPageProps {
   profile: Profile | undefined;
   setProfile: Function;
   logOut: () => void;
+}
+
+export interface CollaboratorsProps {
+  user_id: string;
+  project_id: string;
+}
+
+export interface NotificationType {
+  project_id: string;
+  user_id: string;
 }

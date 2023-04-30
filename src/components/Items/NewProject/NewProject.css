@@ -1,54 +1,22 @@
-.new-project-button {
-  position: absolute;
-  border-top: 1px solid white;
-  border-left: 1px solid white;
-  border-bottom: none;
-  border-right: none;
-  color: white;
-  transition: all 0.2s;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.4);
-  background-color: rgb(70, 81, 237);
-  box-shadow: -5px -4px 5px 0px rgba(0, 0, 0, 0.1);
-  text-decoration: none;
-  bottom: 0;
-  height: 45px;
-}
-
-.new-project-button:hover {
-    filter: brightness(1.2);
-}
-
-.new-project-button.create {
+.standard-container-button.create {
   right: 0;
   border-radius: 24px 0 24px 0;
   font-weight: 100;
 }
 
-.new-project-button.cancel {
-  left: 0;
-  border-left: none;
-  box-shadow: 0px 0Kpx 5px 0px rgba(0, 0, 0, 0.1);
-  border-right: 1px solid white;
-  border-radius: 0 24px 0 24px;
-}
-
-.new-project-button.cancel,
-.new-project-button.create {
+.standard-container-button.cancel,
+.standard-container-button.create {
   width: 25%;
 }
 
-.new-project-button.new {
-  border-radius: 24px 0 24px 0;
+.standard-container-button.new {
   width: 15%;
-  right: 0;
   font-weight: bold;
   font-size: medium;
 }
 
 .new-project-input {
   border-radius: 24px;
-  background-color: rgba(255, 255, 255, 0.4);
   margin-top: 15px;
   width: 90%;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
@@ -57,12 +25,11 @@
   font-size: medium;
   padding: 5%;
   resize: none;
-  background-color: rgba(70, 81, 237, .16);
-
+  background-color: var(--project-task-container);
 }
 
 .new-project-description {
-  height: 20vh;
+  height: 20%;
 }
 
 .new-project-title {
@@ -70,9 +37,31 @@
 }
 
 .newProject-form {
-  width: 100%;
+  width: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.new-project-error {
+  color: rgba(255, 0, 0, 0.684);
+  margin-top: 8px;
+}
+
+@keyframes error {
+  0% {
+    background-color: rgba(70, 81, 237, 0.16);
+  }
+  50% {
+    background-color: rgba(70, 81, 237, 0.35);
+  }
+  100% {
+    background-color: rgba(70, 81, 237, 0.16);
+  }
+}
+
+.error {
+  animation: error 1s;
 }

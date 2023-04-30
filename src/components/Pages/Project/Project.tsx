@@ -16,21 +16,37 @@ import { ProjectInfo } from "../../Items/ProjectInfo/ProjectInfo";
 import { Todo } from "../../Items/ToDo/Todo";
 import { SelectedTaskTab } from "../../Items/SelectedTask/SelectedTaskTab";
 import { FinishedTasks } from "../../Items/FinishedTasks/FinishedTasks";
+import { ProjectContext } from "../../../context/ProjectContext";
 
 export const Project = ({ project }: ProjectProps) => {
-  const { setProjects, projects } = useContext(AppContext);
-  const [tasks, setTasks] = useState<Task[]>([]);
   const [selectedTask, setSelectedTask] = useState<string>("");
   const [showNewTask, setShowNewTask] = useState(false);
+  const [tasksLoading, setTasksLoading] = useState(true);
+
+  const { setTasks, tasks, setProject } = useContext(ProjectContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (selectedTask !== "") {
+      setShowNewTask(false);
+    }
+  }, [selectedTask]);
+
+  useEffect(() => {
+    if (showNewTask) {
+      setSelectedTask("");
+    }
+  }, [showNewTask]);
 
   useEffect(() => {
     const getTasks = async () => {
       const taskArray = await getTasksByProjectId(project.project_id!);
       setTasks(taskArray);
+      setTasksLoading(false);
     };
     getTasks();
+    setProject(project);
   }, []);
 
   const modifyTaskStatus = (taskId: string, state: string) => {
@@ -57,13 +73,9 @@ export const Project = ({ project }: ProjectProps) => {
       />
       <Collaborators />
       <Todo
+        tasksLoading={tasksLoading}
         selectedTask={selectedTask}
         setSelectedTask={setSelectedTask}
-        tasks={tasks.filter(
-          (t) => t.state === "notstarted" || t.state === "inprogress"
-        )}
-        setTasks={setTasks}
-        project={project}
         setShowNewTask={setShowNewTask}
       />
       <SelectedTaskTab
@@ -74,18 +86,12 @@ export const Project = ({ project }: ProjectProps) => {
             status
           );
         }}
-        project={project}
         task={tasks.filter((t) => t.taskId === selectedTask)[0]}
-        tasks={tasks}
-        setTasks={setTasks}
         showNewTask={showNewTask}
       />
       <FinishedTasks
         selectedTask={selectedTask}
         setSelectedTask={setSelectedTask}
-        tasks={tasks.filter((t) => t.state === "finished")}
-        setTasks={setTasks}
-        project={project}
       />
     </div>
   );
