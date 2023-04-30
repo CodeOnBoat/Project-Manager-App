@@ -32,13 +32,9 @@
   height: 20%;
 }
 
-.new-project-title {
-  height: 5vh;
-}
-
 .newProject-form {
   width: 90%;
-  height: 100%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,6 +44,18 @@
 .new-project-error {
   color: rgba(255, 0, 0, 0.684);
   margin-top: 8px;
+}
+
+.selector-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5%;
+  width: 100%;
+}
+
+.selector-container input {
+  height: 4em;
 }
 
 @keyframes error {

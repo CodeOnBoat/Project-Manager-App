@@ -75,3 +75,10 @@
     transform: translateY(-5px);
   }
 }
+
+.header-logo-image {
+  width: 12em;
+  height: 12em;
+  position: absolute;
+  left: 43%;
+}

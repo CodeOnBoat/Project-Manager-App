@@ -4,8 +4,11 @@ import { AppContext } from "../../../context/AppContext";
 import Menu from "../../../data/images/Menu.png";
 import LogOut from "../../../data/images/LogOut.png";
 import Moon from "../../../data/images/Moon.png";
+import Logo from "../../../data/images/logo.png";
 import { getNotifications, resolveNotification } from "../../../client/client";
 import { NotificationType } from "../../../data/Interfaces";
+
+
 interface HeaderProps {
   logOut: () => void;
 }
@@ -52,6 +55,7 @@ export const Header = ({ logOut }: HeaderProps) => {
     <>
       {profile && (
         <div className="header-container">
+          <img className="header-logo-image" src={Logo} />
           <div ref={animationContainerRef} className="animation-container">
             <div
               className="user-name-container"

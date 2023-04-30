@@ -75,10 +75,16 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
           className="new-project-input new-project-description"
           placeholder="Input project description"
         />
+        <div className="selector-container">
+          <label>Use AI to generate your first tasks</label>
+          <input type="checkbox" />
+        </div>
         {/* <label className="new-project-error">
           Description field can't be empty
         </label> */}
-        {projectLoading && <Spinner />}
+        {projectLoading && (
+          <label className="new-project-generating">Generating tasks...</label>
+        )}
         <button
           className="standard-container-button left"
           onClick={handleCancelNewProject}
