@@ -2,40 +2,48 @@
   min-height: 100%;
   display: flex;
   align-items: center;
-  transition: all 1s;
   flex-direction: column;
   justify-content: center;
 }
 
 @media screen and (width > 1200px) {
   .dashboard-container {
+    width: 100%;
     flex-direction: row-reverse;
   }
 }
 
 .show-new-project > .stats-block {
-  transition: transform .5s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.15s;
   transform: translateX(50%);
 }
 
 .show-new-project > .projectList {
   transform: translateX(-50%);
-  transition: transform .5s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.15s;
 }
 
 .remove-new-project > .stats-block {
-  transition: transform .5s ease-in-out, opacity 0.3s ease-in-out;
   transform: translateX(-50%);
+  transition: all 0.15s;
+}
+
+.newProject {
+  display: none;
 }
 
 .remove-new-project > .projectList {
   transform: translateX(50%);
-  transition: transform .5s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.15s;
 }
 
 .remove-new-project > .newProject {
-  transition: transform 2s ease-in-out, opacity 0.3s ease-in-out;
+  transition: all 0.15s;
   opacity: 0;
-  transform: scale(.4);
+  transform: scale(0.8);
 }
 
+.stats-block,
+.projectList {
+  z-index: 1;
+}

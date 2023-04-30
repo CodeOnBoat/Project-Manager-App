@@ -16,7 +16,9 @@ export const Stats = ({
 }: StatsProps) => {
   return (
     <>
-      <h1>Overall progress</h1>
+      <div className="standard-container-title">
+        <h1>Overall progress</h1>
+      </div>
       <div className="stats-one-stat">
         <div className="flex-space-between">
           <label>Completed tasks</label>

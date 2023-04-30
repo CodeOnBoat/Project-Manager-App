@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { Profile, ProjectType } from "../data/Interfaces";
+import { NotificationType, Profile, ProjectType } from "../data/Interfaces";
 import { log } from "console";
 
 type AppContextType = {
@@ -7,6 +7,8 @@ type AppContextType = {
   setProfile: (profile: Profile | undefined) => void;
   projects: ProjectType[] | undefined;
   setProjects: (projects: ProjectType[] | undefined) => void;
+  notifications: NotificationType[];
+  setNotifications: (notifications: NotificationType[]) => void;
 };
 
 const initialValue: AppContextType = {
@@ -14,6 +16,8 @@ const initialValue: AppContextType = {
   setProfile: () => {},
   projects: [],
   setProjects: (projects: ProjectType[] | undefined) => {},
+  notifications: [],
+  setNotifications: () => {},
 };
 
 export const AppContext = createContext(initialValue);
@@ -25,6 +29,7 @@ export const AppContextProvider = ({
 }) => {
   const [profile, setProfile] = useState<Profile | undefined>();
   const [projects, setProjects] = useState<ProjectType[] | undefined>([]);
+  const [notifications, setNotifications] = useState<NotificationType[]>([]);
 
   useEffect(() => {
     const storedProfile = localStorage.getItem("profile");
@@ -58,6 +63,8 @@ export const AppContextProvider = ({
         setProfile: setProf,
         projects: projects,
         setProjects: setProj,
+        notifications: notifications,
+        setNotifications: setNotifications,
       }}
     >
       {children}

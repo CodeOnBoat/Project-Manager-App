@@ -4,18 +4,48 @@ import { AppContext } from "../../../context/AppContext";
 import Menu from "../../../data/images/Menu.png";
 import LogOut from "../../../data/images/LogOut.png";
 import Moon from "../../../data/images/Moon.png";
-
+import { getNotifications, resolveNotification } from "../../../client/client";
+import { NotificationType } from "../../../data/Interfaces";
 interface HeaderProps {
   logOut: () => void;
 }
 
 export const Header = ({ logOut }: HeaderProps) => {
-  const { profile } = useContext(AppContext);
+  const { profile, notifications, setNotifications } = useContext(AppContext);
   const [showCirclesContainer, setShowCirclesContainer] = useState(false);
-  const animationContainerRef = useRef<HTMLDivElement>(null);
+  const [showNotification, setShowNotification] = useState(false);
 
+  const animationContainerRef = useRef<HTMLDivElement>(null);
+  const handleNotification = () => {
+    setShowNotification(!showNotification);
+  };
   const handleCirclesContainerClick = () => {
     setShowCirclesContainer(!showCirclesContainer);
+  };
+
+  useEffect(() => {
+    const getNot = async () => {
+      const notificationsReq = await getNotifications(profile!.id + "");
+      setNotifications(notificationsReq);
+    };
+    if (profile) getNot();
+  }, [profile]);
+
+  useEffect(() => {
+    console.log(notifications);
+  }, [notifications]);
+
+  const handleNotificationResolve = (
+    notification: NotificationType,
+    action: string,
+    user_name: string
+  ) => {
+    resolveNotification(
+      notification.project_id,
+      profile!.id + "",
+      action,
+      user_name
+    );
   };
 
   return (
@@ -33,14 +63,60 @@ export const Header = ({ logOut }: HeaderProps) => {
               <img src={Menu} width="15%" />
             </div>
             {showCirclesContainer && (
-              <div className="circles-container">
-                <div className="circle-header">
-                  <img className="moon-img" src={Moon} />
+              <>
+                <div className="circles-container" onClick={handleNotification}>
+                  <div className="notification-panel">
+                    <div className="circle-header" onClick={handleNotification}>
+                      N
+                    </div>
+                  </div>
+                  <div className="circle-header">
+                    <img className="moon-img" src={Moon} />
+                  </div>
+                  <div className="circle-header" onClick={logOut}>
+                    <img className="logOut-img" src={LogOut} />
+                  </div>
                 </div>
-                <div className="circle-header" onClick={logOut}>
-                  <img className="logOut-img" src={LogOut} />
-                </div>
-              </div>
+                {showNotification && (
+                  <div className="standard-container">
+                    {notifications.length === 0 ? (
+                      <div>No notification</div>
+                    ) : (
+                      notifications.map((n, index) => (
+                        <>
+                          <div key={index}>
+                            {n.user_id}
+                            <button
+                              onClick={() =>
+                                handleNotificationResolve(
+                                  n,
+                                  "accept",
+                                  profile.name
+                                )
+                              }
+                              className=""
+                            >
+                              accept
+                            </button>
+                            <button
+                              className=""
+                              onClick={() =>
+                                handleNotificationResolve(
+                                  n,
+                                  "reject",
+                                  profile.name
+                                )
+                              }
+                            >
+                              decline
+                            </button>
+                          </div>
+                        </>
+                      ))
+                    )}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>

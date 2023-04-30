@@ -2,7 +2,7 @@
   display: flex;
   gap: 0.5em;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   align-items: center;
   margin-top: 10%;
   height: 44vh;
@@ -10,7 +10,6 @@
   border-radius: 24px;
   padding-bottom: 10%;
   overflow-x: hidden;
-  
 }
 .project-list::-webkit-scrollbar {
   display: none;
@@ -28,12 +27,6 @@
 .projectList-one-project a {
   text-decoration: none;
   color: black;
-}
-
-
-
-.stats-one-stat.list {
-  height: 5%;
 }
 
 .link-to-project {

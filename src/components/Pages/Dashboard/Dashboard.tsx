@@ -10,32 +10,35 @@ import { NewProject } from "../../Items/NewProject/NewProject";
 
 function Dashboard(props: DashbordProps) {
   const { profile, setProjects, projects } = useContext(AppContext);
-  const [showNewProject, setShowNewProject] = useState(false);
   const dashBoardRef = useRef<HTMLDivElement>(null);
+  const newProjectRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [showNewProject, setShowNewProject] = useState(false);
 
   const handleShowNewProject = () => {
     if (isDesktop) {
       dashBoardRef.current!.classList.add("show-new-project");
-      setTimeout(() => {
-        dashBoardRef.current!.classList.remove("show-new-project");
-        setShowNewProject(true);
-      }, 500);
-    } else {
-      setShowNewProject(true);
     }
+    setTimeout(() => {
+      if (isDesktop) {
+        dashBoardRef.current!.classList.remove("show-new-project");
+      }
+      newProjectRef.current!.style.display = "flex";
+    }, 150);
+    setShowNewProject(true);
   };
 
   const handleCancelNewProject = () => {
     if (isDesktop) {
       dashBoardRef.current!.classList.add("remove-new-project");
-      setTimeout(() => {
-        dashBoardRef.current!.classList.remove("remove-new-project");
-        setShowNewProject(false);
-      }, 500);
-    } else {
-      setShowNewProject(false);
     }
+    setTimeout(() => {
+      if (isDesktop) {
+        dashBoardRef.current!.classList.remove("remove-new-project");
+      }
+      newProjectRef.current!.style.display = "none";
+    }, 150);
+    setShowNewProject(false);
   };
 
   useEffect(() => {
@@ -65,7 +68,7 @@ function Dashboard(props: DashbordProps) {
               fontSize={30}
               fontColor="#fff"
               trackColor="rgba(0,0,0,0)"
-              progressColor="rgba(70, 81, 237, 1)"
+              progressColor="rgba(255, 255, 255, 0.75)"
             />
             <div className="standard-container stats-container">
               <Stats
@@ -76,11 +79,9 @@ function Dashboard(props: DashbordProps) {
               />
             </div>
           </div>
-          {showNewProject && (
-            <div className="block newProject">
-              <NewProject handleCancelNewProject={handleCancelNewProject} />
-            </div>
-          )}
+          <div className="block newProject" ref={newProjectRef}>
+            <NewProject handleCancelNewProject={handleCancelNewProject} />
+          </div>
           <div className="block projectList">
             <div className="standard-container">
               {projects && (
