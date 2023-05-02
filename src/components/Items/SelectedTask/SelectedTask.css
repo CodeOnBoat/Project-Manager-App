@@ -33,10 +33,6 @@
   margin-top: 1em;
 }
 
-.links-container ul {
-  list-style-type: none
-}
-
 .link {
   text-decoration: underline;
   color: black;
@@ -80,12 +76,21 @@
 }
 
 .task-state-container {
-  background-color: rgba(0,0,0,.2);
   display: flex;
   justify-content: flex-start;
   width: 100%;
   padding-top: .5em;
   padding-bottom: .5em;
+}
+
+.task-state-container.notstarted {
+background-color: rgba(85, 171, 232, 0.747);
+}
+.task-state-container.inprogress {
+background-color: rgba(232, 200, 85, 0.747);
+}
+.task-state-container.finished {
+background-color: rgba(141, 232, 85, 0.747);
 }
 
 .task-state-container label {
@@ -95,14 +100,19 @@
 
 .step {
   display: flex;
-  flex-direction: column;
   margin-top: 1em;
   border-radius: 24px;
   padding: 1em;
+  justify-content: space-between;
   background: rgb(234, 246, 249);
   background: linear-gradient(
     180deg,
     rgba(234, 246, 249, 0.9766500350140056) 87%,
     rgba(210, 239, 248, 0.937) 100%
   );
+}
+
+.step-data-container {
+  display: flex;
+  flex-direction: column;
 }
