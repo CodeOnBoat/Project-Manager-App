@@ -9,6 +9,24 @@
 }
 .header-right-container {
 }
+.notification-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5em;
+  border-radius: 24px;
+  z-index: 99;
+  position: absolute;
+  right: 2em;
+  background: linear-gradient(
+    180deg,
+    rgba(234, 246, 249, 0.6) 87%,
+    rgba(210, 239, 248, 0.6) 100%
+  );
+  height: fit-content;
+  width: 95%;
+  max-width: 350px;
+}
 .animation-container {
   display: flex;
   align-items: center;
@@ -24,13 +42,14 @@
   height: 2em;
   align-items: center;
 }
-.notification-container {
+.notification-standard-container {
   z-index: 100;
-  padding: 1em;
-  position: absolute;
   right: 0;
   height: fit-content;
-  width: 340px;
+  width: 90%;
+}
+.notification-message-container {
+  padding: 1em 2em 3em 2em;
 }
 .circle-header {
   height: 2em;
@@ -40,6 +59,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.red {
+  background-color: rgba(255, 0, 0, 0.625) !important;
 }
 
 .circles-container img {

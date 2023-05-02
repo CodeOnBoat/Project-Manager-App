@@ -77,6 +77,6 @@ export interface CollaboratorsProps {
 export interface NotificationType {
   project_id: string;
   user_id: string;
-  project_name: string;
-  user_name: string;
+  projectName: string;
+  user_username: string;
 }

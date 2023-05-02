@@ -51,6 +51,11 @@ export const Header = ({ logOut }: HeaderProps) => {
       action,
       user_name
     );
+    let tempNotifications = [...notifications];
+    tempNotifications = tempNotifications.filter(
+      (n) => n.user_id != notification.user_id
+    );
+    setNotifications(tempNotifications);
   };
 
   return (
@@ -91,24 +96,30 @@ export const Header = ({ logOut }: HeaderProps) => {
               )}
             </div>
             {showNotification && (
-              <div className="standard-container notification-container">
+              <div className="notification-container">
                 {notifications.length === 0 ? (
                   <div>No notification</div>
                 ) : (
                   notifications.map((n, index) => (
-                    <>
+                    <div className="standard-container notification-standard-container">
                       <div key={index}>
-                        {n.user_name} has invited you to join {n.project_name}
+                        <div className="standard-container-title">
+                          <h1> {n.projectName}</h1>
+                        </div>
+                        <div className="notification-message-container">
+                          You have been invited to join this project by
+                          {n.user_username}
+                        </div>
                         <button
                           onClick={() =>
                             handleNotificationResolve(n, "accept", profile.name)
                           }
-                          className=""
+                          className="standard-container-button right"
                         >
                           accept
                         </button>
                         <button
-                          className=""
+                          className=" standard-container-button left red"
                           onClick={() =>
                             handleNotificationResolve(n, "reject", profile.name)
                           }
@@ -116,7 +127,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                           decline
                         </button>
                       </div>
-                    </>
+                    </div>
                   ))
                 )}
               </div>
