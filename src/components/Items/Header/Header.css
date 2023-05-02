@@ -2,18 +2,21 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: top;
+  align-items: center;
   text-align: center;
   animation-name: slide-in-out;
   animation-duration: 1s;
 }
-
+.header-right-container {
+}
 .animation-container {
-  position: relative;
   display: flex;
   align-items: center;
 }
-
+.circles-notification-container {
+  display: flex;
+  flex-direction: column;
+}
 .circles-container {
   display: flex;
   gap: 0.5em;
@@ -21,7 +24,14 @@
   height: 2em;
   align-items: center;
 }
-
+.notification-container {
+  z-index: 100;
+  padding: 1em;
+  position: absolute;
+  right: 0;
+  height: fit-content;
+  width: 340px;
+}
 .circle-header {
   height: 2em;
   width: 2em;
@@ -57,8 +67,6 @@
   font-size: 1.5em;
   color: white;
 }
-
-
 
 .header-logo-image {
   width: 5em;

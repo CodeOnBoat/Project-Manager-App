@@ -48,14 +48,14 @@ export interface Task {
   description: string;
   assignedTo: "";
   emoji: string;
-  steps : Step[]
+  steps: Step[];
 }
 
 export interface Step {
-  name : string,
-  link : string,
-  linkname : string
-  completed : boolean
+  name: string;
+  link: string;
+  linkname: string;
+  completed: boolean;
 }
 
 export interface OneTaskProps {
@@ -77,4 +77,6 @@ export interface CollaboratorsProps {
 export interface NotificationType {
   project_id: string;
   user_id: string;
+  project_name: string;
+  user_name: string;
 }

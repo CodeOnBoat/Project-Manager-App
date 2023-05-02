@@ -21,7 +21,7 @@ export const Collaborators = () => {
       project_id: project?.project_id,
     });
     sendNotification(
-      profile?.id + "",
+      profile?.name + "",
       mailRef.current?.value!,
       project?.project_id!
     );
@@ -34,7 +34,13 @@ export const Collaborators = () => {
 
   return (
     <div className={"standard-container project-collaborator-container"}>
-      <div className={collaboratorsHidden ? "standard-container-title hidden" : "standard-container-title"}>
+      <div
+        className={
+          collaboratorsHidden
+            ? "standard-container-title hidden"
+            : "standard-container-title"
+        }
+      >
         <h1 className="collaborators-title">Collaborators</h1>
         <button
           className="open-collaborators-button"
@@ -43,7 +49,11 @@ export const Collaborators = () => {
           {collaboratorsHidden ? "+" : "-"}
         </button>
       </div>
-      <div className={collaboratorsHidden ? "collab-expandable hidden" : "collab-expandable"}>
+      <div
+        className={
+          collaboratorsHidden ? "collab-expandable hidden" : "collab-expandable"
+        }
+      >
         {showWriteMail ? (
           <div className="collaborators-container">
             <label>Send invitation</label>
