@@ -6,7 +6,7 @@ import "./Project.css";
 export const OneTask = ({ task, setSelected }: OneTaskProps) => {
   return (
     <div
-      className="stats-one-stat list task-container"
+      className="list task-container"
       onClick={() => setSelected(task.taskId!)}
     >
       <div>{task.title}</div>

@@ -59,8 +59,8 @@ function Dashboard(props: DashbordProps) {
     <div className="dashboard-container" ref={dashBoardRef}>
       {profile && (
         <>
-          <div className="block stats-block">
-            <DonautChart
+          {/* <div className="block stats-block"> */}
+            {/* <DonautChart
               total={100}
               completed={90}
               size={200}
@@ -77,8 +77,8 @@ function Dashboard(props: DashbordProps) {
                 remainingTasks={6}
                 estimatedTime="21:06"
               />
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
           <div className="block newProject" ref={newProjectRef}>
             <NewProject handleCancelNewProject={handleCancelNewProject} />
           </div>

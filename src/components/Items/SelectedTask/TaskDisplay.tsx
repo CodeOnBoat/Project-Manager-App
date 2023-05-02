@@ -53,9 +53,10 @@ export const TaskDisplay = ({
           <>
             <div className="links-container">
               <label>Here's the steps to follow:</label>
-              <ul>
-                {task.steps.map((step) => (
-                  <li className="step">
+              {task.steps.map((step, i) => (
+                <div className="step-container">
+                  <div className="step-number">{i + 1}</div>
+                  <div className="step">
                     <div className="step-data-container">
                       <label>
                         <b>{step.name}</b>
@@ -64,15 +65,15 @@ export const TaskDisplay = ({
                         {step.linkname}
                       </a>
                     </div>
-                    {task.state === "inprogress" && (
-                      <input
-                        type="checkbox"
-                        onChange={() => modifyStepState(step)}
-                      />
-                    )}
-                  </li>
-                ))}
-              </ul>
+                  </div>
+                  {task.state === "inprogress" && (
+                    <input
+                      type="checkbox"
+                      onChange={() => modifyStepState(step)}
+                    />
+                  )}
+                </div>
+              ))}
             </div>
           </>
         )}

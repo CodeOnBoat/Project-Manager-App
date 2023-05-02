@@ -2,6 +2,7 @@ import React from "react";
 import { ProjectType } from "../../../data/Interfaces";
 import { Link } from "react-router-dom";
 import "./ProjectList.css";
+import '../Stats/Stats.css';
 
 export interface ProjectListProps {
   projects: ProjectType[];
