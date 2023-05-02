@@ -9,7 +9,8 @@ import {
 import "./SelectedTask.css";
 import { useContext } from "react";
 import { ProjectContext } from "../../../context/ProjectContext";
-import Bin from "../../../data/images/bin.png";
+import { NewTask } from "./NewTask";
+import { TaskDisplay } from "./TaskDisplay";
 export interface SelectedTaskTabProps {
   task: Task;
   updateTaskState: (status: string) => void;
@@ -58,95 +59,16 @@ export const SelectedTaskTab = ({
   return (
     <div className="standard-container project-standard-container taller">
       {task && (
-        <>
-          <div className="standard-container-title">
-            <h1>{task.title}</h1>
-            <img
-              className="standard-container-title-icon"
-              src={Bin}
-              onClick={() => deleteTask(task.taskId!)}
-            />
-          </div>
-          <div className="task-state-container">
-            <label>
-              {task.state === "notstarted" && "Not started"}
-              {task.state === "inprogress" && "In progress"}
-              {task.state === "finished" && "Finished"}
-            </label>
-          </div>
-          <div className="task-detail-container">
-            <div className="task-description">{task.description}</div>
-            {task.steps.length > 0 && (
-              <>
-                <div className="links-container">
-                  <label>Here's the steps to follow:</label>
-                  <ul>
-                    {task.steps.map((step) => (
-                      <li className="step">
-                        <label>
-                          <b>{step.name}</b>
-                        </label>
-                        <a target="_blank" className="link" href={step.link}>
-                          {step.linkname}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </>
-            )}
-            <button className="standard-container-button left">Cancel</button>
-            <button
-              className="standard-container-button right"
-              onClick={() => changeTaskStatus("inprogress")}
-            >
-              start
-            </button>
-          </div>
-        </>
+        <TaskDisplay
+          task={task}
+          changeTaskStatus={changeTaskStatus}
+          deleteTask={deleteTask}
+        />
       )}
       {!task && !showNewTask && (
         <label className="no-task-yet">no task selected</label>
       )}
-      {showNewTask && (
-        <>
-          <div className="standard-container-title">
-            <h1>New task</h1>
-          </div>
-          <div className="add-task-container ">
-            <form className="add-task-form" onSubmit={addTask}>
-              <label className="form-title">Task title</label>
-              <input
-                className="new-project-input box"
-                placeholder="Input task title ..."
-                type="text"
-                name="title"
-              />
-              <label className="form-title">Estimated time</label>
-              <input
-                className="new-project-input box"
-                type="number"
-                name="time"
-                placeholder="Input estimated time ..."
-              />
-              <div>
-                <button
-                  className="standard-container-button left medium"
-                  type="button"
-                >
-                  Cancel
-                </button>
-                <button
-                  className="standard-container-button right medium"
-                  type="submit"
-                >
-                  Create
-                </button>
-              </div>
-            </form>
-          </div>
-        </>
-      )}
+      {showNewTask && <NewTask addTask={addTask} />}
     </div>
   );
 };
