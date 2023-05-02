@@ -103,14 +103,14 @@ export const updateTaskStatus = async (
 };
 
 export const sendNotification = async (
-  user_id: string,
+  sender_username: string,
   collaborator_mail: string,
   project_id: string
 ) => {
-  console.log(user_id, collaborator_mail, project_id);
+  console.log(sender_username, collaborator_mail, project_id);
 
   const o = {
-    user_id: user_id,
+    sender_username: sender_username,
     collaborator_mail: collaborator_mail,
     project_id: project_id,
   };
