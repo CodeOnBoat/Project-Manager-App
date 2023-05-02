@@ -68,7 +68,7 @@ export const Header = ({ logOut }: HeaderProps) => {
             </div>
             {showCirclesContainer && (
               <>
-                <div className="circles-container" onClick={handleNotification}>
+                <div className="circles-container">
                   <div className="notification-panel">
                     <div className="circle-header" onClick={handleNotification}>
                       N

@@ -1,8 +1,8 @@
 .header-container {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: space-between;
+  align-items: top;
   text-align: center;
   animation-name: slide-in-out;
   animation-duration: 1s;
@@ -10,19 +10,16 @@
 
 .animation-container {
   position: relative;
-  height: 20vh;
   display: flex;
-  flex-direction: column;
+  align-items: center;
 }
 
 .circles-container {
   display: flex;
-  margin-top: 1em;
-  top: 2em;
+  gap: 0.5em;
+  margin-left: 0.5em;
   height: 2em;
   align-items: center;
-  width: 100%;
-  justify-content: center;
 }
 
 .circle-header {
@@ -31,10 +28,8 @@
   border: 1px solid white;
   border-radius: 50%;
   display: flex;
-  animation: appearWithSlide 0.5s;
   align-items: center;
   justify-content: center;
-  margin-left: 1em;
 }
 
 .circles-container img {
@@ -45,7 +40,7 @@
 .user-name-container {
   display: flex;
   align-items: center;
-  height: 2em;
+  min-height: 2em;
   padding-right: 1em;
   padding-left: 1em;
   cursor: pointer;
@@ -63,22 +58,9 @@
   color: white;
 }
 
-@keyframes appearWithSlide {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(-5px);
-  }
-}
+
 
 .header-logo-image {
-  width: 12em;
-  height: 12em;
-  position: absolute;
-  left: 43%;
+  width: 5em;
+  height: 5em;
 }

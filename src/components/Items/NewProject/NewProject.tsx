@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
 import { ProjectType } from "../../../data/Interfaces";
-import { addNewProject } from "../../../client/client";
+import { addNewProject, addNewProjectWithTasks } from "../../../client/client";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./NewProject.css";
@@ -17,7 +17,8 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
   const navigate = useNavigate();
   const [emptyTitle, setEmptyTitle] = useState(false);
   const titleFieldRef = useRef<HTMLTextAreaElement>(null);
-  const [projectLoading, setProjectLoading] = useState(false);
+  const [projectLoading, setProjectLoading] = useState("");
+  const [isAiEnabled, setIsAiEnabled] = useState(false);
 
   const createNewProject = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,9 +40,16 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
         ],
       };
       const updateProjects = async () => {
-        setProjectLoading(true);
-        const newP = await addNewProject(newProject);
-        setProjectLoading(false);
+        let newP: any;
+        if (!isAiEnabled) {
+          setProjectLoading("Generating your project...");
+          newP = await addNewProject(newProject);
+        } else {
+          setProjectLoading("Generating your tasks with AI...");
+          newP = await addNewProjectWithTasks(newProject);
+        }
+        setProjectLoading("");
+
         setProjects([...projects!, newP]);
         navigate(`/project/${newP.title}`);
       };
@@ -77,13 +85,16 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
         />
         <div className="selector-container">
           <label>Use AI to generate your first tasks</label>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onClick={() => setIsAiEnabled(!isAiEnabled)}
+          />
         </div>
         {/* <label className="new-project-error">
           Description field can't be empty
         </label> */}
-        {projectLoading && (
-          <label className="new-project-generating">Generating tasks...</label>
+        {projectLoading !== "" && (
+          <label className="new-project-generating">{projectLoading}</label>
         )}
         <button
           className="standard-container-button left"
@@ -95,7 +106,6 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
         <button
           className="standard-container-button right"
           type="submit"
-          disabled={projectLoading}
         >
           Create
         </button>

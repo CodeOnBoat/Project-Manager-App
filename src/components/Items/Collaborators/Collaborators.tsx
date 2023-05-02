@@ -12,6 +12,7 @@ export const Collaborators = () => {
 
   const [showWriteMail, setShowWriteMail] = useState(false);
   const mailRef = useRef<HTMLInputElement>(null);
+  const [collaboratorsHidden, setCollaboratorsHidden] = useState(true);
 
   const handleSendNotification = () => {
     console.log({
@@ -32,30 +33,54 @@ export const Collaborators = () => {
   };
 
   return (
-    <div className="standard-container project-standard-container project-collaborator-container">
-      <div className="standard-container-title">
-        <h1>Collaborators</h1>
+    <div className={"standard-container project-collaborator-container"}>
+      <div className={collaboratorsHidden ? "standard-container-title hidden" : "standard-container-title"}>
+        <h1 className="collaborators-title">Collaborators</h1>
+        <button
+          className="open-collaborators-button"
+          onClick={() => setCollaboratorsHidden(!collaboratorsHidden)}
+        >
+          {collaboratorsHidden ? "+" : "-"}
+        </button>
       </div>
-      {showWriteMail ? (
-        <>
-          <div>Send invitation</div>
-          <input placeholder="user@email.TsaskWise" type="text" ref={mailRef} />
-          <button onClick={handleSendNotification}>submit</button>
-        </>
-      ) : (
-        <div className="collaborators-container">
-          {project &&
-            project.collaborators.map((c) => (
-              <OneCollaborator collaborator={c} />
-            ))}
-          <button
-            className="standard-container-button right small "
-            onClick={handleWriteMail}
-          >
-            +
-          </button>
-        </div>
-      )}
+      <div className={collaboratorsHidden ? "collab-expandable hidden" : "collab-expandable"}>
+        {showWriteMail ? (
+          <div className="collaborators-container">
+            <label>Send invitation</label>
+            <input
+              className="new-project-input"
+              placeholder="user@email.com"
+              type="text"
+              ref={mailRef}
+            />
+            <button
+              onClick={() => setShowWriteMail(false)}
+              className="standard-container-button left"
+            >
+              Back
+            </button>
+            <button
+              onClick={handleSendNotification}
+              className="standard-container-button right"
+            >
+              Send
+            </button>
+          </div>
+        ) : (
+          <div className="collaborators-container">
+            {project &&
+              project.collaborators.map((c) => (
+                <OneCollaborator collaborator={c} />
+              ))}
+            <button
+              className="standard-container-button right small "
+              onClick={handleWriteMail}
+            >
+              +
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

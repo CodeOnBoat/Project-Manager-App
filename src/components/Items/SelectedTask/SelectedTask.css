@@ -20,6 +20,29 @@
   text-align: left;
 }
 
+.task-detail-container {
+  display: flex;
+  justify-content: left;
+  width: 90%;
+  max-height: 55%;
+  overflow-y: scroll;
+  flex-direction: column;
+}
+
+.links-container li {
+  margin-top: 1em;
+}
+
+.links-container ul {
+  list-style-type: none
+}
+
+.link {
+  text-decoration: underline;
+  color: black;
+  margin-top: 1em;
+}
+
 .estimated-time-box {
   height: 100%;
   width: 25%;
@@ -52,5 +75,34 @@
 }
 
 .task-description {
-  padding: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.task-state-container {
+  background-color: rgba(0,0,0,.2);
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
+
+.task-state-container label {
+  margin-left: 10%;
+  font-weight: bold;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+  border-radius: 24px;
+  padding: 1em;
+  background: rgb(234, 246, 249);
+  background: linear-gradient(
+    180deg,
+    rgba(234, 246, 249, 0.9766500350140056) 87%,
+    rgba(210, 239, 248, 0.937) 100%
+  );
 }

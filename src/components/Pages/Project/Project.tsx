@@ -66,12 +66,6 @@ export const Project = ({ project }: ProjectProps) => {
 
   return (
     <div className="project-page-container">
-      <ProjectInfo
-        title={project.title}
-        description={project.description}
-        deleteProject={handleDelete}
-      />
-      <Collaborators />
       <Todo
         tasksLoading={tasksLoading}
         selectedTask={selectedTask}
@@ -93,6 +87,12 @@ export const Project = ({ project }: ProjectProps) => {
         selectedTask={selectedTask}
         setSelectedTask={setSelectedTask}
       />
+       <ProjectInfo
+        title={project.title}
+        description={project.description}
+        deleteProject={handleDelete}
+      />
+      <Collaborators />
     </div>
   );
 };

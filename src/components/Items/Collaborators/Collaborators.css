@@ -1,9 +1,46 @@
 .collaborators-container {
-  height: 65%;
-  width: 85%;
-  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  width: 90%;
+  padding: 2em;
+  justify-content: top;
+  flex-direction: column;
+}
+
+.project-collaborator-container.hidden {
+  height: auto;
+  transition: all 1s;
+}
+
+.project-collaborator-container {
+  max-width: 520px;
+}
+
+.collab-expandable.hidden {
+  visibility: hidden;
+  transition: all 0.5s;
+  height: 0;
+  opacity: 0;
+}
+
+.collab-expandable {
+  transition: all 0.5s;
+  opacity: 1;
+  height: 30vh;
+  width: 100%;
+}
+
+.open-collaborators-button {
+  border: none;
+  background-color: rgba(0,0,0,0);
+  font-size: xx-large;
+  cursor: pointer;
 }
 
 .collaborators-container::-webkit-scrollbar {
   display: none;
+}
+
+.standard-container.project-collaborator-container {
+  height: auto;
 }

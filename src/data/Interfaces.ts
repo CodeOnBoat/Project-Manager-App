@@ -48,6 +48,14 @@ export interface Task {
   description: string;
   assignedTo: "";
   emoji: string;
+  steps : Step[]
+}
+
+export interface Step {
+  name : string,
+  link : string,
+  linkname : string
+  completed : boolean
 }
 
 export interface OneTaskProps {

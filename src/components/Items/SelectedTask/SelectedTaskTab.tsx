@@ -40,6 +40,7 @@ export const SelectedTaskTab = ({
       state: "notstarted",
       description: "",
       emoji: "",
+      steps: [],
     };
     const updateTasks = async () => {
       const newT: Task = await addTaskToProject(project!.project_id!, newTask);
@@ -66,39 +67,42 @@ export const SelectedTaskTab = ({
               onClick={() => deleteTask(task.taskId!)}
             />
           </div>
-          {task.state === "notstarted" && (
-            <div>
-              <div className="task-description">{task.description}</div>
-              <button className="standard-container-button left">Cancel</button>
-              <button
-                className="standard-container-button right"
-                onClick={() => changeTaskStatus("inprogress")}
-              >
-                start
-              </button>
-            </div>
-          )}
-          {task.state === "inprogress" && (
-            <>
-              <DonautChart
-                total={100}
-                completed={90}
-                size={200}
-                strokeWidth={12}
-                fontSize={30}
-                fontColor="#fff"
-                trackColor="rgba(0, 200, 0, 0)"
-                progressColor="#fff"
-              />
-              <button className="standard-container-button left">Cancel</button>
-              <button
-                className="standard-container-button right"
-                onClick={() => changeTaskStatus("finished")}
-              >
-                Done
-              </button>
-            </>
-          )}
+          <div className="task-state-container">
+            <label>
+              {task.state === "notstarted" && "Not started"}
+              {task.state === "inprogress" && "In progress"}
+              {task.state === "finished" && "Finished"}
+            </label>
+          </div>
+          <div className="task-detail-container">
+            <div className="task-description">{task.description}</div>
+            {task.steps.length > 0 && (
+              <>
+                <div className="links-container">
+                  <label>Here's the steps to follow:</label>
+                  <ul>
+                    {task.steps.map((step) => (
+                      <li className="step">
+                        <label>
+                          <b>{step.name}</b>
+                        </label>
+                        <a target="_blank" className="link" href={step.link}>
+                          {step.linkname}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+            <button className="standard-container-button left">Cancel</button>
+            <button
+              className="standard-container-button right"
+              onClick={() => changeTaskStatus("inprogress")}
+            >
+              start
+            </button>
+          </div>
         </>
       )}
       {!task && !showNewTask && (

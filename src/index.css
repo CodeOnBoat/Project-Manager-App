@@ -177,6 +177,7 @@ h1 {
   top: 0;
   width: 100%;
   text-align: left;
+  transition: all 1s;
   color: white;
   border-radius: 24px 24px 0 0;
   border-bottom: 1px solid white;
@@ -190,9 +191,22 @@ h1 {
   display: flex;
 }
 
+.standard-container-title.hidden {
+  border-radius: 24px 24px 24px 24px;
+  
+}
+
+.standard-container-title h1 {
+  width: 80%;
+}
+
 .standard-container .standard-container-button.small {
   width: 10%;
   font-size: 2em;
+}
+
+.standard-container.hiddable.hidden {
+  height: 0;
 }
 
 .standard-container-button.medium {

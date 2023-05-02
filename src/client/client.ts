@@ -53,7 +53,11 @@ export const getTasksByProjectId = async (project_id: string) => {
 
 export const addNewProject = async (newProject: ProjectType) => {
   const res = await axios.post(`${root}/projects`, newProject);
-  console.log("asdas");
+  return res.data;
+};
+
+export const addNewProjectWithTasks = async (newProject: ProjectType) => {
+  const res = await axios.post(`${root}/projects/ai`, newProject);
   return res.data;
 };
 
@@ -64,6 +68,7 @@ export const addTaskToProject = async (project_id: string, task: Task) => {
     time: task.time,
     state: task.state,
     assignedTo: task.assignedTo,
+    links: task.steps,
   });
   return res.data;
 };
