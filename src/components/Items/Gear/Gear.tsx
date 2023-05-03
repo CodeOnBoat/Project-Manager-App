@@ -174,7 +174,6 @@ export const Gear = () => {
           </div>
         </div>
       </div>
-      <div className="loading-text">Assembling your project</div>
     </div>
   );
 };

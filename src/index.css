@@ -1,38 +1,98 @@
+@font-face {
+  font-family: "PoppinsBold";
+  src: local("PoppinsBold"),
+    url("./data/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "PoppinsLight";
+  src: local("PoppinsLight"),
+    url("./data/fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: light;
+}
+@font-face {
+  font-family: "PoppinsMedium";
+  src: local("PoppinsMedium"),
+    url("./data/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: medium;
+}
+@font-face {
+  font-family: "PoppinsRegular";
+  src: local("PoppinsRegular"),
+    url("./data/fonts/Poppins-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "PoppinsSemiBold";
+  src: local("PoppinsSemiBold"),
+    url("./data/fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+
 * {
   margin: 0;
   padding: 0;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serifs;
-  font-weight: 100s;
+  font-family: "PoppinsRegular", sans-serifs;
+  color: var(--dark);
 }
 #root {
-  margin: 2em;
+  margin: 0 1em;
 }
 
 :root {
-  --background: linear-gradient(
+  /*  Light-Mode */
+  --primary-color: rgba(184, 254, 187, 1);
+  --secundary-color: rgba(185, 232, 246, 1);
+  --white: rgba(255, 255, 255, 1);
+  --dark: rgba(50, 50, 50, 0.8);
+  --subcontainer-background: rgba(255, 255, 255, 0.4);
+  --container-background: rgba(255, 255, 255, 0.24);
+  --full-gradient: linear-gradient(
     to bottom,
-    #b8febb,
-    #a2fcd6,
-    #9df7ea,
-    #a7f0f6,
-    #b9e8f7
+    rgba(184, 254, 187, 1),
+    rgba(185, 232, 246, 1)
   );
-  --standard-container: rgba(255, 255, 255, 0.24);
-  --project-task-container: rgba(255, 255, 255, 0.24);
-  --black: rgb(14, 18, 24);
+  --main-background: linear-gradient(
+    to bottom,
+    rgba(184, 254, 187, 1),
+    rgba(185, 232, 246, 1)
+  );
+
+  /*  Dark-Mode */
+  /* --primary-color: rgba(184, 254, 187, 1);
+  --secundary-color: rgba(185, 232, 246, 1);
+  --white: rgba(255, 255, 255, 1);
+  --dark: rgba(50, 50, 50, 0.8);
+  --full-gradient: linear-gradient(
+    to bottom,
+    rgba(185, 232, 246, 1),
+    rgba(184, 254, 187, 1)
+  );
+  --container-background: linear-gradient(
+    to bottom,
+    rgba(184, 254, 187, 0.24),
+    rgba(185, 232, 246, 0.24)
+  );
+  --subcontainer-background: linear-gradient(
+    to right,
+    rgba(185, 232, 246, 0.21),
+    rgba(184, 254, 187, 0)
+  );
+  --main-background: linear-gradient(
+    to bottom,
+    rgba(72, 72, 72, 1),
+    rgba(30, 30, 30, 1)
+  ); */
 }
 
 body {
   min-height: 100vh;
   max-width: 100vw;
-  /* background-image: var(--background); */
-  background: rgb(5, 140, 173);
+  background-image: var(--main-background);
+  /* background: rgb(5, 140, 173);
   background: linear-gradient(
     342deg,
     rgba(5, 140, 173, 1) 19%,
     rgba(230, 249, 255, 1) 100%
-  );
+  ); */
 }
 
 .block {
@@ -63,7 +123,7 @@ body {
   color: var(--black);
   margin: 1em;
   /* background: var(--standard-container); */
-  background-color: white;
+  background-color: var(--container-background);
   border: 2px solid #ffffff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 24px;
@@ -181,27 +241,28 @@ h1 {
   color: white;
   border-radius: 24px 24px 0 0;
   border-bottom: 1px solid white;
-  /* background-color: rgba(164, 165, 179, 0.109); */
-  background: rgb(234, 246, 249);
+  background-color: var(--subcontainer-background);
+  /* background: rgb(234, 246, 249);
   background: linear-gradient(
     180deg,
     rgba(234, 246, 249, 0.9766500350140056) 87%,
     rgba(210, 239, 248, 0.937) 100%
-  );
+  ); */
   display: flex;
 }
 
 .standard-container-title.hidden {
   border-radius: 24px 24px 24px 24px;
-  
 }
 
 .standard-container-title h1 {
   width: 80%;
+  font-family: "PoppinsLight";
 }
 
 .standard-container .standard-container-button.small {
-  width: 10%;
+  width: 1.5em;
+  height: 1.5em;
   font-size: 2em;
 }
 
@@ -210,15 +271,12 @@ h1 {
 }
 
 .standard-container-button.medium {
-  width: 25%;
+  min-width: 35%;
+  cursor: default;
 }
 
 .standard-container-button.large {
   width: 30%;
-}
-
-.standard-container-button:hover {
-  filter: brightness(1.2);
 }
 
 .standard-container-button.left {
@@ -228,11 +286,15 @@ h1 {
   border-left: none;
   border-right: 1px solid white;
   color: var(--black);
-  background-color: rgba(173, 173, 173, 0.504);
+  background-color: var(--subcontainer-background);
 }
 
 .standard-container-button.right {
+  color: var(--dark);
   border-radius: 24px 0 24px 0;
   right: 0;
-  background-color: rgb(70, 198, 107);
+  background-color: var(--subcontainer-background);
+}
+.standard-container-button.right:hover {
+  background-color: var(--primary-color);
 }
