@@ -31,8 +31,8 @@ height: fit-content;
 }
 
 .project-info-option-icon {
-  width: 3em;
-  height: 3em;
+  width: 3vw;
+  height: 3vw;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid white;
@@ -40,6 +40,30 @@ height: fit-content;
 
 .project-info-btn-container {
   display: flex;
-  width: 20%;
   gap: 1em;
+}
+
+.project-expandable.hidden {
+  visibility: hidden;
+  transition: all 0.5s;
+  height: 0;
+  opacity: 0;
+}
+
+.project-expandable {
+  transition: all 0.5s;
+  opacity: 1;
+  height: 30vh;
+  width: 100%;
+}
+
+.project-option-icon {
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.project-option-icon:hover {
+  transform: scale(1.1);
 }

@@ -13,6 +13,7 @@ export const Collaborators = () => {
   const [showWriteMail, setShowWriteMail] = useState(false);
   const mailRef = useRef<HTMLInputElement>(null);
   const [collaboratorsHidden, setCollaboratorsHidden] = useState(true);
+  const [showSentMessage, setShowSentMessage] = useState(false);
 
   const handleSendNotification = () => {
     console.log({
@@ -25,7 +26,11 @@ export const Collaborators = () => {
       mailRef.current?.value!,
       project?.project_id!
     );
-    setShowWriteMail(false);
+    setShowSentMessage(true);
+    setTimeout(() => {
+      setShowSentMessage(false);
+      setShowWriteMail(false);
+    }, 1000);
   };
 
   const handleWriteMail = () => {
@@ -78,6 +83,7 @@ export const Collaborators = () => {
               >
                 Send
               </button>
+              {showSentMessage && <label>Invitation sent succesfully</label>}
             </div>
           ) : (
             <div className="collaborators-container">

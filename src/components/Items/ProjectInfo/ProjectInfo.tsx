@@ -1,7 +1,7 @@
-import React from "react";
-import { deleteProjectById } from "../../../client/client";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import "./ProjectInfo.css";
+import Trash from "../../../data/images/trash.png";
+import Edit from "../../../data/images/edit.png";
 
 export interface ProjectInfoProps {
   title: string;
@@ -14,21 +14,38 @@ export const ProjectInfo = ({
   description,
   deleteProject,
 }: ProjectInfoProps) => {
+  const [projectInfoHidden, setProjectInfoHidden] = useState(true);
+
   return (
     <div className="standard-container project-standard-container project-info-container">
       <div className="project-info-header">
-        <div className="standard-container-title">
-        <h1 className="title-info">{title}</h1>
-        <div className="project-info-btn-container">
-          <button className="project-info-option-icon">edit</button>
-          <button className="project-info-option-icon" onClick={deleteProject}>
-            Delete
-          </button>
-          <button className="project-info-option-icon">settings</button>
-        </div>
+        <div
+          className={
+            projectInfoHidden
+              ? "standard-container-title hidden"
+              : "standard-container-title"
+          }
+        >
+          <h1 className="title-info">{title}</h1>
+          <div className="project-info-btn-container">
+            <button
+              className="open-collaborators-button"
+              onClick={() => setProjectInfoHidden(!projectInfoHidden)}
+            >
+              {projectInfoHidden ? "+" : "-"}
+            </button>
+            <img src={Edit} alt="" className="project-option-icon" />
+            <img src={Trash} alt="" className="project-option-icon" onClick={() => deleteProject} />
+          </div>
         </div>
       </div>
-      <div className="project-info-description-container">{description}</div>
+      <div
+        className={
+          projectInfoHidden ? "project-expandable hidden" : "project-expandable"
+        }
+      >
+        <div className="project-info-description-container">{description}</div>
+      </div>
     </div>
   );
 };
