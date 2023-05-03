@@ -26,7 +26,7 @@ import {
 function App() {
   const navigate = useNavigate();
   const { setProfile, profile, projects, setProjects } = useContext(AppContext);
-
+  
   const logOut = () => {
     googleLogout();
     setProfile(undefined);

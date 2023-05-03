@@ -2,7 +2,7 @@ import React from "react";
 import { ProjectType } from "../../../data/Interfaces";
 import { Link } from "react-router-dom";
 import "./ProjectList.css";
-import '../Stats/Stats.css';
+import "../Stats/Stats.css";
 
 export interface ProjectListProps {
   projects: ProjectType[];
@@ -22,7 +22,7 @@ export const ProjectList = ({
       </div>
       <div className="project-list">
         {projects.map((p) => (
-          <div className="stats-one-stat list">
+          <div className="task-container list">
             <div className="flex-space-between list">
               <Link className="link-to-project" to={`/project/${p.title}`}>
                 {p.title}

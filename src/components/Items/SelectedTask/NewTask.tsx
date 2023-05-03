@@ -24,7 +24,14 @@ export const NewTask = ({addTask} : NewTaskPrompts) => {
             className="new-project-input box"
             type="number"
             name="time"
-            placeholder="Input estimated time ..."
+            placeholder="Estimated time ..."
+          />
+          <label className="form-title">Description</label>
+          <input
+            className="new-project-input box"
+            type="text"
+            name="description"
+            placeholder="Description"
           />
           <div>
             <button

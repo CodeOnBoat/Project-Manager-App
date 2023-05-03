@@ -29,6 +29,10 @@
   flex-direction: column;
 }
 
+.task-detail-container::-webkit-scrollbar {
+  display: none;
+}
+
 .links-container li {
   margin-top: 1em;
 }
@@ -103,6 +107,7 @@ background-color: rgba(141, 232, 85, 0.747);
   margin-top: 1em;
   border-radius: 24px;
   padding: 1em;
+  width: 100%;
   justify-content: space-between;
   background: rgb(234, 246, 249);
   background: linear-gradient(
@@ -115,19 +120,35 @@ background-color: rgba(141, 232, 85, 0.747);
 .step-data-container {
   display: flex;
   flex-direction: column;
+  font-size: small;
+}
+
+input[type=checkbox] {
+  accent-color: #48f678;
+  margin-left: 1em;
 }
 
 .step-number {
   height: 2em;
-  width: 2em;
+  min-width: 2em;
   display: flex;
   justify-self: flex-start;
   top: 0;
   left: 0;
   align-items: center;
   justify-content: center;
-  border-radius: 24px;
+  border-radius: 10px;
   margin: .5em;
-  background-color: aqua;
+  background-color: rgba(242, 218, 65, 0.563);
 }
+
+.step-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.standard-container-title.task-name h1 {
+  font-size: medium;
+} 
 

@@ -11,9 +11,10 @@ import { useContext } from "react";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { NewTask } from "./NewTask";
 import { TaskDisplay } from "./TaskDisplay";
+import { AppContext } from "../../../context/AppContext";
 export interface SelectedTaskTabProps {
   task: Task;
-  updateTaskState: (status: string) => void;
+  updateTaskState: (status: string, collaborator : string) => void;
   showNewTask: boolean;
   setShowNewTask: (b: boolean) => void;
 }
@@ -25,10 +26,11 @@ export const SelectedTaskTab = ({
   setShowNewTask,
 }: SelectedTaskTabProps) => {
   const { project, tasks, setTasks } = useContext(ProjectContext);
+  const {profile} = useContext(AppContext);
 
   const changeTaskStatus = (status: string) => {
-    updateTaskStatus(task.taskId!, project!.project_id!, status);
-    updateTaskState(status);
+    updateTaskStatus(task.taskId!, project!.project_id!, status, profile?.name!);
+    updateTaskState(status, profile!.name);
   };
 
   const addTask = (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,9 +41,10 @@ export const SelectedTaskTab = ({
       time: parseInt(formData.get("time") as string),
       assignedTo: "",
       state: "notstarted",
-      description: "",
+      description: formData.get("description") as string,
       emoji: "",
       steps: [],
+      collaborator : "",
     };
     const updateTasks = async () => {
       const newT: Task = await addTaskToProject(project!.project_id!, newTask);

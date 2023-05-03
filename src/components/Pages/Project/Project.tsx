@@ -1,15 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProjectProps, Task } from "../../../data/Interfaces";
 import {
-  addTaskToProject,
   deleteProjectById,
-  deleteTaskById,
   getTasksByProjectId,
-  updateTaskStatus,
 } from "../../../client/client";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../../context/AppContext";
-import { OneTask } from "./OneTask";
 import "./Project.css";
 import { Collaborators } from "../../Items/Collaborators/Collaborators";
 import { ProjectInfo } from "../../Items/ProjectInfo/ProjectInfo";
@@ -49,11 +44,12 @@ export const Project = ({ project }: ProjectProps) => {
     setProject(project);
   }, []);
 
-  const modifyTaskStatus = (taskId: string, state: string) => {
+  const modifyTaskStatus = (taskId: string, state: string, collaborator : string) => {
     let tempTasks = [...tasks];
     tempTasks.forEach((t) => {
       if (t.taskId === taskId) {
         t.state = state;
+        t.collaborator = collaborator
       }
     });
     setTasks(tempTasks);
@@ -74,10 +70,11 @@ export const Project = ({ project }: ProjectProps) => {
       />
       <SelectedTaskTab
         setShowNewTask={setShowNewTask}
-        updateTaskState={(status: string) => {
+        updateTaskState={(status: string, collaborator : string) => {
           modifyTaskStatus(
-            tasks.filter((t) => t.taskId === selectedTask)[0]?.taskId || "",
-            status
+            tasks.filter((t) => t.taskId === selectedTask)[0].taskId || "",
+            status,
+            collaborator
           );
         }}
         task={tasks.filter((t) => t.taskId === selectedTask)[0]}

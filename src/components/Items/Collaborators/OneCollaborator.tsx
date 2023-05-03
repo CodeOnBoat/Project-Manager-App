@@ -6,5 +6,5 @@ export interface OneCollaboratorProps {
 }
 
 export const OneCollaborator = ({ collaborator }: OneCollaboratorProps) => {
-  return <div className="stats-one-stat">{collaborator.user_name}</div>;
+  return <div className="task-container">{collaborator.user_name}</div>;
 };

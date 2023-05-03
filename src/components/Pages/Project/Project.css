@@ -36,7 +36,7 @@
 .project-tasksTodo-container {
   width: 100%;
   display: flex;
-  height: 70%;
+  height: 80%;
   flex-direction: column;
   justify-content: top;
   align-items: center;
@@ -58,4 +58,25 @@
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
   border-radius: 24px;
   margin-top: 1em;
+  cursor: pointer;
+}
+
+.task-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.task-dot.notstarted {
+  background-color: rgba(85, 171, 232, 0.747);
+}
+.task-dot.inprogress {
+  background-color: rgba(232, 200, 85, 0.747);
+}
+.task-dot.finished {
+  background-color: rgba(141, 232, 85, 0.747);
+}
+
+.task-title {
+  width: 80%;
 }

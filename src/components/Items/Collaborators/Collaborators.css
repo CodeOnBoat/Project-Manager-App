@@ -16,6 +16,11 @@
   max-width: 520px;
 }
 
+.grid-height-div {
+  height: 40vh;
+  width: 100%;
+}
+
 .collab-expandable.hidden {
   visibility: hidden;
   transition: all 0.5s;

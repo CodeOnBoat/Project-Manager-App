@@ -9,7 +9,10 @@ export const OneTask = ({ task, setSelected }: OneTaskProps) => {
       className="list task-container"
       onClick={() => setSelected(task.taskId!)}
     >
-      <div>{task.title}</div>
+      <>
+      <div className={`task-dot ${task.state}`}></div>
+      <div className="task-title">{task.title}</div>
+      </>
       <div>{task.emoji}</div>
     </div>
   );

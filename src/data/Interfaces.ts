@@ -49,6 +49,7 @@ export interface Task {
   assignedTo: "";
   emoji: string;
   steps: Step[];
+  collaborator : string,
 }
 
 export interface Step {

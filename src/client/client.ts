@@ -69,6 +69,7 @@ export const addTaskToProject = async (project_id: string, task: Task) => {
     state: task.state,
     assignedTo: task.assignedTo,
     links: task.steps,
+    description: task.description,
   });
   return res.data;
 };
@@ -91,12 +92,14 @@ export const deleteTaskById = async (task_id: string, project_id: string) => {
 export const updateTaskStatus = async (
   task_id: string,
   project_id: string,
-  status: string
+  status: string,
+  collaborator: string
 ) => {
   console.log({ task_id: task_id, project_id: project_id, status: status });
 
   const res = await axios.patch(`${root}/projects/${project_id}/${task_id}`, {
     status: status,
+    collaborator: collaborator,
   });
   console.log(res.status);
   return res.data;
@@ -152,6 +155,17 @@ export const resolveNotification = async (
       action: action,
       user_name: user_name,
     }
+  );
+  return res.data;
+};
+
+export const changeCompletionOfStep = async (
+  projectId: string,
+  taskId: string,
+  stepTitle: string
+) => {
+  const res = await axios.patch(
+    `${root}/projects/${projectId}/${taskId}/${stepTitle}`
   );
   return res.data;
 };
