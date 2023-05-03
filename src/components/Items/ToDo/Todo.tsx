@@ -6,6 +6,7 @@ import "./ToDo.css";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { useContext } from "react";
 import Spinner from "../Spinner/Spinner";
+import { Gear } from "../Gear/Gear";
 export interface TodoProps {
   selectedTask: string;
   tasksLoading: boolean;
@@ -23,7 +24,11 @@ export const Todo = ({
 
   return (
     <div className="standard-container project-standard-container taller">
-      {tasksLoading && <Spinner />}
+      {tasksLoading && (
+        <div className="todo-loading-container">
+          <Gear />
+        </div>
+      )}
       {!tasksLoading && (
         <>
           <div className="standard-container-title">
