@@ -63,7 +63,7 @@ export const NewProject = ({
   return (
     <div className="standard-container">
       <div className="standard-container-title">
-        <h1>New project</h1>
+        <h1>New</h1>
       </div>
       <form className="newProject-form" onSubmit={createNewProject}>
         <h1 className="form-input-title">Project title</h1>
@@ -78,7 +78,7 @@ export const NewProject = ({
             Title field can't be empty
           </label>
         )}
-        <h1 className="form-input-title" style={{ marginTop: "50px" }}>
+        <h1 className="form-input-title" >
           Project description
         </h1>
         <textarea

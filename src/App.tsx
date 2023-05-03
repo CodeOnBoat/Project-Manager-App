@@ -1,12 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import {
-  googleLogout,
-  useGoogleLogin,
-  TokenResponse,
-} from "@react-oauth/google";
+import { googleLogout } from "@react-oauth/google";
 import "./App.css";
-import { Profile, ProjectType } from "./data/Interfaces";
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
 import {
   BrowserRouter as Router,
@@ -18,14 +12,12 @@ import { Project } from "./components/Pages/Project/Project";
 import { LandingPage } from "./components/Pages/LandingPage/LandingPage";
 import { AppContext } from "./context/AppContext";
 import { Header } from "./components/Items/Header/Header";
-import {
-  ProjectContext,
-  ProjectContextProvider,
-} from "./context/ProjectContext";
+import { ProjectContextProvider } from "./context/ProjectContext";
+import "./data/colors/colors.css";
 
 function App() {
   const navigate = useNavigate();
-  const { setProfile, profile, projects, setProjects } = useContext(AppContext);
+  const { setProfile, profile, projects, setProjects, darkMode, setDarkMode } = useContext(AppContext);
   const [enableBack, setEnableBack] = useState(false);
 
   const logOut = () => {
@@ -36,7 +28,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className="app" data-theme={darkMode}>
       <Header
         logOut={logOut}
         enableBack={enableBack}
@@ -73,7 +65,7 @@ function App() {
             />
           ))}
       </Routes>
-    </>
+    </div>
   );
 }
 export default App;

@@ -1,14 +1,14 @@
 .header-container {
-  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   animation-name: slide-in-out;
   animation-duration: 1s;
+  padding: 1em 2em 1em 2em;
 }
-.header-right-container {
-}
+
 .notification-container {
   display: flex;
   flex-direction: column;
@@ -55,7 +55,8 @@
 .circle-header {
   height: 2em;
   width: 2em;
-  border: 1px solid white;
+  border: 2px solid var(--border-color);
+  box-shadow: 0px 0px 5px 0px var(--border-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -77,7 +78,8 @@
   padding-right: 1em;
   padding-left: 1em;
   cursor: pointer;
-  border: 1px solid white;
+  border: 2px solid var(--border-color);
+  box-shadow: 0px 0px 5px 0px var(--border-color);
   border-radius: 20px;
 }
 
@@ -88,13 +90,22 @@
 
 .user-name {
   font-size: 1.5em;
-  color: white;
+  background: -webkit-linear-gradient(var(--border-color));
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  
 }
 
 .header-logo-image {
   width: 5em;
   height: 5em;
 }
+
+.header-logo-image.dark {
+  filter: invert();
+}
+
 .header-back-image {
   margin-right: 0.5em;
   cursor: pointer;

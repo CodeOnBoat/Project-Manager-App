@@ -39,7 +39,7 @@
 
 .link {
   text-decoration: underline;
-  color: black;
+  color: var(--letter-color);
   margin-top: 1em;
 }
 
@@ -111,13 +111,7 @@ background-color: rgba(141, 232, 85, 0.747);
   padding: 1em;
   width: 100%;
   justify-content: space-between;
-  background: rgb(234, 246, 249);
-  background: linear-gradient(
-    180deg,
-    rgba(234, 246, 249, 0.9766500350140056) 87%,
-    rgba(210, 239, 248, 0.937) 100%
-  );
-}
+  background: var(--subcontainer-background);}
 
 .step-data-container {
   display: flex;

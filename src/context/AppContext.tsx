@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { NotificationType, Profile, ProjectType } from "../data/Interfaces";
 import { log } from "console";
 
@@ -9,6 +15,8 @@ type AppContextType = {
   setProjects: (projects: ProjectType[] | undefined) => void;
   notifications: NotificationType[];
   setNotifications: (notifications: NotificationType[]) => void;
+  darkMode: "dark" | "light";
+  setDarkMode: Dispatch<SetStateAction<"dark" | "light">>;
 };
 
 const initialValue: AppContextType = {
@@ -18,6 +26,8 @@ const initialValue: AppContextType = {
   setProjects: (projects: ProjectType[] | undefined) => {},
   notifications: [],
   setNotifications: () => {},
+  darkMode: "dark",
+  setDarkMode: () => {},
 };
 
 export const AppContext = createContext(initialValue);
@@ -30,6 +40,7 @@ export const AppContextProvider = ({
   const [profile, setProfile] = useState<Profile | undefined>();
   const [projects, setProjects] = useState<ProjectType[] | undefined>([]);
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
+  const [darkMode, setDarkMode] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     const storedProfile = localStorage.getItem("profile");
@@ -65,6 +76,8 @@ export const AppContextProvider = ({
         setProjects: setProj,
         notifications: notifications,
         setNotifications: setNotifications,
+        darkMode: darkMode,
+        setDarkMode: setDarkMode,
       }}
     >
       {children}

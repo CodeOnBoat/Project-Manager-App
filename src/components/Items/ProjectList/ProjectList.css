@@ -26,12 +26,12 @@
 
 .projectList-one-project a {
   text-decoration: none;
-  color: black;
+  color: var(--letter-color);
 }
 
 .link-to-project {
   text-decoration: none;
-  color: #000;
   padding-left: 1em;
+  color: var(--letter-color);
   font-size: medium;
 }

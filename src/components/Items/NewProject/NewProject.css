@@ -23,6 +23,7 @@
   border: none;
   outline: none;
   font-size: medium;
+  color: var(--letter-color);
   padding: 5%;
   resize: none;
   background-color: var(--subcontainer-background);

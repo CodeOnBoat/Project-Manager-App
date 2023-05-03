@@ -17,8 +17,12 @@ interface HeaderProps {
   setEnableBack: Function;
 }
 
-export const Header = ({ logOut, enableBack, setEnableBack }: HeaderProps) => {
-  const { profile, notifications, setNotifications } = useContext(AppContext);
+export const Header = ({
+  logOut,
+  enableBack,
+  setEnableBack,
+}: HeaderProps) => {
+  const { profile, notifications, setNotifications, darkMode, setDarkMode } = useContext(AppContext);
   const [showCirclesContainer, setShowCirclesContainer] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
@@ -67,7 +71,7 @@ export const Header = ({ logOut, enableBack, setEnableBack }: HeaderProps) => {
     <>
       {profile && (
         <div className="header-container">
-          <img className="header-logo-image" src={Logo} />
+          <img className={`header-logo-image ${darkMode}`} src={Logo} />
           <div className="header-right-container">
             <div ref={animationContainerRef} className="animation-container">
               {enableBack && (
@@ -102,7 +106,11 @@ export const Header = ({ logOut, enableBack, setEnableBack }: HeaderProps) => {
                       </div>
                     </div>
                     <div className="circle-header">
-                      <img className="moon-img" src={Moon} />
+                      <img
+                        className="moon-img"
+                        src={Moon}
+                        onClick={() => setDarkMode(darkMode === "dark" ? "light" : "dark")}
+                      />
                     </div>
                     <div className="circle-header" onClick={logOut}>
                       <img className="logOut-img" src={LogOut} />
