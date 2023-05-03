@@ -94,3 +94,10 @@
   width: 5em;
   height: 5em;
 }
+.header-back-image {
+  margin-right: 0.5em;
+  cursor: pointer;
+}
+.back-img {
+  height: 1.2em;
+}
