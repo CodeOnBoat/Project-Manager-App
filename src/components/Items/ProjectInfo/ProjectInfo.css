@@ -1,12 +1,10 @@
-
-.title-info:hover + .project-info-description-container{
+.title-info:hover + .project-info-description-container {
   visibility: hidden;
   background-color: red;
-
 }
 
 .project-info-container {
-height: fit-content;
+  height: fit-content;
 }
 
 .project-info-description-container::-webkit-scrollbar {
@@ -25,7 +23,7 @@ height: fit-content;
   width: 100%;
   box-sizing: border-box;
   height: 100%;
-  padding: 2em;  
+  padding: 2em;
   text-align: justify;
   overflow-y: scroll;
 }
@@ -41,6 +39,7 @@ height: fit-content;
 .project-info-btn-container {
   display: flex;
   gap: 1em;
+  align-items: center;
 }
 
 .project-expandable.hidden {
@@ -61,7 +60,7 @@ height: fit-content;
   width: 2em;
   height: 2em;
   cursor: pointer;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 
 .project-option-icon:hover {
