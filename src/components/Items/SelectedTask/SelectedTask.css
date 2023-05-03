@@ -66,6 +66,8 @@
 .standard-container-title-icon {
   cursor: pointer;
   position: absolute;
+  width: 2em;
+  height: 2em;
   right: 0;
   margin-right: 1em;
 }

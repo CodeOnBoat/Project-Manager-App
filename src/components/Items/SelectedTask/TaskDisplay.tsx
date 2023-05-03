@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Step, Task } from "../../../data/Interfaces";
-import Bin from "../../../data/images/bin.png";
+import Trash from "../../../data/images/trash.png";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { changeCompletionOfStep } from "../../../client/client";
 
@@ -32,7 +32,7 @@ export const TaskDisplay = ({
         <h1>{task.title}</h1>
         <img
           className="standard-container-title-icon"
-          src={Bin}
+          src={Trash}
           onClick={() => deleteTask(task.taskId!)}
         />
       </div>
