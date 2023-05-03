@@ -6,6 +6,20 @@
   justify-content: center;
 }
 
+.dashboard-loading-container {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10em;
+}
+.dashboard-loading-container .loading-text {
+  font-size: 1.5em;
+  font-weight: 100;
+  color: rgba(255, 250, 250, 0.7);
+}
+
 @media screen and (width > 1200px) {
   .dashboard-container {
     width: 100%;

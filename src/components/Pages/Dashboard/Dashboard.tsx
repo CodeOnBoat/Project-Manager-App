@@ -106,7 +106,12 @@ function Dashboard(props: DashbordProps) {
           </div>
         </>
       )}
-      {projectLoading && <Gear />}
+      {projectLoading && (
+        <div className="dashboard-loading-container">
+          <Gear />
+          <div className="loading-text">Assembling your project</div>
+        </div>
+      )}
     </div>
   );
 }

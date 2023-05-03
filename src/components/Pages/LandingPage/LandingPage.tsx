@@ -46,7 +46,7 @@ export const LandingPage = (props: LandingPageProps) => {
         </div>
         <button className="landingPage-google-button" onClick={() => login()}>
           <img className="landingPage-google-button-image" src={GoogleIcon} />
-          <div>Start with Google</div>
+          <div className="google-text">Start with Google</div>
         </button>
       </div>
     </div>
