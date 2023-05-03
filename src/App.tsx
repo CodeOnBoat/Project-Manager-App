@@ -26,6 +26,7 @@ import {
 function App() {
   const navigate = useNavigate();
   const { setProfile, profile, projects, setProjects } = useContext(AppContext);
+  const [enableBack, setEnableBack] = useState(false);
 
   const logOut = () => {
     googleLogout();
@@ -36,7 +37,11 @@ function App() {
 
   return (
     <>
-      <Header logOut={logOut} />
+      <Header
+        logOut={logOut}
+        enableBack={enableBack}
+        setEnableBack={setEnableBack}
+      />
       <Routes>
         <Route
           path="/"
@@ -48,7 +53,10 @@ function App() {
             />
           }
         />
-        <Route path="/dashboard" element={<Dashboard logOut={logOut} />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard setEnableBack={setEnableBack} logOut={logOut} />}
+        />
         {projects &&
           projects &&
           projects.map((p, index) => (

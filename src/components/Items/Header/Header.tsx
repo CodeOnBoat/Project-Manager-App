@@ -5,18 +5,23 @@ import Menu from "../../../data/images/Menu.png";
 import LogOut from "../../../data/images/LogOut.png";
 import Moon from "../../../data/images/Moon.png";
 import Logo from "../../../data/images/logo.png";
+import Back from "../../../data/images/back.png";
 import NotificationOff from "../../../data/images/notificationOff.png";
 import { getNotifications, resolveNotification } from "../../../client/client";
 import { NotificationType } from "../../../data/Interfaces";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   logOut: () => void;
+  enableBack: boolean;
+  setEnableBack: Function;
 }
 
-export const Header = ({ logOut }: HeaderProps) => {
+export const Header = ({ logOut, enableBack, setEnableBack }: HeaderProps) => {
   const { profile, notifications, setNotifications } = useContext(AppContext);
   const [showCirclesContainer, setShowCirclesContainer] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const navigate = useNavigate();
 
   const animationContainerRef = useRef<HTMLDivElement>(null);
   const handleNotification = () => {
@@ -65,6 +70,17 @@ export const Header = ({ logOut }: HeaderProps) => {
           <img className="header-logo-image" src={Logo} />
           <div className="header-right-container">
             <div ref={animationContainerRef} className="animation-container">
+              {enableBack && (
+                <div
+                  className="circle-header header-back-image"
+                  onClick={() => {
+                    navigate("/dashboard");
+                    setEnableBack(false);
+                  }}
+                >
+                  <img className="back-img" src={Back} />
+                </div>
+              )}
               <div
                 className="user-name-container"
                 onClick={() => {

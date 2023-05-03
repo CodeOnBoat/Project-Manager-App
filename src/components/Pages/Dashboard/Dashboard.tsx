@@ -7,6 +7,7 @@ import { Stats } from "../../Items/Stats/Stats";
 import { ProjectList } from "../../Items/ProjectList/ProjectList";
 import DonautChart from "../../Items/Chart/DonautChart";
 import { NewProject } from "../../Items/NewProject/NewProject";
+import { Gear } from "../../Items/Gear/Gear";
 
 function Dashboard(props: DashbordProps) {
   const { profile, setProjects, projects } = useContext(AppContext);
@@ -14,6 +15,7 @@ function Dashboard(props: DashbordProps) {
   const newProjectRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [showNewProject, setShowNewProject] = useState(false);
+  const [projectLoading, setProjectLoading] = useState(false);
 
   const handleShowNewProject = () => {
     if (isDesktop) {
@@ -57,10 +59,10 @@ function Dashboard(props: DashbordProps) {
 
   return (
     <div className="dashboard-container" ref={dashBoardRef}>
-      {profile && (
+      {profile && !projectLoading && (
         <>
           {/* <div className="block stats-block"> */}
-            {/* <DonautChart
+          {/* <DonautChart
               total={100}
               completed={90}
               size={200}
@@ -80,7 +82,10 @@ function Dashboard(props: DashbordProps) {
             </div> */}
           {/* </div> */}
           <div className="block newProject" ref={newProjectRef}>
-            <NewProject handleCancelNewProject={handleCancelNewProject} />
+            <NewProject
+              setProjectLoading={setProjectLoading}
+              handleCancelNewProject={handleCancelNewProject}
+            />
           </div>
           <div className="block projectList">
             <div className="standard-container">
@@ -89,12 +94,19 @@ function Dashboard(props: DashbordProps) {
                   projects={projects!}
                   handleShowNewProject={handleShowNewProject}
                   showNewProject={showNewProject}
+                  setEnableBack={props.setEnableBack}
                 />
+              )}
+              {!projects && (
+                <div className="todo-loading-container">
+                  <Gear />
+                </div>
               )}
             </div>
           </div>
         </>
       )}
+      {projectLoading && <Gear />}
     </div>
   );
 }

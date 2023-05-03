@@ -12,6 +12,7 @@ export interface Profile {
 
 export interface DashbordProps {
   logOut: () => void;
+  setEnableBack: Function;
 }
 
 export interface ProjectProps {

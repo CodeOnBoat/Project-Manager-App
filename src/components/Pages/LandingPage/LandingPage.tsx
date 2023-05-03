@@ -11,6 +11,8 @@ import Dashboard from "../Dashboard/Dashboard";
 import "./LandingPage.css";
 import { LandingPageProps, Profile } from "../../../data/Interfaces";
 import GoogleIcon from "../../../data/images/Google-button.png";
+import Img from "../../../data/images/landingImg.png";
+import Logo from "../../../data/images/logo.png";
 
 export const LandingPage = (props: LandingPageProps) => {
   const [user, setUser] = useState<TokenResponse>();
@@ -40,11 +42,11 @@ export const LandingPage = (props: LandingPageProps) => {
     <div className="landingPage-container">
       <div className="landingPage-login-container">
         <div>
-          <h1 className="landingPage-title">TaskWise</h1>
-          <h2 className="landingPage-subtitle">Start less, finish more!</h2>
+          <img className="landing-logo-image" src={Logo} />
         </div>
         <button className="landingPage-google-button" onClick={() => login()}>
           <img className="landingPage-google-button-image" src={GoogleIcon} />
+          <div>Start with Google</div>
         </button>
       </div>
     </div>

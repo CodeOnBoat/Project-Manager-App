@@ -7,17 +7,21 @@ import { useState } from "react";
 import "./NewProject.css";
 import { useRef } from "react";
 import Spinner from "../Spinner/Spinner";
+import { Gear } from "../Gear/Gear";
 
 export interface NewProjectProps {
   handleCancelNewProject: () => void;
+  setProjectLoading: Function;
 }
 
-export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
+export const NewProject = ({
+  handleCancelNewProject,
+  setProjectLoading,
+}: NewProjectProps) => {
   const { projects, profile, setProjects } = useContext(AppContext);
   const navigate = useNavigate();
   const [emptyTitle, setEmptyTitle] = useState(false);
   const titleFieldRef = useRef<HTMLTextAreaElement>(null);
-  const [projectLoading, setProjectLoading] = useState("");
   const [isAiEnabled, setIsAiEnabled] = useState(false);
 
   const createNewProject = (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,14 +45,13 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
       };
       const updateProjects = async () => {
         let newP: any;
+        setProjectLoading(true);
         if (!isAiEnabled) {
-          setProjectLoading("Generating your project...");
           newP = await addNewProject(newProject);
         } else {
-          setProjectLoading("Generating your tasks with AI...");
           newP = await addNewProjectWithTasks(newProject);
         }
-        setProjectLoading("");
+        setProjectLoading(false);
 
         setProjects([...projects!, newP]);
         navigate(`/project/${newP.title}`);
@@ -85,17 +88,12 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
         />
         <div className="selector-container">
           <label>Use AI to generate your first tasks</label>
-          <input
-            type="checkbox"
-            onClick={() => setIsAiEnabled(!isAiEnabled)}
-          />
+          <input type="checkbox" onClick={() => setIsAiEnabled(!isAiEnabled)} />
         </div>
         {/* <label className="new-project-error">
           Description field can't be empty
         </label> */}
-        {projectLoading !== "" && (
-          <label className="new-project-generating">{projectLoading}</label>
-        )}
+
         <button
           className="standard-container-button left"
           onClick={handleCancelNewProject}
@@ -103,10 +101,7 @@ export const NewProject = ({ handleCancelNewProject }: NewProjectProps) => {
         >
           Cancel
         </button>
-        <button
-          className="standard-container-button right"
-          type="submit"
-        >
+        <button className="standard-container-button right" type="submit">
           Create
         </button>
       </form>
