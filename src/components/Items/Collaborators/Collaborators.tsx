@@ -5,6 +5,8 @@ import { AppContext } from "../../../context/AppContext";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { OneCollaborator } from "./OneCollaborator";
 import "./Collaborators.css";
+import Plus from "../../../data/images/plus.png";
+import Minus from "../../../data/images/minus.png";
 
 export const Collaborators = () => {
   const { project } = useContext(ProjectContext);
@@ -48,12 +50,11 @@ export const Collaborators = () => {
           }
         >
           <h1 className="collaborators-title">Collaborators</h1>
-          <button
-            className="open-collaborators-button"
+          <img
             onClick={() => setCollaboratorsHidden(!collaboratorsHidden)}
-          >
-            {collaboratorsHidden ? "+" : "-"}
-          </button>
+            src={collaboratorsHidden ? Plus : Minus}
+            className="project-option-icon plus-minus"
+          />
         </div>
         <div
           className={

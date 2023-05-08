@@ -63,6 +63,12 @@
   transition: all 0.2s;
 }
 
+.project-option-icon.plus-minus {
+  width: 1.5em;
+  height: 1.5em;
+  filter: opacity(.5);
+}
+
 .project-option-icon:hover {
   transform: scale(1.1);
 }

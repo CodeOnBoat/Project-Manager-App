@@ -61,26 +61,6 @@ function Dashboard(props: DashbordProps) {
     <div className="dashboard-container" ref={dashBoardRef}>
       {profile && !projectLoading && (
         <>
-          {/* <div className="block stats-block"> */}
-          {/* <DonautChart
-              total={100}
-              completed={90}
-              size={200}
-              strokeWidth={12}
-              fontSize={30}
-              fontColor="#fff"
-              trackColor="rgba(0,0,0,0)"
-              progressColor="rgba(255, 255, 255, 0.75)"
-            />
-            <div className="standard-container stats-container">
-              <Stats
-                completedTasks={4}
-                effectiveTime="12:04"
-                remainingTasks={6}
-                estimatedTime="21:06"
-              />
-            </div> */}
-          {/* </div> */}
           <div className="block newProject" ref={newProjectRef}>
             <NewProject
               setProjectLoading={setProjectLoading}
@@ -94,7 +74,6 @@ function Dashboard(props: DashbordProps) {
                   projects={projects!}
                   handleShowNewProject={handleShowNewProject}
                   showNewProject={showNewProject}
-                  setEnableBack={props.setEnableBack}
                 />
               )}
               {!projects && (

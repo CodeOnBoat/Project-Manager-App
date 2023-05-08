@@ -90,10 +90,6 @@ export const NewProject = ({
           <label>Use AI to generate your first tasks</label>
           <input type="checkbox" onClick={() => setIsAiEnabled(!isAiEnabled)} />
         </div>
-        {/* <label className="new-project-error">
-          Description field can't be empty
-        </label> */}
-
         <button
           className="standard-container-button left"
           onClick={handleCancelNewProject}

@@ -13,10 +13,11 @@
 
 .project-collaborator-container {
   max-width: 520px;
+  margin: 5% auto;
 }
 
 .grid-height-div {
-  height: 40vh;
+  height: 45vh;
   width: 100%;
 }
 

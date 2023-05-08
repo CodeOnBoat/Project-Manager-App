@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import "./Header.css";
 import { AppContext } from "../../../context/AppContext";
-import Menu from "../../../data/images/Menu.png";
 import LogOut from "../../../data/images/LogOut.png";
 import Moon from "../../../data/images/Moon.png";
 import Logo from "../../../data/images/logo.png";
-import Back from "../../../data/images/back.png";
 import NotificationOff from "../../../data/images/notificationOff.png";
 import { getNotifications, resolveNotification } from "../../../client/client";
 import { NotificationType } from "../../../data/Interfaces";
@@ -13,16 +11,11 @@ import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   logOut: () => void;
-  enableBack: boolean;
-  setEnableBack: Function;
 }
 
-export const Header = ({
-  logOut,
-  enableBack,
-  setEnableBack,
-}: HeaderProps) => {
-  const { profile, notifications, setNotifications, darkMode, setDarkMode } = useContext(AppContext);
+export const Header = ({ logOut }: HeaderProps) => {
+  const { profile, notifications, setNotifications, darkMode, setDarkMode } =
+    useContext(AppContext);
   const [showCirclesContainer, setShowCirclesContainer] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
@@ -71,92 +64,74 @@ export const Header = ({
     <>
       {profile && (
         <div className="header-container">
-          <img className={`header-logo-image ${darkMode}`} src={Logo} />
+          <img
+            className={`header-logo-image ${darkMode}`}
+            src={Logo}
+            onClick={() => navigate("/dashboard")}
+          />
           <div className="header-right-container">
-            <div ref={animationContainerRef} className="animation-container">
-              {enableBack && (
-                <div
-                  className="circle-header header-back-image"
-                  onClick={() => {
-                    navigate("/dashboard");
-                    setEnableBack(false);
-                  }}
-                >
-                  <img className="back-img" src={Back} />
-                </div>
-              )}
-              <div
-                className="user-name-container"
-                onClick={() => {
-                  handleCirclesContainerClick();
-                }}
-              >
-                <p className="user-name">{profile?.name}</p>
-                <img src={Menu} width="15%" />
-              </div>
-              {showCirclesContainer && (
-                <div className="circles-notification-container">
-                  <div className="circles-container">
-                    <div className="notification-panel">
-                      <div
-                        className="circle-header"
-                        onClick={handleNotification}
-                      >
-                        <img src={NotificationOff} alt="" />
-                      </div>
-                    </div>
-                    <div className="circle-header">
-                      <img
-                        className="moon-img"
-                        src={Moon}
-                        onClick={() => setDarkMode(darkMode === "dark" ? "light" : "dark")}
-                      />
-                    </div>
-                    <div className="circle-header" onClick={logOut}>
-                      <img className="logOut-img" src={LogOut} />
-                    </div>
+            <div className="user-name-container">
+              <p className="user-name">{profile?.name}</p>
+            </div>
+            <div className="circles-notification-container">
+              <div className="circles-container">
+                <div className="notification-panel">
+                  <div className="circle-header" onClick={handleNotification}>
+                    <img src={NotificationOff} alt="" />
                   </div>
                 </div>
+                <div className="circle-header">
+                  <img
+                    className="moon-img"
+                    src={Moon}
+                    onClick={() =>
+                      setDarkMode(darkMode === "dark" ? "light" : "dark")
+                    }
+                  />
+                </div>
+                <div className="circle-header" onClick={logOut}>
+                  <img className="logOut-img" src={LogOut} />
+                </div>
+              </div>
+            </div>
+          </div>
+          {showNotification && (
+            <div className="notification-container">
+              {notifications.length === 0 ? (
+                <div>No notification</div>
+              ) : (
+                notifications.map((n, index) => (
+                  <div className="standard-container notification-standard-container">
+                    <div key={index}>
+                      <div className="standard-container-title">
+                        <h1> {n.projectName}</h1>
+                      </div>
+                      <div className="notification-message-container">
+                        You have been invited to join this project by
+                        {n.user_username}
+                      </div>
+                      <button
+                        onClick={() =>
+                          handleNotificationResolve(n, "accept", profile.name)
+                        }
+                        className="standard-container-button right"
+                      >
+                        accept
+                      </button>
+                      <button
+                        className=" standard-container-button left red"
+                        onClick={() =>
+                          handleNotificationResolve(n, "reject", profile.name)
+                        }
+                      >
+                        decline
+                      </button>
+                    </div>
+                  </div>
+                ))
               )}
             </div>
-            {showNotification && (
-              <div className="notification-container">
-                {notifications.length === 0 ? (
-                  <div>No notification</div>
-                ) : (
-                  notifications.map((n, index) => (
-                    <div className="standard-container notification-standard-container">
-                      <div key={index}>
-                        <div className="standard-container-title">
-                          <h1> {n.projectName}</h1>
-                        </div>
-                        <div className="notification-message-container">
-                          You have been invited to join this project by
-                          {n.user_username}
-                        </div>
-                        <button
-                          onClick={() =>
-                            handleNotificationResolve(n, "accept", profile.name)
-                          }
-                          className="standard-container-button right"
-                        >
-                          accept
-                        </button>
-                        <button
-                          className=" standard-container-button left red"
-                          onClick={() =>
-                            handleNotificationResolve(n, "reject", profile.name)
-                          }
-                        >
-                          decline
-                        </button>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            )}
-          </div>
+          )}
         </div>
       )}
     </>

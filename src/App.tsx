@@ -18,7 +18,6 @@ import "./data/colors/colors.css";
 function App() {
   const navigate = useNavigate();
   const { setProfile, profile, projects, setProjects, darkMode, setDarkMode } = useContext(AppContext);
-  const [enableBack, setEnableBack] = useState(false);
 
   const logOut = () => {
     googleLogout();
@@ -31,8 +30,6 @@ function App() {
     <div className="app" data-theme={darkMode}>
       <Header
         logOut={logOut}
-        enableBack={enableBack}
-        setEnableBack={setEnableBack}
       />
       <Routes>
         <Route
@@ -47,7 +44,7 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={<Dashboard setEnableBack={setEnableBack} logOut={logOut} />}
+          element={<Dashboard logOut={logOut} />}
         />
         {projects &&
           projects &&

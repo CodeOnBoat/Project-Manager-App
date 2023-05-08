@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./ProjectInfo.css";
 import Trash from "../../../data/images/trash.png";
 import Edit from "../../../data/images/edit.png";
+import Plus from "../../../data/images/plus.png";
+import Minus from "../../../data/images/minus.png";
 
 export interface ProjectInfoProps {
   title: string;
@@ -28,14 +30,19 @@ export const ProjectInfo = ({
         >
           <h1 className="title-info">{title}</h1>
           <div className="project-info-btn-container">
-            <button
-              className="open-collaborators-button"
+            <img
+              src={projectInfoHidden ? Plus : Minus}
+              alt=""
               onClick={() => setProjectInfoHidden(!projectInfoHidden)}
-            >
-              {projectInfoHidden ? "+" : "-"}
-            </button>
+              className="project-option-icon plus-minus"
+            />
             <img src={Edit} alt="" className="project-option-icon" />
-            <img src={Trash} alt="" className="project-option-icon" onClick={() => deleteProject} />
+            <img
+              src={Trash}
+              alt=""
+              className="project-option-icon"
+              onClick={() => deleteProject}
+            />
           </div>
         </div>
       </div>

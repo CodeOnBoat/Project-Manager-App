@@ -8,14 +8,12 @@ export interface ProjectListProps {
   projects: ProjectType[];
   handleShowNewProject: () => void;
   showNewProject: boolean;
-  setEnableBack: Function;
 }
 
 export const ProjectList = ({
   projects,
   handleShowNewProject,
   showNewProject,
-  setEnableBack,
 }: ProjectListProps) => {
   return (
     <>
@@ -29,7 +27,6 @@ export const ProjectList = ({
               <Link
                 className="link-to-project"
                 to={`/project/${p.title}`}
-                onClick={() => setEnableBack(true)}
               >
                 {p.title}
               </Link>
