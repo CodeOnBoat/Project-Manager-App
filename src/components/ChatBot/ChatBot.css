@@ -4,14 +4,14 @@
 }
 
 .chatbot-message-container {
-  height: 73%;
+  height: fit-content;
+  max-height: 68%;
   width: 90%;
   overflow-y: scroll;
   margin-top: 10px;
   border-radius: 24px;
   display: flex;
   flex-direction: column;
-
 }
 
 .chatbot-input-container {
@@ -29,6 +29,11 @@
 .chatbot-send-icon {
   height: 50%;
   margin-right: 0.4em;
+  cursor: pointer;
+}
+
+.chatbot-send-icon:hover {
+  transform: scale(1.1);
 }
 
 .chatbot-message-container::-webkit-scrollbar {
@@ -65,11 +70,14 @@
 
 .chatbot-message.user {
   background-color: #c5fbd0;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
   align-self: flex-end;
 }
 
 .chatbot-message.bot {
-  background-color: #abffbc;
+  background-color: #c5fbd0;
+  /* background-color: #abcbff; */
 }
 
 .container.smaller {

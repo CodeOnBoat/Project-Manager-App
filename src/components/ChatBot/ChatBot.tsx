@@ -19,18 +19,12 @@ export const ChatBot = () => {
 
   const handleChatSend = async () => {
     setLoading(true);
-    const newMessages = [
-      ...messages,
-      { role: "user", content: chatRef.current!.value },
-    ];
-    setMessages(newMessages);
-    const res = await chatWithProjectAssistent(
-      chatRef.current!.value,
-      project!,
-      messages
-    );
-    setLoading(false);
+    const value = chatRef.current!.value;
     chatRef.current!.value = "";
+    const newMessages = [...messages, { role: "user", content: value }];
+    setMessages(newMessages);
+    const res = await chatWithProjectAssistent(value, project!, messages);
+    setLoading(false);
     setMessages([...newMessages, { role: "assistant", content: res }]);
   };
   return (
@@ -45,7 +39,9 @@ export const ChatBot = () => {
           return (
             <div
               className={
-                m.role === "user" ? "chatbot-message user" : "chatbot-message bot"
+                m.role === "user"
+                  ? "chatbot-message user"
+                  : "chatbot-message bot"
               }
             >
               {m.content}
