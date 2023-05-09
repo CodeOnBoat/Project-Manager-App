@@ -22,10 +22,8 @@
 
 @media screen and (width > 1200px) {
   .project-page-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    place-items: flex-start;
-    margin: auto auto;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .project-info-container {
@@ -60,15 +58,13 @@
 
 .option-label.selected {
   color: var(--primary-color);
-  text-shadow: 1px 1px 10px rgba(255,255,255,.4);
+  text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.4);
 }
-
 
 .option-label {
   font-size: xx-large;
   cursor: pointer;
-  text-shadow: 1px 1px 10px rgba(0,0,0,.4);
-
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .task-container {
