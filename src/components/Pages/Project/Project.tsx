@@ -19,9 +19,9 @@ export const Project = ({ project }: ProjectProps) => {
   const [tasksLoading, setTasksLoading] = useState(true);
   const [home, setHome] = useState(true);
 
-
   const { profile } = useContext(AppContext);
-  const { setTasks, tasks, setProject, messages, setMessages } = useContext(ProjectContext);
+  const { setTasks, tasks, setProject, messages, setMessages } =
+    useContext(ProjectContext);
 
   const navigate = useNavigate();
 
@@ -98,12 +98,11 @@ export const Project = ({ project }: ProjectProps) => {
         {home ? (
           <>
             <ProjectInfo
-              title={project.title}
-              description={project.description}
+              id={project.project_id!}
               deleteProject={handleDelete}
             />
             <Collaborators />
-            <ChatBot/>
+            <ChatBot />
           </>
         ) : (
           <>
