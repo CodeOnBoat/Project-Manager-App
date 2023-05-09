@@ -184,3 +184,17 @@ export const chatWithProjectAssistent = async (
   console.log(res.data);
   return res.data;
 };
+
+export const updateProjectInfo = async (
+  project_id: string,
+  projectTitle: string,
+  projectDescription: string
+) => {
+  console.log("infoooooo ", project_id, projectTitle, projectDescription);
+  const res = await axios.patch(`${root}/projects/${project_id}`, {
+    title: projectTitle,
+    description: projectDescription,
+  });
+  console.log("dataaaa", res.data);
+  return res.data;
+};

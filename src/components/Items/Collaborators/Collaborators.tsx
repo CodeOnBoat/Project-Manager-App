@@ -1,20 +1,30 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { sendNotification } from "../../../client/client";
 import { CollaboratorsProps } from "../../../data/Interfaces";
 import { AppContext } from "../../../context/AppContext";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { OneCollaborator } from "./OneCollaborator";
 import "./Collaborators.css";
-import Plus from "../../../data/images/plus.png";
-import Minus from "../../../data/images/minus.png";
 
 export const Collaborators = () => {
   const { project } = useContext(ProjectContext);
   const { profile } = useContext(AppContext);
 
-  const [showWriteMail, setShowWriteMail] = useState(false);
   const mailRef = useRef<HTMLInputElement>(null);
+  const [selectedCollaboratorTab, setSelectedCollaboratorTab] = useState<
+    "chat" | "collaborators" | "invitation"
+  >("chat");
   const [showSentMessage, setShowSentMessage] = useState(false);
+  const [collaboratorNumber, setCollaboratorNumber] = useState<number>();
+
+  useEffect(() => {
+    let provNumber: number = -1;
+    project?.collaborators.forEach((c) => {
+      provNumber = provNumber + 1;
+    });
+    setCollaboratorNumber(provNumber);
+    console.log(collaboratorNumber);
+  }, [collaboratorNumber]);
 
   const handleSendNotification = () => {
     console.log({
@@ -30,12 +40,16 @@ export const Collaborators = () => {
     setShowSentMessage(true);
     setTimeout(() => {
       setShowSentMessage(false);
-      setShowWriteMail(false);
+      setSelectedCollaboratorTab("chat");
     }, 1000);
   };
 
   const handleWriteMail = () => {
-    setShowWriteMail(true);
+    setSelectedCollaboratorTab("invitation");
+  };
+
+  const handleCollaborators = () => {
+    setSelectedCollaboratorTab("collaborators");
   };
 
   return (
@@ -43,7 +57,7 @@ export const Collaborators = () => {
       <div className="standard-container-title">
         <h1>Collaborators</h1>
       </div>
-      {showWriteMail ? (
+      {selectedCollaboratorTab === "invitation" ? (
         <>
           <div className="collaborators-container new-collaborator">
             <label>Send invitation</label>
@@ -54,7 +68,7 @@ export const Collaborators = () => {
               ref={mailRef}
             />
             <button
-              onClick={() => setShowWriteMail(false)}
+              onClick={() => setSelectedCollaboratorTab("chat")}
               className="standard-container-button left"
             >
               Back
@@ -67,23 +81,42 @@ export const Collaborators = () => {
             </button>
             {showSentMessage && <label>Invitation sent succesfully</label>}
           </div>
-          <div className="collaborators-container">
-            {project &&
-              project.collaborators.map((c) => (
-                <OneCollaborator collaborator={c} />
-              ))}
-          </div>
         </>
       ) : (
-        <div className="collaborator-chat-container">
-          <h1>CHAT</h1>
-          <button
-            className="standard-container-button right small "
-            onClick={handleWriteMail}
-          >
-            +
-          </button>
-        </div>
+        <>
+          {selectedCollaboratorTab === "collaborators" ? (
+            <>
+              <div className="collaborators-container">
+                {project &&
+                  project.collaborators.map((c) => (
+                    <OneCollaborator collaborator={c} />
+                  ))}
+                <button
+                  onClick={() => setSelectedCollaboratorTab("chat")}
+                  className="standard-container-button left"
+                >
+                  Chat
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="collaborator-chat-container">
+              <h1>CHAT</h1>
+              <button
+                onClick={() => setSelectedCollaboratorTab("collaborators")}
+                className="standard-container-button left medium"
+              >
+                {collaboratorNumber} Collaborators
+              </button>
+              <button
+                className="standard-container-button right small "
+                onClick={handleWriteMail}
+              >
+                +
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
