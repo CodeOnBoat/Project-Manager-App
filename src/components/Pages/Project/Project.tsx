@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProjectProps, Task } from "../../../data/Interfaces";
-import {
-  deleteProjectById,
-  getTasksByProjectId,
-} from "../../../client/client";
+import { deleteProjectById, getTasksByProjectId } from "../../../client/client";
 import { useNavigate } from "react-router-dom";
 import "./Project.css";
 import { Collaborators } from "../../Items/Collaborators/Collaborators";
@@ -12,6 +9,7 @@ import { Todo } from "../../Items/ToDo/Todo";
 import { SelectedTaskTab } from "../../Items/SelectedTask/SelectedTaskTab";
 import { FinishedTasks } from "../../Items/FinishedTasks/FinishedTasks";
 import { ProjectContext } from "../../../context/ProjectContext";
+import { ChatBot } from "../../ChatBot/ChatBot";
 
 export const Project = ({ project }: ProjectProps) => {
   const [selectedTask, setSelectedTask] = useState<string>("");
@@ -44,12 +42,16 @@ export const Project = ({ project }: ProjectProps) => {
     setProject(project);
   }, []);
 
-  const modifyTaskStatus = (taskId: string, state: string, collaborator : string) => {
+  const modifyTaskStatus = (
+    taskId: string,
+    state: string,
+    collaborator: string
+  ) => {
     let tempTasks = [...tasks];
     tempTasks.forEach((t) => {
       if (t.taskId === taskId) {
         t.state = state;
-        t.collaborator = collaborator
+        t.collaborator = collaborator;
       }
     });
     setTasks(tempTasks);
@@ -70,7 +72,7 @@ export const Project = ({ project }: ProjectProps) => {
       />
       <SelectedTaskTab
         setShowNewTask={setShowNewTask}
-        updateTaskState={(status: string, collaborator : string) => {
+        updateTaskState={(status: string, collaborator: string) => {
           modifyTaskStatus(
             tasks.filter((t) => t.taskId === selectedTask)[0].taskId || "",
             status,
@@ -84,12 +86,13 @@ export const Project = ({ project }: ProjectProps) => {
         selectedTask={selectedTask}
         setSelectedTask={setSelectedTask}
       />
-       <ProjectInfo
+      <ProjectInfo
         title={project.title}
         description={project.description}
         deleteProject={handleDelete}
       />
       <Collaborators />
+      <ChatBot />
     </div>
   );
 };

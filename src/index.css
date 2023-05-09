@@ -152,7 +152,7 @@ h1 {
 .standard-container-button.medium {
   font-size: medium;
 }
-.new-project-input {
+.standard-container-input {
   font-size: small;
 }
 
@@ -189,7 +189,7 @@ h1 {
   .standard-container-button {
     font-size: medium;
   }
-  .new-project-input {
+  .standard-container-input {
     font-size: medium;
   }
 }
@@ -197,7 +197,7 @@ h1 {
   .form-input-title {
     font-size: x-large;
   }
-  .new-project-input {
+  .standard-container-input {
     font-size: large;
   }
   h1 {

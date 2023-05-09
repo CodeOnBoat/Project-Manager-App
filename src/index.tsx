@@ -6,7 +6,6 @@ import React, { Suspense } from "react";
 import "./firebase-init";
 import { BrowserRouter } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

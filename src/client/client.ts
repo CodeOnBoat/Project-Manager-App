@@ -1,6 +1,7 @@
 import { TokenResponse } from "@react-oauth/google";
 import axios from "axios";
 import { ProjectType, Task } from "../data/Interfaces";
+import { Message } from "../components/ChatBot/ChatBot";
 
 const root = "https://us-central1-taskwise-14398.cloudfunctions.net/app";
 // const root = "http://127.0.0.1:5001/taskwise-14398/us-central1/app";
@@ -167,5 +168,20 @@ export const changeCompletionOfStep = async (
   const res = await axios.patch(
     `${root}/projects/${projectId}/${taskId}/${stepTitle}`
   );
+  return res.data;
+};
+
+export const chatWithProjectAssistent = async (
+  message: string,
+  project: ProjectType,
+  messageHistory: Message[]
+): Promise<string> => {
+  console.log("message ", message);
+  const res = await axios.post(`${root}/projects/chatbox`, {
+    message: message,
+    project: project,
+    messageHistory: messageHistory,
+  });
+  console.log(res.data);
   return res.data;
 };

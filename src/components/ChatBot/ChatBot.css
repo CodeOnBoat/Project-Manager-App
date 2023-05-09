@@ -1,0 +1,59 @@
+.header-logo-image.smaller {
+  height: 3em;
+  width: 3em;
+}
+
+.chatbox-message-container {
+  height: 73%;
+  width: 90%;
+  overflow-y: scroll;
+  margin-top: 10px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: right;
+}
+
+.chatbox-message-container::-webkit-scrollbar {
+  display: none;
+}
+
+.chatbox-message {
+  margin: 1em;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1em;
+  border-radius: 24px;
+  width: fit-content;
+}
+.chatbox-message-user-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.chatbox-message.user {
+  background-color: rgba(148, 243, 139, 0.4);
+}
+
+.chatbox-input {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.container.smaller {
+  position: relative;
+  height: 20px;
+  width: 17.2px;
+  transform: scale(0.5);
+}
+.cube.smaller {
+  position: absolute;
+  width: 17.2px;
+  height: 20px;
+}
+
+.face.smaller {
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  transform-origin: 0 0;
+}
