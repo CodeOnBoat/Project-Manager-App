@@ -49,7 +49,7 @@ export interface Task {
   assignedTo: "";
   emoji: string;
   steps: Step[];
-  collaborator : string,
+  collaborator: string;
 }
 
 export interface Step {
@@ -65,8 +65,6 @@ export interface OneTaskProps {
 }
 
 export interface LandingPageProps {
-  profile: Profile | undefined;
-  setProfile: Function;
   logOut: () => void;
 }
 

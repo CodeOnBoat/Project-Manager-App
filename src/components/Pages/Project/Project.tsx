@@ -15,6 +15,7 @@ export const Project = ({ project }: ProjectProps) => {
   const [selectedTask, setSelectedTask] = useState<string>("");
   const [showNewTask, setShowNewTask] = useState(false);
   const [tasksLoading, setTasksLoading] = useState(true);
+  const [home, setHome] = useState(true);
 
   const { setTasks, tasks, setProject } = useContext(ProjectContext);
 
@@ -63,36 +64,61 @@ export const Project = ({ project }: ProjectProps) => {
   };
 
   return (
-    <div className="project-page-container">
-      <Todo
-        tasksLoading={tasksLoading}
-        selectedTask={selectedTask}
-        setSelectedTask={setSelectedTask}
-        setShowNewTask={setShowNewTask}
-      />
-      <SelectedTaskTab
-        setShowNewTask={setShowNewTask}
-        updateTaskState={(status: string, collaborator: string) => {
-          modifyTaskStatus(
-            tasks.filter((t) => t.taskId === selectedTask)[0].taskId || "",
-            status,
-            collaborator
-          );
-        }}
-        task={tasks.filter((t) => t.taskId === selectedTask)[0]}
-        showNewTask={showNewTask}
-      />
-      <FinishedTasks
-        selectedTask={selectedTask}
-        setSelectedTask={setSelectedTask}
-      />
-      <ProjectInfo
-        title={project.title}
-        description={project.description}
-        deleteProject={handleDelete}
-      />
-      <Collaborators />
-      <ChatBot />
+    <div className="project-page">
+      <div className="project-page-menu">
+        <label
+          className={home ? "option-label selected" : "option-label"}
+          onClick={() => setHome(true)}
+        >
+          Home
+        </label>
+        <label>|</label>
+        <label
+          className={home ? "option-label" : "option-label selected"}
+          onClick={() => setHome(false)}
+        >
+          Tasks
+        </label>
+      </div>
+      <div className="project-page-container">
+        {home ? (
+          <>
+            <ProjectInfo
+              title={project.title}
+              description={project.description}
+              deleteProject={handleDelete}
+            />
+            <Collaborators />
+            <ChatBot />
+          </>
+        ) : (
+          <>
+            <Todo
+              tasksLoading={tasksLoading}
+              selectedTask={selectedTask}
+              setSelectedTask={setSelectedTask}
+              setShowNewTask={setShowNewTask}
+            />
+            <SelectedTaskTab
+              setShowNewTask={setShowNewTask}
+              updateTaskState={(status: string, collaborator: string) => {
+                modifyTaskStatus(
+                  tasks.filter((t) => t.taskId === selectedTask)[0].taskId ||
+                    "",
+                  status,
+                  collaborator
+                );
+              }}
+              task={tasks.filter((t) => t.taskId === selectedTask)[0]}
+              showNewTask={showNewTask}
+            />
+            <FinishedTasks
+              selectedTask={selectedTask}
+              setSelectedTask={setSelectedTask}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 };

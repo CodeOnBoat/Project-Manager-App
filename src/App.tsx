@@ -17,7 +17,8 @@ import "./data/colors/colors.css";
 
 function App() {
   const navigate = useNavigate();
-  const { setProfile, profile, projects, setProjects, darkMode, setDarkMode } = useContext(AppContext);
+  const { setProfile, profile, projects, setProjects, darkMode, setDarkMode } =
+    useContext(AppContext);
 
   const logOut = () => {
     googleLogout();
@@ -28,24 +29,10 @@ function App() {
 
   return (
     <div className="app" data-theme={darkMode}>
-      <Header
-        logOut={logOut}
-      />
+      <Header logOut={logOut} />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <LandingPage
-              logOut={logOut}
-              profile={profile}
-              setProfile={setProfile}
-            />
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={<Dashboard logOut={logOut} />}
-        />
+        <Route path="/" element={<LandingPage logOut={logOut} />} />
+        <Route path="/dashboard" element={<Dashboard logOut={logOut} />} />
         {projects &&
           projects &&
           projects.map((p, index) => (

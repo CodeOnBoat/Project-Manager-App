@@ -15,9 +15,9 @@ import Img from "../../../data/images/landingImg.png";
 import Logo from "../../../data/images/logo.png";
 import { AppContext } from "../../../context/AppContext";
 
-export const LandingPage = (props: LandingPageProps) => {
+export const LandingPage = ({ logOut }: LandingPageProps) => {
   const [user, setUser] = useState<TokenResponse>();
-  const { darkMode, setDarkMode } = useContext(AppContext);
+  const { darkMode, setDarkMode, profile, setProfile } = useContext(AppContext);
   const navigate = useNavigate();
   const login = useGoogleLogin({
     onSuccess: (codeResponse: TokenResponse) => {
@@ -29,7 +29,7 @@ export const LandingPage = (props: LandingPageProps) => {
     if (user) {
       const login = async () => {
         const data = await googleLogin(user);
-        props.setProfile(data);
+        setProfile(data);
       };
       login();
       navigate("/dashboard");
@@ -37,7 +37,7 @@ export const LandingPage = (props: LandingPageProps) => {
   }, [user]);
 
   useEffect(() => {
-    props.logOut();
+    logOut();
   }, []);
 
   return (

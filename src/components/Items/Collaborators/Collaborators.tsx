@@ -14,7 +14,6 @@ export const Collaborators = () => {
 
   const [showWriteMail, setShowWriteMail] = useState(false);
   const mailRef = useRef<HTMLInputElement>(null);
-  const [collaboratorsHidden, setCollaboratorsHidden] = useState(true);
   const [showSentMessage, setShowSentMessage] = useState(false);
 
   const handleSendNotification = () => {
@@ -40,68 +39,52 @@ export const Collaborators = () => {
   };
 
   return (
-    <div className="grid-height-div">
-      <div className={"standard-container project-collaborator-container"}>
-        <div
-          className={
-            collaboratorsHidden
-              ? "standard-container-title hidden"
-              : "standard-container-title"
-          }
-        >
-          <h1 className="collaborators-title">Collaborators</h1>
-          <img
-            onClick={() => setCollaboratorsHidden(!collaboratorsHidden)}
-            src={collaboratorsHidden ? Plus : Minus}
-            className="project-option-icon plus-minus"
-          />
-        </div>
-        <div
-          className={
-            collaboratorsHidden
-              ? "collab-expandable hidden"
-              : "collab-expandable"
-          }
-        >
-          {showWriteMail ? (
-            <div className="collaborators-container">
-              <label>Send invitation</label>
-              <input
-                className="new-project-input"
-                placeholder="user@email.com"
-                type="text"
-                ref={mailRef}
-              />
-              <button
-                onClick={() => setShowWriteMail(false)}
-                className="standard-container-button left"
-              >
-                Back
-              </button>
-              <button
-                onClick={handleSendNotification}
-                className="standard-container-button right"
-              >
-                Send
-              </button>
-              {showSentMessage && <label>Invitation sent succesfully</label>}
-            </div>
-          ) : (
-            <div className="collaborators-container">
-              {project &&
-                project.collaborators.map((c) => (
-                  <OneCollaborator collaborator={c} />
-                ))}
-              <button
-                className="standard-container-button right small "
-                onClick={handleWriteMail}
-              >
-                +
-              </button>
-            </div>
-          )}
-        </div>
+    <div className="standard-container project-standard-container taller">
+      <div className="standard-container-title">
+        <h1>Collaborators</h1>
       </div>
+      {showWriteMail ? (
+        <>
+          <div className="collaborators-container new-collaborator">
+            <label>Send invitation</label>
+            <input
+              className="standard-container-input"
+              placeholder="user@email.com"
+              type="text"
+              ref={mailRef}
+            />
+            <button
+              onClick={() => setShowWriteMail(false)}
+              className="standard-container-button left"
+            >
+              Back
+            </button>
+            <button
+              onClick={handleSendNotification}
+              className="standard-container-button right"
+            >
+              Send
+            </button>
+            {showSentMessage && <label>Invitation sent succesfully</label>}
+          </div>
+          <div className="collaborators-container">
+            {project &&
+              project.collaborators.map((c) => (
+                <OneCollaborator collaborator={c} />
+              ))}
+          </div>
+        </>
+      ) : (
+        <div className="collaborator-chat-container">
+          <h1>CHAT</h1>
+          <button
+            className="standard-container-button right small "
+            onClick={handleWriteMail}
+          >
+            +
+          </button>
+        </div>
+      )}
     </div>
   );
 };

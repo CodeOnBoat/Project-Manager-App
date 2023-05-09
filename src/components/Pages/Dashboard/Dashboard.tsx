@@ -49,6 +49,7 @@ function Dashboard(props: DashbordProps) {
       const projectArray = await getProjectsById(profile!.id);
       setProjects(projectArray);
     };
+    console.log(profile);
     if (profile) getProjects();
   }, [profile]);
 
