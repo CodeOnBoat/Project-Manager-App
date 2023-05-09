@@ -71,19 +71,17 @@ export const NewProject = ({
           name="title"
           ref={titleFieldRef}
           placeholder="Input project title"
-          className="new-project-input "
+          className="standard-container-input "
         />
         {emptyTitle && (
           <label className="new-project-error">
             Title field can't be empty
           </label>
         )}
-        <h1 className="form-input-title" >
-          Project description
-        </h1>
+        <h1 className="form-input-title">Project description</h1>
         <textarea
           name="description"
-          className="new-project-input new-project-description"
+          className="standard-container-input new-project-description"
           placeholder="Input project description"
         />
         <div className="selector-container">

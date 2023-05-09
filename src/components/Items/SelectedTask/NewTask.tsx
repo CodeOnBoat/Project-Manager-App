@@ -1,10 +1,10 @@
 import React from "react";
 
 export interface NewTaskPrompts {
-    addTask : (e: React.FormEvent<HTMLFormElement>) => void;
+  addTask: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-export const NewTask = ({addTask} : NewTaskPrompts) => {
+export const NewTask = ({ addTask }: NewTaskPrompts) => {
   return (
     <>
       <div className="standard-container-title">
@@ -14,21 +14,21 @@ export const NewTask = ({addTask} : NewTaskPrompts) => {
         <form className="add-task-form" onSubmit={addTask}>
           <label className="form-title">Task title</label>
           <input
-            className="new-project-input box"
+            className="standard-container-input box"
             placeholder="Input task title ..."
             type="text"
             name="title"
           />
           <label className="form-title">Estimated time</label>
           <input
-            className="new-project-input box"
+            className="standard-container-input box"
             type="number"
             name="time"
             placeholder="Estimated time ..."
           />
           <label className="form-title">Description</label>
           <input
-            className="new-project-input box"
+            className="standard-container-input box"
             type="text"
             name="description"
             placeholder="Description"

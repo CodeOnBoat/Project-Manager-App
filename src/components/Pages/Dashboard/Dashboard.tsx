@@ -8,6 +8,7 @@ import { ProjectList } from "../../Items/ProjectList/ProjectList";
 import DonautChart from "../../Items/Chart/DonautChart";
 import { NewProject } from "../../Items/NewProject/NewProject";
 import { Gear } from "../../Items/Gear/Gear";
+import { ChatBot } from "../../ChatBot/ChatBot";
 
 function Dashboard(props: DashbordProps) {
   const { profile, setProjects, projects } = useContext(AppContext);
