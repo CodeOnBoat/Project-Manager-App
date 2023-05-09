@@ -148,3 +148,14 @@ input[type=checkbox] {
   font-size: medium;
 } 
 
+.task-detail-container.chatbot{
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dark-bg {
+  background-color: rgba(0, 0, 0, 0.636);
+  border-radius: 24px;
+  padding: 1em;
+  color: white;
+  margin-top: 2em;
+}

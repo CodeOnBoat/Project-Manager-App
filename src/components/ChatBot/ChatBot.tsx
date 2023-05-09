@@ -7,7 +7,8 @@ import { ProjectContext } from "../../context/ProjectContext";
 import { AppContext } from "../../context/AppContext";
 import { useEffect } from "react";
 import SendIcon from "../../data/images/send.png";
-export interface Message {
+import { Message } from "./Message";
+export interface MessageType {
   role: string;
   content: string;
 }
@@ -36,17 +37,7 @@ export const ChatBot = () => {
       </div>
       <div className="chatbot-message-container">
         {messages.map((m) => {
-          return (
-            <div
-              className={
-                m.role === "user"
-                  ? "chatbot-message user"
-                  : "chatbot-message bot"
-              }
-            >
-              {m.content}
-            </div>
-          );
+          return <Message message={m.content} role={m.role}/>;
         })}
       </div>
       <div className="chatbot-input-container">
