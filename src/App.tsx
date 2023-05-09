@@ -37,7 +37,7 @@ function App() {
           projects &&
           projects.map((p, index) => (
             <Route
-              path={`/project/${p.title}`}
+              path={`/project/${p.project_id}`}
               key={index}
               element={
                 <>

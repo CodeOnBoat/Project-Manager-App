@@ -54,7 +54,7 @@ export const NewProject = ({
         setProjectLoading(false);
 
         setProjects([...projects!, newP]);
-        navigate(`/project/${newP.title}`);
+        navigate(`/project/${newP.project_id}`);
       };
       updateProjects();
     }
