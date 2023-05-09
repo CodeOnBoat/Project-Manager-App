@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Step, Task } from "../../../data/Interfaces";
 import Trash from "../../../data/images/trash.png";
 import { ProjectContext } from "../../../context/ProjectContext";
@@ -6,14 +6,17 @@ import { changeCompletionOfStep } from "../../../client/client";
 
 export interface TaskDisplayProps {
   task: Task;
-  deleteTask: (id: string) => void;
-  changeTaskStatus: (str: string) => void;
+  deleteTask?: (id: string) => void;
+  changeTaskStatus?: (str: string) => void;
+  ref?: React.RefObject<HTMLDivElement>;
+  chatbot?: boolean;
 }
 
 export const TaskDisplay = ({
   task,
   deleteTask,
   changeTaskStatus,
+  chatbot,
 }: TaskDisplayProps) => {
   const { setTasks, tasks, project } = useContext(ProjectContext);
 
@@ -27,22 +30,30 @@ export const TaskDisplay = ({
   };
 
   return (
-    <>
-      <div className="standard-container-title task-name">
+    <div className={chatbot ? "dark-bg" : ""}>
+      {chatbot ? (
         <h1>{task.title}</h1>
-        <img
-          className="standard-container-title-icon"
-          src={Trash}
-          onClick={() => deleteTask(task.taskId!)}
-        />
-      </div>
-      <div className={`task-state-container ${task.state}`}>
-        <label>
-          {task.state === "notstarted" && "Not started"}
-          {task.state === "inprogress" && `In progress by ${task.collaborator}`}
-          {task.state === "finished" && `Finished by ${task.collaborator}`}
-        </label>
-      </div>
+      ) : (
+        <>
+          <div className="standard-container-title task-name">
+            <h1>{task.title}</h1>
+            <img
+              className="standard-container-title-icon"
+              src={Trash}
+              onClick={() => deleteTask!(task.taskId!)}
+            />
+          </div>
+
+          <div className={`task-state-container ${task.state}`}>
+            <label>
+              {task.state === "notstarted" && "Not started"}
+              {task.state === "inprogress" &&
+                `In progress by ${task.collaborator}`}
+              {task.state === "finished" && `Finished by ${task.collaborator}`}
+            </label>
+          </div>
+        </>
+      )}
       <div className="task-detail-container">
         <div className="task-description">{task.description}</div>
         {task.steps && (
@@ -74,21 +85,25 @@ export const TaskDisplay = ({
             </div>
           </>
         )}
-        <button className="standard-container-button left">Cancel</button>
-        {task.state !== "finished" && (
-          <button
-            className="standard-container-button right"
-            onClick={() =>
-              changeTaskStatus(
-                task.state === "notstarted" ? "inprogress" : "finished"
-              )
-            }
-          >
-            {task.state === "notstarted" && "Start"}
-            {task.state === "inprogress" && "Finish"}
-          </button>
+        {!chatbot && (
+          <>
+            <button className="standard-container-button left">Cancel</button>
+            {task.state !== "finished" && (
+              <button
+                className="standard-container-button right"
+                onClick={() =>
+                  changeTaskStatus!(
+                    task.state === "notstarted" ? "inprogress" : "finished"
+                  )
+                }
+              >
+                {task.state === "notstarted" && "Start"}
+                {task.state === "inprogress" && "Finish"}
+              </button>
+            )}
+          </>
         )}
       </div>
-    </>
+    </div>
   );
 };

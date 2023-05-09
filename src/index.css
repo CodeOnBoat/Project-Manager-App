@@ -227,7 +227,7 @@ h1 {
   text-align: left;
   transition: all 1s;
   color: white;
-  border-radius: 15px 15px 0 0;
+  border-radius: 24px 24px 0 0;
   border-bottom: 1px solid var(--border-color);
   background-image: var(--full-gradient);
   display: flex;
@@ -238,7 +238,7 @@ h1 {
 }
 
 .standard-container-title.hidden {
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 24px 24px 24px 24px;
 }
 
 .standard-container-title h1 {
@@ -266,14 +266,14 @@ h1 {
 
 .standard-container-button.left {
   left: 0;
-  border-radius: 0 15px 0 15px;
+  border-radius: 0 24px 0 24px;
   box-shadow: 0px 0px 5px 0px var(--border-color);
   border-left: none;
   border-right: 1px solid white;
 }
 
 .standard-container-button.right {
-  border-radius: 15px 0 15px 0;
+  border-radius: 24px 0 24px 0;
   box-shadow: 0px 0px 5px 0px var(--border-color);
   right: 0;
 }
