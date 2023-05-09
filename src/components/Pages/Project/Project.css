@@ -80,6 +80,7 @@
   border-radius: 24px;
   margin-top: 1em;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .task-dot {

@@ -22,16 +22,11 @@ export const ProjectList = ({
       </div>
       <div className="project-list">
         {projects.map((p) => (
-          <div className="task-container list">
+          <Link className="task-container " to={`/project/${p.project_id}`}>
             <div className="flex-space-between list">
-              <Link
-                className="link-to-project"
-                to={`/project/${p.title}`}
-              >
-                {p.title}
-              </Link>
+              <div className=" link-to-project">{p.title}</div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       {!showNewProject && (
