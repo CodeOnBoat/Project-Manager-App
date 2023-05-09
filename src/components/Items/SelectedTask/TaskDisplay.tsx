@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Step, Task } from "../../../data/Interfaces";
 import Trash from "../../../data/images/trash.png";
 import { ProjectContext } from "../../../context/ProjectContext";
@@ -6,17 +6,14 @@ import { changeCompletionOfStep } from "../../../client/client";
 
 export interface TaskDisplayProps {
   task: Task;
-  deleteTask?: (id: string) => void;
-  changeTaskStatus?: (str: string) => void;
-  ref?: React.RefObject<HTMLDivElement>;
-  chatbot?: boolean;
+  deleteTask: (id: string) => void;
+  changeTaskStatus: (str: string) => void;
 }
 
 export const TaskDisplay = ({
   task,
   deleteTask,
   changeTaskStatus,
-  chatbot,
 }: TaskDisplayProps) => {
   const { setTasks, tasks, project } = useContext(ProjectContext);
 
@@ -28,32 +25,23 @@ export const TaskDisplay = ({
     setTasks(tempTasks);
     changeCompletionOfStep(project?.project_id!, task.taskId!, step.name);
   };
-
   return (
-    <div className={chatbot ? "dark-bg" : ""}>
-      {chatbot ? (
+    <>
+      <div className="standard-container-title task-name">
         <h1>{task.title}</h1>
-      ) : (
-        <>
-          <div className="standard-container-title task-name">
-            <h1>{task.title}</h1>
-            <img
-              className="standard-container-title-icon"
-              src={Trash}
-              onClick={() => deleteTask!(task.taskId!)}
-            />
-          </div>
-
-          <div className={`task-state-container ${task.state}`}>
-            <label>
-              {task.state === "notstarted" && "Not started"}
-              {task.state === "inprogress" &&
-                `In progress by ${task.collaborator}`}
-              {task.state === "finished" && `Finished by ${task.collaborator}`}
-            </label>
-          </div>
-        </>
-      )}
+        <img
+          className="standard-container-title-icon"
+          src={Trash}
+          onClick={() => deleteTask(task.taskId!)}
+        />
+      </div>
+      <div className={`task-state-container ${task.state}`}>
+        <label>
+          {task.state === "notstarted" && "Not started"}
+          {task.state === "inprogress" && `In progress by ${task.collaborator}`}
+          {task.state === "finished" && `Finished by ${task.collaborator}`}
+        </label>
+      </div>
       <div className="task-detail-container">
         <div className="task-description">{task.description}</div>
         {task.steps && (
@@ -68,6 +56,7 @@ export const TaskDisplay = ({
                       <label>
                         <b>{step.name}</b>
                       </label>
+
                       <a target="_blank" className="link" href={step.link}>
                         {step.linkname}
                       </a>
@@ -85,25 +74,21 @@ export const TaskDisplay = ({
             </div>
           </>
         )}
-        {!chatbot && (
-          <>
-            <button className="standard-container-button left">Cancel</button>
-            {task.state !== "finished" && (
-              <button
-                className="standard-container-button right"
-                onClick={() =>
-                  changeTaskStatus!(
-                    task.state === "notstarted" ? "inprogress" : "finished"
-                  )
-                }
-              >
-                {task.state === "notstarted" && "Start"}
-                {task.state === "inprogress" && "Finish"}
-              </button>
-            )}
-          </>
+        <button className="standard-container-button left">Cancel</button>
+        {task.state !== "finished" && (
+          <button
+            className="standard-container-button right"
+            onClick={() =>
+              changeTaskStatus(
+                task.state === "notstarted" ? "inprogress" : "finished"
+              )
+            }
+          >
+            {task.state === "notstarted" && "Start"}
+            {task.state === "inprogress" && "Finish"}
+          </button>
         )}
       </div>
-    </div>
+    </>
   );
 };

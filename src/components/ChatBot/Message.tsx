@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Task } from "../../data/Interfaces";
 import { TaskDisplay } from "../Items/SelectedTask/TaskDisplay";
 import { renderToString } from "react-dom/server";
+import { MessageTask } from "./MessageTask";
 
 export interface MessageProps {
   message: string;
@@ -26,10 +27,7 @@ export const Message = ({ message, role }: MessageProps) => {
       result = result.replace(
         regexTask,
         renderToString(
-          <TaskDisplay
-            task={JSON.parse(regexTask.exec(result)![1])}
-            chatbot={true}
-          />
+          <MessageTask task={JSON.parse(regexTask.exec(result)![1])} />
         )
       );
     }
