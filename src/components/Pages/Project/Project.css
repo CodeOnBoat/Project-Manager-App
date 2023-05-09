@@ -61,11 +61,15 @@
 
 .option-label.selected {
   color: var(--primary-color);
+  text-shadow: 1px 1px 10px rgba(255,255,255,.4);
 }
+
 
 .option-label {
   font-size: xx-large;
   cursor: pointer;
+  text-shadow: 1px 1px 10px rgba(0,0,0,.4);
+
 }
 
 .task-container {

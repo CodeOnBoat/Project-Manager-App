@@ -9,7 +9,9 @@ import { Todo } from "../../Items/ToDo/Todo";
 import { SelectedTaskTab } from "../../Items/SelectedTask/SelectedTaskTab";
 import { FinishedTasks } from "../../Items/FinishedTasks/FinishedTasks";
 import { ProjectContext } from "../../../context/ProjectContext";
-import { ChatBot } from "../../ChatBot/ChatBot";
+import { ChatBot, Message } from "../../ChatBot/ChatBot";
+import App from "../../../App";
+import { AppContext } from "../../../context/AppContext";
 
 export const Project = ({ project }: ProjectProps) => {
   const [selectedTask, setSelectedTask] = useState<string>("");
@@ -17,7 +19,9 @@ export const Project = ({ project }: ProjectProps) => {
   const [tasksLoading, setTasksLoading] = useState(true);
   const [home, setHome] = useState(true);
 
-  const { setTasks, tasks, setProject } = useContext(ProjectContext);
+
+  const { profile } = useContext(AppContext);
+  const { setTasks, tasks, setProject, messages, setMessages } = useContext(ProjectContext);
 
   const navigate = useNavigate();
 
@@ -42,6 +46,16 @@ export const Project = ({ project }: ProjectProps) => {
     getTasks();
     setProject(project);
   }, []);
+
+  useEffect(() => {
+    setMessages([
+      {
+        role: "assistant",
+        content: `Hello ${profile?.given_name}!,
+        How can I assist you with the  "${project?.title}" project?`,
+      },
+    ]);
+  }, [project]);
 
   const modifyTaskStatus = (
     taskId: string,
@@ -89,7 +103,7 @@ export const Project = ({ project }: ProjectProps) => {
               deleteProject={handleDelete}
             />
             <Collaborators />
-            <ChatBot />
+            <ChatBot/>
           </>
         ) : (
           <>
