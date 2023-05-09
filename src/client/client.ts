@@ -42,7 +42,6 @@ export const googleLogin = async (user: TokenResponse) => {
 export const getProjectsById = async (google_id: number) => {
   console.log(google_id);
   const res = await axios.get(`${root}/projects/${google_id}`);
-  console.log(res.status, res.data);
   return res.data;
 };
 

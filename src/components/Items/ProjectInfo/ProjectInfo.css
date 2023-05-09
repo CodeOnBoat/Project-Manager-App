@@ -40,6 +40,7 @@
   display: flex;
   gap: 1em;
   align-items: center;
+  margin-right: 1em;
 }
 
 .project-expandable.hidden {
@@ -66,7 +67,7 @@
 .project-option-icon.plus-minus {
   width: 1.5em;
   height: 1.5em;
-  filter: opacity(.5);
+  filter: opacity(0.5);
 }
 
 .project-option-icon:hover {

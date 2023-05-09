@@ -1,48 +1,22 @@
-.collaborators-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: top;
-  flex-direction: column;
-}
-
-.project-collaborator-container.hidden {
-  height: auto;
-  transition: all 1s;
-}
-
-.project-collaborator-container {
-  max-width: 520px;
-  margin: 5% auto;
-}
-
-.grid-height-div {
-  height: 45vh;
-  width: 100%;
-}
-
-.collab-expandable.hidden {
-  visibility: hidden;
-  transition: all 0.5s;
-  height: 0;
-  opacity: 0;
-}
-
-.collab-expandable {
-  transition: all 0.5s;
-  opacity: 1;
-  height: 30vh;
-  width: 100%;
-  display: flex;
-  align-items: top;
-  justify-content: top;
-}
-
 .open-collaborators-button {
   border: none;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   font-size: xx-large;
   cursor: pointer;
+}
+
+.collaborators-container {
+  display: flex;
+  padding-top: 1em;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  width: 100%;
+}
+
+.collaborators-container.new-collaborator {
+  padding: 7%;
+  box-sizing: border-box;
 }
 
 .collaborators-container::-webkit-scrollbar {

@@ -25,6 +25,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     place-items: flex-start;
+    width: 80%;
+    margin: auto auto;
   }
 
   .project-info-container {
@@ -46,6 +48,24 @@
 
 .project-tasksTodo-container::-webkit-scrollbar {
   display: none;
+}
+
+.project-page-menu {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+.option-label.selected {
+  color: var(--primary-color);
+}
+
+.option-label {
+  font-size: xx-large;
+  cursor: pointer;
 }
 
 .task-container {
