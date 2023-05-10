@@ -116,7 +116,7 @@ export const Collaborators = () => {
               </button>
               <button
                 onClick={handleSendNotification}
-                className="standard-container-button right"
+                className="standard-container-button right medium"
               >
                 Send
               </button>
