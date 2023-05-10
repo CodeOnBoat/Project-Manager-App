@@ -74,10 +74,12 @@ export const TaskDisplay = ({
             </div>
           </>
         )}
-        <button className="standard-container-button left">Cancel</button>
+        <button className="standard-container-button left medium">
+          Cancel
+        </button>
         {task.state !== "finished" && (
           <button
-            className="standard-container-button right"
+            className="standard-container-button right medium"
             onClick={() =>
               changeTaskStatus(
                 task.state === "notstarted" ? "inprogress" : "finished"

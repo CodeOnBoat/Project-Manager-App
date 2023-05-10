@@ -89,13 +89,16 @@ export const NewProject = ({
           <input type="checkbox" onClick={() => setIsAiEnabled(!isAiEnabled)} />
         </div>
         <button
-          className="standard-container-button left"
+          className="standard-container-button left standard-container-button left medium"
           onClick={handleCancelNewProject}
           type="button"
         >
           Cancel
         </button>
-        <button className="standard-container-button right" type="submit">
+        <button
+          className="standard-container-button right medium"
+          type="submit"
+        >
           Create
         </button>
       </form>

@@ -98,7 +98,7 @@ export const Header = ({ logOut }: HeaderProps) => {
           {showNotification && (
             <div className="notification-container">
               {notifications.length === 0 ? (
-                <div>No notification</div>
+                <div>No Invites</div>
               ) : (
                 notifications.map((n, index) => (
                   <div className="standard-container notification-standard-container">
@@ -114,12 +114,12 @@ export const Header = ({ logOut }: HeaderProps) => {
                         onClick={() =>
                           handleNotificationResolve(n, "accept", profile.name)
                         }
-                        className="standard-container-button right"
+                        className="standard-container-button right notification"
                       >
                         accept
                       </button>
                       <button
-                        className=" standard-container-button left red"
+                        className=" standard-container-button left notification"
                         onClick={() =>
                           handleNotificationResolve(n, "reject", profile.name)
                         }

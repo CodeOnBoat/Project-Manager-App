@@ -56,12 +56,12 @@ export const Todo = ({
             <div className="no-task-yet">No task yet</div>
           )}
           <div className="standard-container-button left medium">
-            Tasks:{" "}
             {
               tasks.filter(
                 (t) => t.state === "notstarted" || t.state === "inprogress"
               ).length
-            }
+            }{" "}
+            Tasks
           </div>
           <button
             onClick={() => setShowNewTask(true)}

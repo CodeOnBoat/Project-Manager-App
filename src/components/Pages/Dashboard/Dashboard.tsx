@@ -70,7 +70,7 @@ function Dashboard(props: DashbordProps) {
             />
           </div>
           <div className="block projectList">
-            <div className="standard-container">
+            <div className="standard-container taller">
               {projects && (
                 <ProjectList
                   projects={projects!}

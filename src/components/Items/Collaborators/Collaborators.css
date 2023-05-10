@@ -26,3 +26,14 @@
 .standard-container.project-collaborator-container {
   height: auto;
 }
+
+.standard-container.popup-content.send-invitation {
+  height: 25vh;
+}
+.sent-succesfully {
+  margin-top: 0.5em;
+}
+.wrong-mail {
+  margin-top: 0.5em;
+  color: rgba(255, 0, 0, 0.8);
+}

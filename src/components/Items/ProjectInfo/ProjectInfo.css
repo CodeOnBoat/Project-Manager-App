@@ -135,13 +135,14 @@
 }
 
 .popup-content {
+  display: flex;
   background-color: rgba(30, 30, 30, 1);
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   width: 90%;
   max-width: 500px;
-  height: 15vh;
+  height: 20vh;
 }
 .pop-up-text {
   padding: 0.5em;
