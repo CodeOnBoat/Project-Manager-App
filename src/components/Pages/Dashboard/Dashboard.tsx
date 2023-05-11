@@ -1,16 +1,13 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import "./Dashboard.css";
-import { DashbordProps, Profile, ProjectType } from "../../../data/Interfaces";
-import { addNewProject, getProjectsById } from "../../../client/client";
+import { getProjectsById } from "../../../client/client";
 import { AppContext } from "../../../context/AppContext";
-import { Stats } from "../../Items/Stats/Stats";
 import { ProjectList } from "../../Items/ProjectList/ProjectList";
-import DonautChart from "../../Items/Chart/DonautChart";
 import { NewProject } from "../../Items/NewProject/NewProject";
 import { Gear } from "../../Items/Gear/Gear";
-import { ChatBot } from "../../ChatBot/ChatBot";
+import { writeNewPost } from "../../../firebase/chatFunctions";
 
-function Dashboard(props: DashbordProps) {
+function Dashboard() {
   const { profile, setProjects, projects } = useContext(AppContext);
   const dashBoardRef = useRef<HTMLDivElement>(null);
   const newProjectRef = useRef<HTMLDivElement>(null);

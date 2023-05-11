@@ -5,13 +5,10 @@ export interface MessageTaskProps {
   task: Task;
 }
 
-export const MessageTask = ({
-  task,
-}: MessageTaskProps) => {
-
+export const MessageTask = ({ task }: MessageTaskProps) => {
   return (
     <div className="dark-bg">
-     <h1>{task.title}</h1>
+      <h1>{task.title}</h1>
       <div className="task-detail-container">
         <div className="task-description">{task.description}</div>
         {task.steps && (
@@ -37,7 +34,6 @@ export const MessageTask = ({
             </div>
           </>
         )}
-     
       </div>
     </div>
   );

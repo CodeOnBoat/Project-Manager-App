@@ -7,9 +7,10 @@ import { MessageTask } from "./MessageTask";
 export interface MessageProps {
   message: string;
   role: string;
+  myUser: string;
 }
 
-export const Message = ({ message, role }: MessageProps) => {
+export const Message = ({ message, role, myUser }: MessageProps) => {
   const messageContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -17,11 +18,13 @@ export const Message = ({ message, role }: MessageProps) => {
     const regexB = /\*\*([^`]+)\*\*/g;
     const regexTask = /\[t\]([^`]+)\[t\]/;
 
-    let result = message
-      .replace(regexCode, "<code>$1</code>")
-      .replace(/\n/g, "<br/>")
-      .replace(regexB, "<b>$1</b>")
-      .replace(/`([^`]+)`/g, "");
+    let result =
+      `<h4 class="chat-user-name">${role}:</h4>` +
+      message
+        .replace(regexCode, "<code>$1</code>")
+        .replace(/\n/g, "<br/>")
+        .replace(regexB, "<b>$1</b>")
+        .replace(/`([^`]+)`/g, "");
 
     if (regexTask.test(result)) {
       result = result.replace(
@@ -39,7 +42,7 @@ export const Message = ({ message, role }: MessageProps) => {
     <div
       ref={messageContainer}
       className={
-        role === "user" ? "chatbot-message user" : "chatbot-message bot"
+        role === myUser ? "chatbot-message user" : "chatbot-message bot"
       }
     ></div>
   );

@@ -5,6 +5,7 @@ import { AppContext } from "../../../context/AppContext";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { OneCollaborator } from "./OneCollaborator";
 import "./Collaborators.css";
+import { Chat } from "./Chat";
 
 export const Collaborators = () => {
   const { project } = useContext(ProjectContext);
@@ -143,9 +144,7 @@ export const Collaborators = () => {
               <button
                 onClick={() => setSelectedCollaboratorTab("chat")}
                 className="standard-container-button left medium"
-              >
-                Chat
-              </button>
+              ></button>
               <button
                 className="standard-container-button right small "
                 onClick={handleWriteMail}
@@ -155,15 +154,13 @@ export const Collaborators = () => {
             </div>
           </>
         ) : (
-          <div className="collaborator-chat-container">
-            <h1>CHAT</h1>
-            <button
+          <Chat />
+          /* <button
               onClick={() => setSelectedCollaboratorTab("collaborators")}
               className="standard-container-button left medium"
             >
               {collaboratorNumber} Collaborators
-            </button>
-          </div>
+            </button> */
         )}
       </>
       {/* )} */}

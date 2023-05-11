@@ -5,7 +5,6 @@ import { useState } from "react";
 import { chatWithProjectAssistent } from "../../client/client";
 import { ProjectContext } from "../../context/ProjectContext";
 import { AppContext } from "../../context/AppContext";
-import { useEffect } from "react";
 import SendIcon from "../../data/images/send.png";
 import { Message } from "./Message";
 export interface MessageType {
@@ -15,8 +14,8 @@ export interface MessageType {
 export const ChatBot = () => {
   const { profile } = useContext(AppContext);
   const { project, messages, setMessages } = useContext(ProjectContext);
-  const chatRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
+  const chatRef = useRef<HTMLInputElement>(null);
 
   const handleChatSend = async () => {
     setLoading(true);
@@ -37,7 +36,7 @@ export const ChatBot = () => {
       </div>
       <div className="chatbot-message-container">
         {messages.map((m) => {
-          return <Message message={m.content} role={m.role}/>;
+          return <Message message={m.content} role={m.role} myUser="user" />;
         })}
       </div>
       <div className="chatbot-input-container">

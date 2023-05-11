@@ -2,8 +2,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import React, { Suspense } from "react";
-import "./firebase-init";
 import { BrowserRouter } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
 const root = ReactDOM.createRoot(

@@ -14,6 +14,10 @@
   flex-direction: column;
 }
 
+.chat-user-name {
+  font-weight: bold;
+}
+
 .chatbot-input-container {
   display: flex;
   width: 90%;
@@ -78,7 +82,7 @@
 
 .chatbot-message.bot {
   background-color: #c5fbd0;
-  /* background-color: #abcbff; */
+  color: black;
 }
 
 .container.smaller {
@@ -102,7 +106,7 @@
 
 code {
   margin-top: 1em;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   color: var(--letter-color);
   border-radius: 10px;
   page-break-inside: avoid;

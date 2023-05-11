@@ -10,10 +10,6 @@ export interface Profile {
   verified_email: boolean;
 }
 
-export interface DashbordProps {
-  logOut: () => void;
-}
-
 export interface ProjectProps {
   project: ProjectType;
 }
@@ -78,4 +74,9 @@ export interface NotificationType {
   user_id: string;
   projectName: string;
   user_username: string;
+}
+
+export interface CollaboratorChatMessage {
+  author: string;
+  body: string;
 }

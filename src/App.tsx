@@ -14,6 +14,7 @@ import { AppContext } from "./context/AppContext";
 import { Header } from "./components/Items/Header/Header";
 import { ProjectContextProvider } from "./context/ProjectContext";
 import "./data/colors/colors.css";
+import "./firebase/init";
 
 function App() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function App() {
       <Header logOut={logOut} />
       <Routes>
         <Route path="/" element={<LandingPage logOut={logOut} />} />
-        <Route path="/dashboard" element={<Dashboard logOut={logOut} />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         {projects &&
           projects &&
           projects.map((p, index) => (

@@ -6,7 +6,6 @@ import {
   SetStateAction,
 } from "react";
 import { NotificationType, Profile, ProjectType } from "../data/Interfaces";
-import { log } from "console";
 
 type AppContextType = {
   profile: Profile | undefined;
