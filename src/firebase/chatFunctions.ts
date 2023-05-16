@@ -30,7 +30,9 @@ export const realTimeUpdates = (
   const conversationRef = ref(database, `/conversations/${projectId}`);
   onValue(conversationRef, (snapshot) => {
     const data = snapshot.val();
-    const cu = Object.values(data) as CollaboratorChatMessage[];
-    setCurrentConversation(cu);
+    if (data) {
+      const cu = Object.values(data) as CollaboratorChatMessage[];
+      setCurrentConversation(cu);
+    }
   });
 };

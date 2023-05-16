@@ -1,0 +1,8 @@
+.carousel-container {
+  width: 100%;
+}
+
+.cards-container {
+  overflow-x: scroll;
+  display: flex;
+}
