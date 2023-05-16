@@ -27,8 +27,7 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
       setTitle(project.title);
       setDescription(project.description);
     }
-    handleOwnerAccess();
-  }, [project]);
+    }, [project]);
 
   const handleEditClick = () => {
     setIsEditable(true);
@@ -51,11 +50,6 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
     setProjects(tempProjects);
   };
 
-  const handleOwnerAccess = () => {
-    console.log(project?.owner, profile?.id + "");
-    if (project?.owner === profile?.id + "") {
-    }
-  };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -89,16 +83,17 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
         </div>
       )}
       <div className="standard-container project-standard-container taller">
-        <div className="project-info-header">
-          <div className="standard-container-title editable">
+          <div className="standard-container-title">
+            <h1 >
             <textarea
               className="editable-title"
               value={title}
               disabled={!isEditable}
               onChange={handleTitleChange}
             />
+            </h1>
 
-            <div className="project-info-btn-container">
+           {project?.owner === profile?.id + "" && <div className="project-info-btn-container">
               {!isEditable && (
                 <img
                   src={Edit}
@@ -121,8 +116,7 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
                 className="project-option-icon"
                 onClick={() => setShowPopup(true)}
               />
-            </div>
-          </div>
+            </div>}
         </div>
         <div className="project-info-description-container">
           <textarea

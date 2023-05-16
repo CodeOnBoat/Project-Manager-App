@@ -68,7 +68,7 @@ export const addTaskToProject = async (project_id: string, task: Task) => {
     time: task.time,
     state: task.state,
     assignedTo: task.assignedTo,
-    links: task.steps,
+    steps: task.steps,
     description: task.description,
   });
   return res.data;
@@ -111,15 +111,13 @@ export const sendNotification = async (
   project_id: string
 ) => {
   console.log(sender_username, collaborator_mail, project_id);
-
   const o = {
     sender_username: sender_username,
     collaborator_mail: collaborator_mail,
     project_id: project_id,
   };
 
-  console.log(o);
-  const res = await axios.patch(`${root}/projects/sendnotification`, o);
+  const res = await axios.patch(`${root}/sendnotification`, o);
   console.log(res.status);
   return res.data;
 };
@@ -176,6 +174,8 @@ export const chatWithProjectAssistent = async (
   messageHistory: MessageType[]
 ): Promise<string> => {
   console.log("message ", message);
+  console.log("project ", project);
+  console.log("messageHistory ", messageHistory);
   const res = await axios.post(`${root}/projects/chatbox`, {
     message: message,
     project: project,

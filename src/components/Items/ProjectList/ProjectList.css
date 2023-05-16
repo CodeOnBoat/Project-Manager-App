@@ -2,27 +2,31 @@
   display: flex;
   gap: 0.5em;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   align-items: center;
-  height: 74%;
-  margin-top: 2%;
+  height: 86%;
+  padding-top: 2%;
   overflow: auto;
   border-radius: 24px;
   padding-bottom: 10%;
-  overflow-x: hidden;
+  overflow-x: auto;
 }
+
 .project-list::-webkit-scrollbar {
-  display: none;
+  width: 7px;
 }
 
 .project-list::-webkit-scrollbar-track {
-  background: rgba(108, 108, 108, 0); /* color of the tracking area */
+  background: transparent; 
 }
 
+/* Style the thumb of the scrollbar */
 .project-list::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 20px; /* roundness of the scroll thumb */
+  background-color: var(--primary-color);
+  border-radius: 10px; /* Roundness of the scroll thumb */
+  padding-right: 0.2em;
 }
+
 
 .projectList-one-project a {
   text-decoration: none;

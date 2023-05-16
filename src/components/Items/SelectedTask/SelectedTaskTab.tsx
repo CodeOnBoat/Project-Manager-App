@@ -33,19 +33,7 @@ export const SelectedTaskTab = ({
     updateTaskState(status, profile!.name);
   };
 
-  const addTask = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const newTask: Task = {
-      title: formData.get("title") as string,
-      time: parseInt(formData.get("time") as string),
-      assignedTo: "",
-      state: "notstarted",
-      description: formData.get("description") as string,
-      emoji: "",
-      steps: [],
-      collaborator : "",
-    };
+  const addTask = (newTask : Task) => {
     const updateTasks = async () => {
       const newT: Task = await addTaskToProject(project!.project_id!, newTask);
       setTasks([...tasks, newT]);

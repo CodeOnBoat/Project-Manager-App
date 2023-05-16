@@ -23,10 +23,7 @@ export const MessageTask = ({ task }: MessageTaskProps) => {
                       <label>
                         <b>{step.name}</b>
                       </label>
-
-                      <a target="_blank" className="link" href={step.link}>
-                        {step.linkname}
-                      </a>
+                      <p>{step.description}</p>
                     </div>
                   </div>
                 </div>

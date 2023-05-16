@@ -1,7 +1,6 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "../../data/images/logo.png";
 import "./ChatBot.css";
-import { useState } from "react";
 import { chatWithProjectAssistent } from "../../client/client";
 import { ProjectContext } from "../../context/ProjectContext";
 import { AppContext } from "../../context/AppContext";
@@ -16,6 +15,7 @@ export const ChatBot = () => {
   const { project, messages, setMessages } = useContext(ProjectContext);
   const [loading, setLoading] = useState(false);
   const chatRef = useRef<HTMLInputElement>(null);
+  const messageContainerRef = useRef<HTMLDivElement>(null);
 
   const handleChatSend = async () => {
     setLoading(true);
@@ -27,17 +27,33 @@ export const ChatBot = () => {
     setLoading(false);
     setMessages([...newMessages, { role: "assistant", content: res }]);
   };
+  useEffect(() => {
+    if (messageContainerRef.current) {
+      messageContainerRef.current.scrollTop =
+        messageContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleChatSend();
+    }
+  };
   return (
     <div className="standard-container project-standard-container taller">
       <div className="standard-container-title">
         <h1>Project Assistant</h1>
         {!loading && <img src={Logo} className="header-logo-image smaller" />}
-        {loading && <label>Writing...</label>}
       </div>
-      <div className="chatbot-message-container">
+      <div className="chatbot-message-container" ref={messageContainerRef}>
         {messages.map((m) => {
-          return <Message message={m.content} role={m.role} myUser="user" />;
+          return <><Message message={m.content} role={m.role} myUser="user" />
+
+         </>
+          ;
         })}
+        {loading &&  <div className="dot-pulse-container"><div className="dot-pulse"></div></div>           }
+
       </div>
       <div className="chatbot-input-container">
         <input
@@ -45,6 +61,7 @@ export const ChatBot = () => {
           placeholder=""
           type="text"
           className="chatbot-chat-input"
+          onKeyDown={handleKeyDown}
         />
         <img
           src={SendIcon}

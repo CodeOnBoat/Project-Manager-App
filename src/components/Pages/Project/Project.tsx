@@ -12,6 +12,7 @@ import { ProjectContext } from "../../../context/ProjectContext";
 import { ChatBot, MessageType } from "../../ChatBot/ChatBot";
 import App from "../../../App";
 import { AppContext } from "../../../context/AppContext";
+import e from "express";
 
 export const Project = ({ project }: ProjectProps) => {
   const [selectedTask, setSelectedTask] = useState<string>("");
@@ -37,14 +38,17 @@ export const Project = ({ project }: ProjectProps) => {
     }
   }, [showNewTask]);
 
+  const getTasks = async () => {
+    const taskArray = await getTasksByProjectId(project.project_id!);
+    setTasks(taskArray);
+    setTasksLoading(false);
+  };
+
   useEffect(() => {
-    const getTasks = async () => {
-      const taskArray = await getTasksByProjectId(project.project_id!);
-      setTasks(taskArray);
-      setTasksLoading(false);
-    };
+    const inverval = setInterval(getTasks, 100000);
     getTasks();
     setProject(project);
+    return () => clearInterval(inverval);
   }, []);
 
   useEffect(() => {
@@ -52,7 +56,10 @@ export const Project = ({ project }: ProjectProps) => {
       {
         role: "assistant",
         content: `Hello ${profile?.given_name}!,
-        How can I assist you with the  "${project?.title}" project?`,
+        If you have any questions about the project as a whole, a specific task or step, or need advice or creative ideas, feel free to ask. 
+        I can also assist you in adding new tasks to your project. 
+        
+        Just tell me what you need.`,
       },
     ]);
   }, [project]);

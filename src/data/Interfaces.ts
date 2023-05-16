@@ -50,8 +50,9 @@ export interface Task {
 
 export interface Step {
   name: string;
-  link: string;
-  linkname: string;
+  // link: string;
+  // linkname: string;
+  description: string;
   completed: boolean;
 }
 

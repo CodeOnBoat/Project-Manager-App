@@ -6,6 +6,8 @@ import { ProjectContext } from "../../../context/ProjectContext";
 import { OneCollaborator } from "./OneCollaborator";
 import "./Collaborators.css";
 import { Chat } from "./Chat";
+import collaboratorsImage from "../../../data/images/collaborators.png";
+import chatImage from "../../../data/images/chat.png";
 
 export const Collaborators = () => {
   const { project } = useContext(ProjectContext);
@@ -27,7 +29,6 @@ export const Collaborators = () => {
       provNumber = provNumber + 1;
     });
     setCollaboratorNumber(provNumber);
-    console.log(collaboratorNumber);
   }, [collaboratorNumber]);
 
   const handleSendNotification = () => {
@@ -42,7 +43,7 @@ export const Collaborators = () => {
       return;
     }
     sendNotification(
-      profile?.name + "",
+      profile?.name!,
       mailRef.current?.value!,
       project?.project_id!
     );
@@ -69,101 +70,80 @@ export const Collaborators = () => {
   return (
     <div className="standard-container project-standard-container taller">
       <div className="standard-container-title">
-        <h1>Collaborators</h1>
+        {selectedCollaboratorTab === "collaborators" && <h1>Collaborators</h1>}
+        {selectedCollaboratorTab === "chat" && <h1>Collaborator chat</h1>}
+        {selectedCollaboratorTab === "invitation" && <h1>Add collaborator</h1>}
+        <img
+          src={
+            selectedCollaboratorTab === "invitation" ||
+            selectedCollaboratorTab === "chat"
+              ? collaboratorsImage
+              : chatImage        
+          }
+          className="project-option-icon"
+          onClick={
+            selectedCollaboratorTab === "invitation" ||
+            selectedCollaboratorTab === "chat"
+              ? () => setSelectedCollaboratorTab("collaborators")
+              : () => setSelectedCollaboratorTab("chat")
+          }
+        />
       </div>
-      {/* {selectedCollaboratorTab === "invitation" ? (
-        <>
-          <div className="collaborators-container new-collaborator">
+      {showPopup && project && (
+        <div className="popup">
+          <div className=" standard-container popup-content send-invitation">
             <h1>Send invitation</h1>
             <input
               className="standard-container-input"
               placeholder="user@email.com"
               type="text"
               ref={mailRef}
+              onSelect={handleEmailSelect}
             />
             <button
-              onClick={() => setSelectedCollaboratorTab("chat")}
-              className="standard-container-button left"
+              className="standard-container-button left medium"
+              onClick={() => setShowPopup(false)}
             >
               Close
             </button>
             <button
               onClick={handleSendNotification}
-              className="standard-container-button right"
+              className="standard-container-button right medium"
             >
               Send
             </button>
-            {showSentMessage && <label>Invitation sent succesfully</label>}
+            {showSentMessage && (
+              <div className="sent-succesfully">
+                Invitation sent succesfully!
+              </div>
+            )}
+            {showWrongMail && (
+              <div className="wrong-mail">
+                Please enter a valid email address
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      {selectedCollaboratorTab === "collaborators" ? (
+        <>
+          <div className="collaborators-container">
+            {project &&
+              project.collaborators.map((c) => (
+                <OneCollaborator collaborator={c} />
+              ))}
+            
+{   project?.owner === profile?.id + "" &&         <button
+              className="standard-container-button right small "
+              onClick={handleWriteMail}
+            >
+              +
+            </button>}
           </div>
         </>
-      ) : ( */}
-      <>
-        {showPopup && project && (
-          <div className="popup">
-            <div className=" standard-container popup-content send-invitation">
-              <h1>Send invitation</h1>
-              <input
-                className="standard-container-input"
-                placeholder="user@email.com"
-                type="text"
-                ref={mailRef}
-                onSelect={handleEmailSelect}
-              />
-              <button
-                className="standard-container-button left medium"
-                onClick={() => setShowPopup(false)}
-              >
-                Close
-              </button>
-              <button
-                onClick={handleSendNotification}
-                className="standard-container-button right medium"
-              >
-                Send
-              </button>
-              {showSentMessage && (
-                <div className="sent-succesfully">
-                  Invitation sent succesfully!
-                </div>
-              )}
-              {showWrongMail && (
-                <div className="wrong-mail">
-                  Please enter a valid email address
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-        {selectedCollaboratorTab === "collaborators" ? (
-          <>
-            <div className="collaborators-container">
-              {project &&
-                project.collaborators.map((c) => (
-                  <OneCollaborator collaborator={c} />
-                ))}
-              <button
-                onClick={() => setSelectedCollaboratorTab("chat")}
-                className="standard-container-button left medium"
-              ></button>
-              <button
-                className="standard-container-button right small "
-                onClick={handleWriteMail}
-              >
-                +
-              </button>
-            </div>
-          </>
-        ) : (
-          <Chat />
-          /* <button
-              onClick={() => setSelectedCollaboratorTab("collaborators")}
-              className="standard-container-button left medium"
-            >
-              {collaboratorNumber} Collaborators
-            </button> */
-        )}
-      </>
-      {/* )} */}
+      ) : (
+        <Chat />
+      )}
     </div>
   );
 };

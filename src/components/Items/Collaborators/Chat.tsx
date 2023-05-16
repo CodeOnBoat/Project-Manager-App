@@ -13,6 +13,7 @@ export const Chat = () => {
   const { project } = useContext(ProjectContext);
   const { profile } = useContext(AppContext);
   const chatRef = useRef<HTMLInputElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
 
   const handleChatSend = async () => {
@@ -38,9 +39,20 @@ export const Chat = () => {
     }
   }, [project]);
 
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [currentConversation]);
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleChatSend();
+    }
+  };
+
   return (
     <>
-      <div className="chatbot-message-container">
+      <div className="chatbot-message-container" ref={chatContainerRef}>
         {currentConversation.map((m) => {
           return (
             <Message message={m.body} role={m.author} myUser={profile?.name!} />
@@ -53,6 +65,7 @@ export const Chat = () => {
           placeholder=""
           type="text"
           className="chatbot-chat-input"
+          onKeyDown={handleKeyDown}
         />
         <img
           src={SendIcon}

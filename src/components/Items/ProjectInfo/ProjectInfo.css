@@ -17,13 +17,16 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  height: 10%;
 }
 
 .standard-container-title.editable {
   justify-content: space-between;
+  
 }
 
 .editable-title {
+  font-family: "PoppinsLight";
   background-color: transparent;
   border: none;
   outline: none;
@@ -31,20 +34,23 @@
   -moz-box-shadow: none;
   box-shadow: none;
   resize: none;
-  text-align: left;
+  text-align: center;
   font-size: x-large;
-  font-family: "PoppinsLight";
-  display: block;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   font-weight: bold;
-  height: 1.5em;
-  padding: 0.5em;
   width: 100%;
+  height: 1.5em;
   color: gray;
+  font-weight:900;
+
 }
 .editable-title:disabled {
+
   color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .project-info-description-container {
   width: 100%;
@@ -67,6 +73,8 @@
   text-align: justify;
   color: var(--letter-color);
   font-family: "PoppinsLight";
+  color: gray;
+
 }
 .description-text::-webkit-scrollbar {
   display: none;
@@ -76,8 +84,6 @@
 }
 
 .project-info-option-icon {
-  width: 3vw;
-  height: 3vw;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid white;
@@ -105,8 +111,8 @@
 }
 
 .project-option-icon {
-  width: 2em;
-  height: 2em;
+  width: 2.5em;
+  height: 2.5em;
   cursor: pointer;
   transition: all 0.2s;
 }

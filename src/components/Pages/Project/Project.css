@@ -20,7 +20,7 @@
   height: 70vh;
 }
 
-@media screen and (width > 1200px) {
+@media only screen and (width > 1200px) {
   .project-page-container {
     flex-direction: row;
     justify-content: center;
@@ -35,18 +35,28 @@
 .project-tasksTodo-container {
   width: 100%;
   display: flex;
-  height: 83%;
+  height: 85%;
   flex-direction: column;
   justify-content: top;
   align-items: center;
   overflow-y: scroll;
-  border-radius: 24px;
+  border-radius: 10px;
 }
+
 
 .project-tasksTodo-container::-webkit-scrollbar {
-  display: none;
+  width: 7px;
 }
 
+.project-tasksTodo-container::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.project-tasksTodo-container::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px; /* Roundness of the scroll thumb */
+  padding-right: 0.2em;
+}
 .project-page-menu {
   width: 100%;
   display: flex;
@@ -57,26 +67,27 @@
 }
 
 .option-label.selected {
-  color: var(--primary-color);
+  color: var(--opt-selected);
   text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.4);
 }
 
 .option-label {
+  color: var(--opt-deselected);
   font-size: xx-large;
   cursor: pointer;
-  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+  text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
 }
 
 .task-container {
   padding: 0.8em;
-  width: 80%;
+  width: 90%;
   flex-direction: row;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--subcontainer-background);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 24px;
+  border-radius: 10px;
   margin-top: 1em;
   cursor: pointer;
   text-decoration: none;

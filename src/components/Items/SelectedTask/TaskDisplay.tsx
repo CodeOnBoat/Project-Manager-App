@@ -14,6 +14,7 @@ export const TaskDisplay = ({
   task,
   deleteTask,
   changeTaskStatus,
+
 }: TaskDisplayProps) => {
   const { setTasks, tasks, project } = useContext(ProjectContext);
 
@@ -56,10 +57,7 @@ export const TaskDisplay = ({
                       <label>
                         <b>{step.name}</b>
                       </label>
-
-                      <a target="_blank" className="link" href={step.link}>
-                        {step.linkname}
-                      </a>
+                      <p>{step.description}</p>
                     </div>
                   </div>
                   {task.state === "inprogress" && (
@@ -74,7 +72,8 @@ export const TaskDisplay = ({
             </div>
           </>
         )}
-        <button className="standard-container-button left medium">
+        <button className="standard-container-button left medium" 
+    >
           Cancel
         </button>
         {task.state !== "finished" && (

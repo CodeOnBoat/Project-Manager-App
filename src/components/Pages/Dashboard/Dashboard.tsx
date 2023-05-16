@@ -43,8 +43,8 @@ function Dashboard() {
 
   useEffect(() => {
     const getProjects = async () => {
-      const projectArray = await getProjectsById(profile!.id);
-      setProjects(projectArray);
+        const projectArray = await getProjectsById(profile!.id);
+        setProjects(projectArray);
     };
     console.log(profile);
     if (profile) getProjects();
@@ -88,6 +88,7 @@ function Dashboard() {
         <div className="dashboard-loading-container">
           <Gear />
           <div className="loading-text">Assembling your project</div>
+          <p>Your assistant is setting up the project. This may take a minute</p>
         </div>
       )}
     </div>
