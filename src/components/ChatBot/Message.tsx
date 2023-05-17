@@ -25,12 +25,9 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
     const regexTask = /\[t\]([^`]+)\[t\]/;
     let result = "";
     if (role !== "user" && role !== "assistant" && role != profile?.name) {
-      result += `<h4>${role}</h4>`;
+      result += `<h4>${role}</h4><br/>`;
     }
-    result += message
-      .replace(regexCode, "<code>$1</code>")
-      .replace(regexB, "<b>$1</b>")
-      .replace(/`([^`]+)`/g, "");
+    result += message;
 
     if (regexTask.test(result)) {
       result = result.replace(
@@ -41,16 +38,22 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
       );
     }
 
+    result = result
+      .replace(regexCode, "<code>$1</code>")
+      .replace(regexB, "<b>$1</b>")
+      .replace(/\n/g, "<br/>")
+      .replace(/`([^`]+)`/g, "");
+
     messageContainer.current!.innerHTML = result;
   }, []);
 
   const handleChatSend = async () => {
     const newMessages = [
       ...currentConversation,
-      { author: `Assistant -> ${profile?.name}`, body: message },
+      { author: `${profile?.name} [assistant]`, body: message },
     ];
     setCurrentConversation(newMessages);
-    writeNewPost(profile?.name!, message, project?.project_id!);
+    writeNewPost(`${profile?.name} [assistant]`, message, project?.project_id!);
     console.log(currentConversation);
   };
 
@@ -64,7 +67,7 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
       ></div>
       {role === "assistant" && (
         <label className="send-to-chat-label" onClick={handleChatSend}>
-          Send to chat
+          Send to collaborators
         </label>
       )}
     </>
