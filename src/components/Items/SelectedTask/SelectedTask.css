@@ -4,23 +4,45 @@
   margin-bottom: 5em;
   overflow-y: scroll;
 }
+
+.add-task-container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.add-task-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.add-task-container::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px; /* Roundness of the scroll thumb */
+  padding-right: 0.2em;
+}
+.new-task-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .add-task-form {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 1em 0 1em 0;
+  gap: 2em;
 }
 
 .plus-step {
-  width: 5em;
-  height: 5em;
-  padding: 1em;
+  padding: 0.5em 1em 0.5em 1em;
   border-radius: 10px;
   background-color: var(--primary-color);
   border: none;
   color: black;
   cursor: pointer;
+  font-size: large;
 }
 
 .box {
@@ -28,7 +50,7 @@
 }
 
 .one-step {
-  box-shadow: 3px 3px 3px 3px rgba(184, 254, 187, .5);
+  box-shadow: 3px 3px 3px 3px rgba(184, 254, 187, 0.5);
   padding: 1em;
   margin: 1em;
   border-radius: 10px;
@@ -37,11 +59,17 @@
 
 .delete-step {
   position: absolute;
-  top: 3%;
-  left: 95%;
-  font-size: xx-large;
+  top: 8%;
+  left: 87%;
   cursor: pointer;
   font-weight: bold;
+}
+
+.delete-step img {
+  width: 80%;
+}
+.delete-step img:hover {
+  transform: scale(1.1);
 }
 
 .form-title {
@@ -61,13 +89,12 @@
   flex-direction: column;
 }
 
-
 .task-detail-container::-webkit-scrollbar {
   width: 7px;
 }
 
 .task-detail-container::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 .task-detail-container::-webkit-scrollbar-thumb {
@@ -80,7 +107,7 @@
   margin-top: 1em;
 }
 
-.links-container  {
+.links-container {
   padding-bottom: 3em;
 }
 
@@ -153,6 +180,7 @@
 
 .step {
   display: flex;
+  align-items: center;
   margin-top: 1em;
   border-radius: 24px;
   padding: 1em;
@@ -166,6 +194,7 @@
   flex-direction: column;
   font-size: small;
   gap: 1em;
+  padding-right: 1em;
 }
 
 input[type="checkbox"] {

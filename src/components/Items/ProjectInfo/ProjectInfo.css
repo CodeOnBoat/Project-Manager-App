@@ -22,7 +22,6 @@
 
 .standard-container-title.editable {
   justify-content: space-between;
-  
 }
 
 .editable-title {
@@ -42,11 +41,9 @@
   width: 100%;
   height: 1.5em;
   color: gray;
-  font-weight:900;
-
+  font-weight: 900;
 }
 .editable-title:disabled {
-
   color: black;
   display: flex;
   align-items: center;
@@ -61,7 +58,8 @@
 }
 .description-text {
   font-size: medium;
-  width: 90%;
+  width: 100%;
+  padding: 3%;
   height: 90%;
   background-color: transparent;
   border: none;
@@ -74,11 +72,22 @@
   color: var(--letter-color);
   font-family: "PoppinsLight";
   color: gray;
+}
 
-}
 .description-text::-webkit-scrollbar {
-  display: none;
+  width: 7px;
 }
+
+.description-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.description-text::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 10px; /* Roundness of the scroll thumb */
+  padding-right: 0.2em;
+}
+
 .description-text:disabled {
   color: var(--letter-color);
 }
@@ -134,6 +143,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,8 +158,8 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   width: 90%;
+  height: 230px;
   max-width: 500px;
-  height: 20vh;
 }
 .pop-up-text {
   padding: 0.5em;

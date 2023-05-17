@@ -22,6 +22,8 @@ export const Todo = ({
 }: TodoProps) => {
   const { tasks } = useContext(ProjectContext);
 
+  let counter = 0;
+
   return (
     <div className="standard-container project-standard-container taller">
       {tasksLoading && (
@@ -43,6 +45,7 @@ export const Todo = ({
                   (t) => t.state === "notstarted" || t.state === "inprogress"
                 )
                 .map((t, index) => {
+                  counter++;
                   return (
                     <OneTask
                       setSelected={setSelectedTask}
@@ -55,13 +58,8 @@ export const Todo = ({
           ) : (
             <div className="no-task-yet">No task yet</div>
           )}
-          <div className="standard-container-button left medium">
-            {
-              tasks.filter(
-                (t) => t.state === "notstarted" || t.state === "inprogress"
-              ).length
-            }{" "}
-            Tasks
+          <div className="standard-container-button left medium noHover">
+            {counter} {counter == 1 ? "Task" : "Tasks"}
           </div>
           <button
             onClick={() => setShowNewTask(true)}

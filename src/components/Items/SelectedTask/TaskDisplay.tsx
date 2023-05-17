@@ -3,20 +3,26 @@ import { Step, Task } from "../../../data/Interfaces";
 import Trash from "../../../data/images/trash.png";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { changeCompletionOfStep } from "../../../client/client";
+import LogoSmall from "../../../data/images/logoSmall.png";
+import { chatWithProjectAssistent } from "../../../client/client";
 
 export interface TaskDisplayProps {
   task: Task;
   deleteTask: (id: string) => void;
   changeTaskStatus: (str: string) => void;
+  setHome: (b: boolean) => void;
+  setLoading: (b: boolean) => void;
 }
 
 export const TaskDisplay = ({
   task,
   deleteTask,
   changeTaskStatus,
-
+  setHome,
+  setLoading,
 }: TaskDisplayProps) => {
-  const { setTasks, tasks, project } = useContext(ProjectContext);
+  const { setTasks, tasks, project, setMessages, messages } =
+    useContext(ProjectContext);
 
   const modifyStepState = (step: Step) => {
     const tempTasks = [...tasks];
@@ -26,9 +32,43 @@ export const TaskDisplay = ({
     setTasks(tempTasks);
     changeCompletionOfStep(project?.project_id!, task.taskId!, step.name);
   };
+
+  const handleGetAssistance = (step?: string) => {
+    setHome(true);
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      if (step) {
+        setMessages([
+          ...messages,
+          {
+            content: `How can I help you with the step "${step}" of the task "${task.title}"?`,
+            role: "assistant",
+          },
+        ]);
+      } else {
+        setMessages([
+          ...messages,
+          {
+            content: `How can I help you with the task "${task.title}"?`,
+            role: "assistant",
+          },
+        ]);
+      }
+    }, 2000);
+  };
+
   return (
     <>
       <div className="standard-container-title task-name">
+        <img
+          src={LogoSmall}
+          alt=""
+          className="header-logo-image smaller hover"
+          onClick={() => handleGetAssistance()}
+        />
         <h1>{task.title}</h1>
         <img
           className="standard-container-title-icon"
@@ -59,6 +99,12 @@ export const TaskDisplay = ({
                       </label>
                       <p>{step.description}</p>
                     </div>
+                    <img
+                      src={LogoSmall}
+                      alt=""
+                      className="header-logo-image smaller hover shadow"
+                      onClick={() => handleGetAssistance(step.name)}
+                    />
                   </div>
                   {task.state === "inprogress" && (
                     <input
@@ -72,10 +118,18 @@ export const TaskDisplay = ({
             </div>
           </>
         )}
-        <button className="standard-container-button left medium" 
-    >
-          Cancel
-        </button>
+        {task.state !== "notstarted" && (
+          <button
+            className="standard-container-button left medium"
+            onClick={() =>
+              changeTaskStatus(
+                task.state === "inprogress" ? "notstarted" : "inprogress"
+              )
+            }
+          >
+            Back
+          </button>
+        )}
         {task.state !== "finished" && (
           <button
             className="standard-container-button right medium"

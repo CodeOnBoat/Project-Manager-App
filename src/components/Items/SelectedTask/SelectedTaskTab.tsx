@@ -14,9 +14,11 @@ import { TaskDisplay } from "./TaskDisplay";
 import { AppContext } from "../../../context/AppContext";
 export interface SelectedTaskTabProps {
   task: Task;
-  updateTaskState: (status: string, collaborator : string) => void;
+  updateTaskState: (status: string, collaborator: string) => void;
   showNewTask: boolean;
   setShowNewTask: (b: boolean) => void;
+  setHome: (b: boolean) => void;
+  setLoading: (b: boolean) => void;
 }
 
 export const SelectedTaskTab = ({
@@ -24,16 +26,23 @@ export const SelectedTaskTab = ({
   updateTaskState,
   showNewTask,
   setShowNewTask,
+  setHome,
+  setLoading,
 }: SelectedTaskTabProps) => {
   const { project, tasks, setTasks } = useContext(ProjectContext);
-  const {profile} = useContext(AppContext);
+  const { profile } = useContext(AppContext);
 
   const changeTaskStatus = (status: string) => {
-    updateTaskStatus(task.taskId!, project!.project_id!, status, profile?.name!);
+    updateTaskStatus(
+      task.taskId!,
+      project!.project_id!,
+      status,
+      profile?.name!
+    );
     updateTaskState(status, profile!.name);
   };
 
-  const addTask = (newTask : Task) => {
+  const addTask = (newTask: Task) => {
     const updateTasks = async () => {
       const newT: Task = await addTaskToProject(project!.project_id!, newTask);
       setTasks([...tasks, newT]);
@@ -51,6 +60,8 @@ export const SelectedTaskTab = ({
     <div className="standard-container project-standard-container taller">
       {task && (
         <TaskDisplay
+          setLoading={setLoading}
+          setHome={setHome}
           task={task}
           changeTaskStatus={changeTaskStatus}
           deleteTask={deleteTask}
@@ -59,7 +70,9 @@ export const SelectedTaskTab = ({
       {!task && !showNewTask && (
         <label className="no-task-yet">no task selected</label>
       )}
-      {showNewTask && <NewTask addTask={addTask} />}
+      {showNewTask && (
+        <NewTask setShowNewTask={setShowNewTask} addTask={addTask} />
+      )}
     </div>
   );
 };

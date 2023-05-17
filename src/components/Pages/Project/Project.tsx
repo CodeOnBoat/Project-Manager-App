@@ -19,6 +19,7 @@ export const Project = ({ project }: ProjectProps) => {
   const [showNewTask, setShowNewTask] = useState(false);
   const [tasksLoading, setTasksLoading] = useState(true);
   const [home, setHome] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { profile } = useContext(AppContext);
   const { setTasks, tasks, setProject, messages, setMessages } =
@@ -109,7 +110,7 @@ export const Project = ({ project }: ProjectProps) => {
               deleteProject={handleDelete}
             />
             <Collaborators />
-            <ChatBot />
+            <ChatBot setLoading={setLoading} loading={loading} />
           </>
         ) : (
           <>
@@ -120,6 +121,8 @@ export const Project = ({ project }: ProjectProps) => {
               setShowNewTask={setShowNewTask}
             />
             <SelectedTaskTab
+              setLoading={setLoading}
+              setHome={setHome}
               setShowNewTask={setShowNewTask}
               updateTaskState={(status: string, collaborator: string) => {
                 modifyTaskStatus(

@@ -19,13 +19,12 @@
   box-sizing: border-box;
 }
 
-
 .collaborators-container::-webkit-scrollbar {
   width: 7px;
 }
 
 .collaborators-containert::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 /* Style the thumb of the scrollbar */
@@ -35,13 +34,12 @@
   padding-right: 0.2em;
 }
 
-
 .standard-container.project-collaborator-container {
   height: auto;
 }
 
 .standard-container.popup-content.send-invitation {
-  height: 25vh;
+  height: 230px;
 }
 .sent-succesfully {
   margin-top: 0.5em;

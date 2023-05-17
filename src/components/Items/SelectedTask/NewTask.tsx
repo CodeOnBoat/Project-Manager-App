@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Step, Task } from "../../../data/Interfaces";
+import Trash from "../../../data/images/trash.png";
 
 export interface NewTaskPrompts {
   addTask: (t: Task) => void;
+  setShowNewTask: (b: boolean) => void;
 }
 
-export const NewTask = ({ addTask }: NewTaskPrompts) => {
+export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLInputElement>(null);
   const estimatedTimeRef = useRef<HTMLInputElement>(null);
@@ -58,56 +60,64 @@ export const NewTask = ({ addTask }: NewTaskPrompts) => {
       </div>
       <div className="add-task-container ">
         <div className="add-task-form">
-          <label className="form-title">Task title</label>
-          <input
-            className="standard-container-input box"
-            placeholder="Input task title ..."
-            type="text"
-            name="title"
-            ref={titleRef}
-          />
-          <label className="form-title">Estimated time</label>
-          <input
-            className="standard-container-input box"
-            type="number"
-            name="time"
-            placeholder="Estimated time ..."
-            ref={estimatedTimeRef}
-          />
-          <label className="form-title">Description</label>
-          <input
-            ref={descriptionRef}
-            className="standard-container-input box"
-            type="text"
-            name="description"
-            placeholder="Description"
-          />
-          <label className="form-title">Steps</label>
-          <div>
-            {steps.map((s, i) => {
-              return (
-                <div className="one-step">
-                  <div className="step-number">{i + 1}</div>
-                  <div className="delete-step" onClick={() => removeStep(i)}>
-                    -
+          <div className="new-task-input-container">
+            <label className="form-title">Task title</label>
+            <input
+              className="standard-container-input box"
+              placeholder="Input task title ..."
+              type="text"
+              name="title"
+              ref={titleRef}
+            />
+          </div>
+          <div className="new-task-input-container">
+            <label className="form-title">Estimated time</label>
+            <input
+              className="standard-container-input box"
+              type="number"
+              name="time"
+              placeholder="Estimated time ..."
+              ref={estimatedTimeRef}
+            />
+          </div>
+          <div className="new-task-input-container">
+            <label className="form-title">Description</label>
+            <input
+              ref={descriptionRef}
+              className="standard-container-input box description"
+              type="text"
+              name="description"
+              placeholder="Description"
+            />
+          </div>
+          <div className="new-task-input-container">
+            <label className="form-title">Steps</label>
+            <div>
+              {steps.map((s, i) => {
+                return (
+                  <div className="one-step">
+                    <div className="step-number">{i + 1}</div>
+                    <div className="delete-step" onClick={() => removeStep(i)}>
+                      <img src={Trash} className="delete-new-step-icon" />
+                    </div>
+                    <input
+                      className="standard-container-input box"
+                      type="text"
+                      placeholder="Step title"
+                      onChange={(e) => modifyStep(e, "title", i)}
+                      value={s.name}
+                    />
+                    <input
+                      className="standard-container-input box"
+                      type="text"
+                      placeholder="Step description"
+                      onChange={(e) => modifyStep(e, "description", i)}
+                      value={s.description}
+                    />
                   </div>
-                  <input
-                    className="standard-container-input box"
-                    type="text"
-                    placeholder="Step title"
-                    onChange={(e) => modifyStep(e, "title", i)}
-                    value={s.name}
-                  />
-                  <input
-                    className="standard-container-input box"
-                    type="text"
-                    placeholder="Step description"
-                    onChange={(e) => modifyStep(e, "description", i)}
-                    value={s.description}
-                  />
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
           <button
             className="plus-step"
@@ -126,6 +136,7 @@ export const NewTask = ({ addTask }: NewTaskPrompts) => {
             <button
               className="standard-container-button left medium"
               type="button"
+              onClick={() => setShowNewTask(false)}
             >
               Cancel
             </button>

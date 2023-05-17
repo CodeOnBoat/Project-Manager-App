@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Logo from "../../data/images/logo.png";
+import LogoSmall from "../../data/images/logoSmall.png";
 import "./ChatBot.css";
 import { chatWithProjectAssistent } from "../../client/client";
 import { ProjectContext } from "../../context/ProjectContext";
@@ -10,10 +10,14 @@ export interface MessageType {
   role: string;
   content: string;
 }
-export const ChatBot = () => {
+interface props {
+  loading: boolean;
+  setLoading: (b: boolean) => void;
+}
+
+export const ChatBot = ({ loading, setLoading }: props) => {
   const { profile } = useContext(AppContext);
   const { project, messages, setMessages } = useContext(ProjectContext);
-  const [loading, setLoading] = useState(false);
   const chatRef = useRef<HTMLInputElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
 
@@ -39,21 +43,28 @@ export const ChatBot = () => {
       handleChatSend();
     }
   };
+
   return (
     <div className="standard-container project-standard-container taller">
       <div className="standard-container-title">
         <h1>Project Assistant</h1>
-        {!loading && <img src={Logo} className="header-logo-image smaller" />}
+        {!loading && (
+          <img src={LogoSmall} className="header-logo-image smaller " />
+        )}
       </div>
       <div className="chatbot-message-container" ref={messageContainerRef}>
         {messages.map((m) => {
-          return <><Message message={m.content} role={m.role} myUser="user" />
-
-         </>
-          ;
+          return (
+            <>
+              <Message message={m.content} role={m.role} myUser="user" />
+            </>
+          );
         })}
-        {loading &&  <div className="dot-pulse-container"><div className="dot-pulse"></div></div>           }
-
+        {loading && (
+          <div className="dot-pulse-container">
+            <div className="dot-pulse"></div>
+          </div>
+        )}
       </div>
       <div className="chatbot-input-container">
         <input

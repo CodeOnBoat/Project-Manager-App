@@ -13,7 +13,7 @@
 
 .project-standard-container {
   height: 30vh;
-  max-width: 520px;
+  max-width: 100%;
 }
 
 .taller {
@@ -43,13 +43,12 @@
   border-radius: 10px;
 }
 
-
 .project-tasksTodo-container::-webkit-scrollbar {
   width: 7px;
 }
 
 .project-tasksTodo-container::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 .project-tasksTodo-container::-webkit-scrollbar-thumb {

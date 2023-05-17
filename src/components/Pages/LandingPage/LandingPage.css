@@ -25,7 +25,6 @@
   height: 20em;
 }
 .landing-logo-image.dark {
-  filter: invert();
 }
 
 .landingPage-google-button {
@@ -50,6 +49,6 @@
 .google-text {
   color: var(--letter-color);
   font-size: x-large;
-  font-family: 'PoppinsLight', sans-serif;
+  font-family: "PoppinsLight", sans-serif;
   font-weight: 100;
 }

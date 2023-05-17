@@ -1,16 +1,35 @@
 .header-logo-image.smaller {
-  height: 3em;
-  width: 3em;
+  height: 2em;
+  width: 2em;
+  -webkit-filter: drop-shadow(5px 5px 5px #222);
+  filter: drop-shadow(5px 5px 5px #222);
+  cursor: default;
 }
 
+.header-logo-image.smaller.hover {
+  cursor: pointer;
+}
+.header-logo-image.smaller.shadow {
+  -webkit-filter: drop-shadow(1px 1x 1px var(--primary-color));
+  filter: drop-shadow(1px 1px 1px var(--primary-color));
+}
+
+.header-logo-image.smaller.hover:hover {
+  transform: scale(1.1);
+}
 .chatbot-message-container {
   height: fit-content;
-  max-height: 74%;
+  max-height: 80%;
   width: 100%;
   overflow-y: scroll;
-
+  padding: 0 3% 2% 3%;
   display: flex;
   flex-direction: column;
+}
+@media screen and (height < 700px) {
+  .chatbot-message-container {
+    max-height: 75%;
+  }
 }
 
 .chat-user-name {
@@ -31,7 +50,7 @@
 
 .chatbot-send-icon {
   height: 50%;
-  margin-right: 0.4em;
+  margin-right: 0.6em;
   cursor: pointer;
 }
 
@@ -39,14 +58,12 @@
   transform: scale(1.1);
 }
 
-
-
 .chatbot-message-container::-webkit-scrollbar {
   width: 7px;
 }
 
 .chatbot-message-containert::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
 
 .chatbot-message-container::-webkit-scrollbar-thumb {
@@ -76,7 +93,7 @@
   width: 100%;
   margin-right: 0.5em;
   height: 100%;
-  background-color:transparent;
+  background-color: transparent;
   border: none;
   outline: none;
   margin-left: 1em;
@@ -115,8 +132,8 @@
   position: absolute;
   transform-origin: 0 0;
 }
-.chat-user-name{
-  margin-bottom: .5em;
+.chat-user-name {
+  margin-bottom: 0.5em;
 }
 
 code {
@@ -140,13 +157,14 @@ code {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: var( --primary-color);
-  color: var( --primary-color);
+  background-color: var(--primary-color);
+  color: var(--primary-color);
   box-shadow: 9999px 0 0 -5px;
   animation: dot-pulse 1.5s infinite linear;
   animation-delay: 0.25s;
 }
-.dot-pulse::before, .dot-pulse::after {
+.dot-pulse::before,
+.dot-pulse::after {
   content: "";
   display: inline-block;
   position: absolute;
@@ -154,8 +172,8 @@ code {
   width: 10px;
   height: 10px;
   border-radius: 5px;
-  background-color: var( --primary-color);
-  color: var( --primary-color);
+  background-color: var(--primary-color);
+  color: var(--primary-color);
 }
 .dot-pulse::before {
   box-shadow: 9984px 0 0 -5px;
@@ -175,7 +193,8 @@ code {
   30% {
     box-shadow: 9984px 0 0 2px;
   }
-  60%, 100% {
+  60%,
+  100% {
     box-shadow: 9984px 0 0 -5px;
   }
 }
@@ -186,7 +205,8 @@ code {
   30% {
     box-shadow: 9999px 0 0 2px;
   }
-  60%, 100% {
+  60%,
+  100% {
     box-shadow: 9999px 0 0 -5px;
   }
 }
@@ -197,13 +217,15 @@ code {
   30% {
     box-shadow: 10014px 0 0 2px;
   }
-  60%, 100% {
+  60%,
+  100% {
     box-shadow: 10014px 0 0 -5px;
   }
 }
 
-.dot-pulse-container{
-  margin-left: 2em;
+.dot-pulse-container {
+  margin-left: 3em;
+  margin-bottom: 1em;
   z-index: 1000;
-  padding: .2em;
+  padding: 0.2em;
 }

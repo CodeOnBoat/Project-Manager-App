@@ -55,7 +55,7 @@ export const Header = ({ logOut }: HeaderProps) => {
     );
     let tempNotifications = [...notifications];
     tempNotifications = tempNotifications.filter(
-      (n) => n.user_id != notification.user_id
+      (n) => n.projectName !== notification.projectName
     );
     setNotifications(tempNotifications);
   };
@@ -98,7 +98,7 @@ export const Header = ({ logOut }: HeaderProps) => {
           {showNotification && (
             <div className="notification-container">
               {notifications.length === 0 ? (
-                <div>No Invites</div>
+                <div className="noInvites">No Invites</div>
               ) : (
                 notifications.map((n, index) => (
                   <div className="standard-container notification-standard-container">
@@ -107,7 +107,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                         <h1> {n.projectName}</h1>
                       </div>
                       <div className="notification-message-container">
-                        You have been invited to join this project by
+                        You have been invited to join this project by{" "}
                         {n.user_username}
                       </div>
                       <button
@@ -116,7 +116,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                         }
                         className="standard-container-button right notification"
                       >
-                        accept
+                        Accept
                       </button>
                       <button
                         className=" standard-container-button left notification"
@@ -124,7 +124,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                           handleNotificationResolve(n, "reject", profile.name)
                         }
                       >
-                        decline
+                        Decline
                       </button>
                     </div>
                   </div>

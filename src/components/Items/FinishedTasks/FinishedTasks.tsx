@@ -14,6 +14,7 @@ export const FinishedTasks = ({
 }: FinishedTasksProps) => {
   const { tasks } = useContext(ProjectContext);
 
+  let counter = 0;
   return (
     <div className="standard-container project-standard-container taller">
       <div className="standard-container-title">
@@ -23,10 +24,14 @@ export const FinishedTasks = ({
         {tasks
           .filter((t) => t.state === "finished")
           .map((t, index) => {
+            counter++;
             return (
               <OneTask setSelected={setSelectedTask} task={t} key={index} />
             );
           })}
+        <button className="standard-container-button medium right noHover">
+          {counter} {counter == 1 ? "Task" : "Tasks"}
+        </button>
       </div>
     </div>
   );
