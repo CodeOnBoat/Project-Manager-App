@@ -22,7 +22,8 @@
   height: 25em;
 }
 .landing-logo-image {
-  height: 20em;
+ width: 80%;
+ max-width: 400px;
 }
 .landing-logo-image.dark {
 }

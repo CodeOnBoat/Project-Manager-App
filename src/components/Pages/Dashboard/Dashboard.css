@@ -38,7 +38,7 @@
   padding: 2em;
 }
 
-@media screen and (width > 1600px) {
+@media screen and (width > 1400px) {
   .dashboard-container {
     width: 100%;
     flex-direction: row-reverse;
