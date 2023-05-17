@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { ProjectType, Task } from "../data/Interfaces";
+import { CollaboratorChatMessage, ProjectType, Task } from "../data/Interfaces";
 import { log } from "console";
 import { MessageType } from "../components/ChatBot/ChatBot";
 
@@ -10,6 +10,8 @@ type ProjectContextType = {
   setProject: (project: ProjectType) => void;
   messages: MessageType[];
   setMessages: (messages: MessageType[]) => void;
+  currentConversation: CollaboratorChatMessage[];
+  setCurrentConversation: (messages: CollaboratorChatMessage[]) => void;
 };
 
 const initialValue: ProjectContextType = {
@@ -19,6 +21,8 @@ const initialValue: ProjectContextType = {
   setProject: (project: ProjectType) => {},
   messages: [],
   setMessages: (messages: MessageType[]) => {},
+  currentConversation: [],
+  setCurrentConversation: (messages: CollaboratorChatMessage[]) => {},
 };
 
 export const ProjectContext = createContext(initialValue);
@@ -31,6 +35,9 @@ export const ProjectContextProvider = ({
   const [tasks, setTasks] = useState<Task[]>([]);
   const [project, setProject] = useState<ProjectType>();
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [currentConversation, setCurrentConversation] = useState<
+    CollaboratorChatMessage[]
+  >([]);
 
   return (
     <ProjectContext.Provider
@@ -41,6 +48,8 @@ export const ProjectContextProvider = ({
         setProject,
         messages,
         setMessages,
+        currentConversation,
+        setCurrentConversation,
       }}
     >
       {children}

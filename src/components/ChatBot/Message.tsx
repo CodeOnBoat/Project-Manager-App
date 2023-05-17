@@ -4,6 +4,8 @@ import { TaskDisplay } from "../Items/SelectedTask/TaskDisplay";
 import { renderToString } from "react-dom/server";
 import { MessageTask } from "./MessageTask";
 import { AppContext } from "../../context/AppContext";
+import { ProjectContext } from "../../context/ProjectContext";
+import { writeNewPost } from "../../firebase/chatFunctions";
 
 export interface MessageProps {
   message: string;
@@ -14,6 +16,8 @@ export interface MessageProps {
 export const Message = ({ message, role, myUser }: MessageProps) => {
   const messageContainer = useRef<HTMLDivElement>(null);
   const { profile } = useContext(AppContext);
+  const { currentConversation, setCurrentConversation, project } =
+    useContext(ProjectContext);
 
   useEffect(() => {
     const regexCode = /```([^`]+)```/g;
@@ -40,12 +44,29 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
     messageContainer.current!.innerHTML = result;
   }, []);
 
+  const handleChatSend = async () => {
+    const newMessages = [
+      ...currentConversation,
+      { author: `Assistant -> ${profile?.name}`, body: message },
+    ];
+    setCurrentConversation(newMessages);
+    writeNewPost(profile?.name!, message, project?.project_id!);
+    console.log(currentConversation);
+  };
+
   return (
-    <div
-      ref={messageContainer}
-      className={
-        role === myUser ? "chatbot-message user" : "chatbot-message bot"
-      }
-    ></div>
+    <>
+      <div
+        ref={messageContainer}
+        className={
+          role === myUser ? "chatbot-message user" : "chatbot-message bot"
+        }
+      ></div>
+      {role === "assistant" && (
+        <label className="send-to-chat-label" onClick={handleChatSend}>
+          Send to chat
+        </label>
+      )}
+    </>
   );
 };

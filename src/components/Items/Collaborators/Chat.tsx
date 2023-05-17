@@ -7,14 +7,13 @@ import { AppContext } from "../../../context/AppContext";
 import { CollaboratorChatMessage } from "../../../data/Interfaces";
 
 export const Chat = () => {
-  const [currentConversation, setCurrentConversation] = useState<
-    CollaboratorChatMessage[]
-  >([]);
   const { project } = useContext(ProjectContext);
   const { profile } = useContext(AppContext);
   const chatRef = useRef<HTMLInputElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
+  const { currentConversation, setCurrentConversation } =
+    useContext(ProjectContext);
 
   const handleChatSend = async () => {
     setLoading(true);
@@ -41,7 +40,8 @@ export const Chat = () => {
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
     }
   }, [currentConversation]);
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

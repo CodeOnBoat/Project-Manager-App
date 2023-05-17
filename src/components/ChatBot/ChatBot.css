@@ -229,3 +229,11 @@ code {
   z-index: 1000;
   padding: 0.2em;
 }
+
+.send-to-chat-label {
+  font-size: small;
+  color: #999;
+  margin-left: 1.5em;
+  transform: translateY(-1em);
+  cursor: pointer;
+}
