@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import LogoSmall from "../../data/images/logoSmall.png";
 import "./ChatBot.css";
-import { chatWithProjectAssistent } from "../../client/client";
+import { chatWithProjectAssistant2, chatWithProjectAssistent } from "../../client/client";
 import { ProjectContext } from "../../context/ProjectContext";
 import { AppContext } from "../../context/AppContext";
 import SendIcon from "../../data/images/send.png";
@@ -38,7 +38,8 @@ export const ChatBot = ({ loading, setLoading }: props) => {
     chatRef.current!.value = "";
     const newMessages = [...messages, { role: "user", content: value }];
     setMessages(newMessages);
-    const res = await chatWithProjectAssistent(value, project!, messages);
+    // const res = await chatWithProjectAssistent(value, project!, messages);
+    const res = await chatWithProjectAssistant2(project!, value, messages)
     // setTags(res.suggestions);
     setLoading(false);
     setMessages([...newMessages, { role: "assistant", content: res }]);
