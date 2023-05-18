@@ -203,7 +203,7 @@ const sendPrompt = async (
   prompt: string,
   messages: { role: string; content: string }[]
 ) => {
-  const key = "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";
+  const key = "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";
   const client = axios.create({
     headers: { Authorization: "Bearer " + key },
   });
@@ -229,7 +229,6 @@ export const getTasksWithParameters = async (
     The tasks should be as specific as possible, and should be ordered in a way that makes sense.
     3 - Your response should be in JSON.
     The json will have this structure:
-
   {
     tasks : [{
       title : a title of the task,

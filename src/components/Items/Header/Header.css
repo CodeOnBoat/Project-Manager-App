@@ -124,7 +124,7 @@
 
 .user-name {
   font-size: 15px;
-  color: var(--opposite-letter-color);
+  color: #fff;
 }
 
 @media screen and (width > 700px) {
@@ -138,7 +138,11 @@
   cursor: pointer;
 }
 
-.header-logo-image.dark {
+.header-logo-image.light {
+  filter: drop-shadow(5px 3px 4px #000);
+}
+.landing-logo-image.light {
+  filter: drop-shadow(5px 5px 5px #000);
 }
 
 .header-back-image {

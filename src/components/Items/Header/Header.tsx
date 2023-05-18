@@ -54,10 +54,10 @@ export const Header = ({ logOut }: HeaderProps) => {
       user_name
     );
     let tempNotifications = [...notifications];
-    tempNotifications = tempNotifications.filter(
+    let tNotifications = tempNotifications.filter(
       (n) => n.projectName !== notification.projectName
     );
-    setNotifications(tempNotifications);
+    setNotifications(tNotifications);
   };
 
   return (
