@@ -258,29 +258,11 @@ export const chatWithProjectAssistant2 = async (
   messageHistory: { role: string; content: string }[]
 ) => {
   const setUp = `You are the api for a task management application.
-  Act as a project manager.
   Here is a JSON that has all the information about a project that is being developed: ${JSON.stringify(
     project
   )}
-  The owner of this project wants you to be an assistant and act as a knowledgable project manager.
-  Your response should be in JSON.
-    The json will have this structure:
+  
 
-  {
-    tasks : [{
-      title : a title of the task,
-      description : a description of the task. Should be detailed and give simple structured instructions as a string,
-      steps : a list of steps to follow in order the complete the current task. every step looks like this: {
-        name : name of the step,
-        description : description of the step,
-        completed : set by default to false
-      }
-      time : estimated time it will take to make it,
-      state : set by default to 'notstarted',
-      taskId : a random uuid,
-      emoji : a emoji that relates to the task
-    }]
-  }
   I want you to display that you have knowledge about the project he is working on.
   I also want you to be able to answer questions concerning the project, or a particular task or step inside of the project.
 
@@ -292,7 +274,7 @@ export const chatWithProjectAssistant2 = async (
     { role: "system", content: setUp },
     ...messageHistory,
   ]);
-  
+
   // If asked, you will provide a new task. When you do so, your reply will be: 'Sure! I have added a new task in your project', followed by the task. this task will be enclosed in [t].
   // Example of task:
   // [t]
