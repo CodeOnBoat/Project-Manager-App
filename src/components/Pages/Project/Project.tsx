@@ -53,16 +53,15 @@ export const Project = ({ project }: ProjectProps) => {
   }, []);
 
   useEffect(() => {
-    setMessages([
-      {
-        role: "assistant",
-        content: `Hello ${profile?.given_name}!,
-        If you have any questions about the project as a whole, a specific task or step, or need advice or creative ideas, feel free to ask. 
-        I can also assist you in adding new tasks to your project. 
-        
-        Just tell me what you need.`,
-      },
-    ]);
+    // setMessages([
+    //   {
+    //     role: "assistant",
+    //     content: `Hello ${profile?.given_name}!,
+    //     If you have any questions about the project as a whole, a specific task or step, or need advice or creative ideas, feel free to ask.
+    //     I can also assist you in adding new tasks to your project.
+    //     Just tell me what you need.`,
+    //   },
+    // ]);
   }, [project]);
 
   const modifyTaskStatus = (
