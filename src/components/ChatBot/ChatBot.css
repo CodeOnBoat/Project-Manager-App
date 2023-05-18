@@ -237,3 +237,24 @@ code {
   transform: translateY(-1em);
   cursor: pointer;
 }
+
+.tags-container {
+  display: flex;
+  justify-content: right;
+  background-color: transparent;
+  margin-bottom: 7em;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.tags {
+  margin: 0.1em;
+  padding: 0.5em;
+  border-radius: 24px;
+  background-color: var(--primary-color);
+  color: var(--message-writing);
+  cursor: pointer;
+  transition: 0.3s;
+  height: 2.5em;
+  white-space: nowrap;
+}

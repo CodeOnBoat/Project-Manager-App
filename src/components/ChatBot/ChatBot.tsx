@@ -15,16 +15,36 @@ interface props {
   setLoading: (b: boolean) => void;
 }
 
+export interface ChatBotRes {
+  message: string;
+  suggestions: string[];
+}
+
 export const ChatBot = ({ loading, setLoading }: props) => {
   const { profile } = useContext(AppContext);
   const { project, messages, setMessages } = useContext(ProjectContext);
   const chatRef = useRef<HTMLInputElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
+  const [tags, setTags] = useState<string[]>([
+    "Add Task",
+    "Overview",
+    "Priorities",
+    "Suggestions",
+  ]);
 
   const handleChatSend = async () => {
     setLoading(true);
     const value = chatRef.current!.value;
     chatRef.current!.value = "";
+    const newMessages = [...messages, { role: "user", content: value }];
+    setMessages(newMessages);
+    const res = await chatWithProjectAssistent(value, project!, messages);
+    // setTags(res.suggestions);
+    setLoading(false);
+    setMessages([...newMessages, { role: "assistant", content: res }]);
+  };
+  const handleTagSend = async (value: string) => {
+    setLoading(true);
     const newMessages = [...messages, { role: "user", content: value }];
     setMessages(newMessages);
     const res = await chatWithProjectAssistent(value, project!, messages);
@@ -60,12 +80,22 @@ export const ChatBot = ({ loading, setLoading }: props) => {
             </>
           );
         })}
+
         {loading && (
           <div className="dot-pulse-container">
             <div className="dot-pulse"></div>
           </div>
         )}
       </div>
+      {/* <div className="tags-container">
+        {tags.map((t, index) => {
+          return (
+            <div className="tags" onClick={() => handleTagSend(t)}>
+              {t}
+            </div>
+          );
+        })}
+      </div> */}
       <div className="chatbot-input-container">
         <input
           ref={chatRef}
