@@ -181,8 +181,11 @@ export const chatWithProjectAssistent = async (
     project: project,
     messageHistory: messageHistory,
   });
-  console.log(res.data);
-  return res.data;
+  if (res.status === 500) {
+    return {message : "There has been an error. please try again", suggestions : ['Hello']};
+  } else {
+    return res.data;
+  }
 };
 
 export const updateProjectInfo = async (
