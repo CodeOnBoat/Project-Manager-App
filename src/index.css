@@ -61,22 +61,25 @@
   --message-writing: rgba(50, 50, 50, 1);
   --chat-input-background: rgba(50, 50, 50, 1);
   --opt-selected: rgba(184, 254, 187, 1);
-  --notifications-background: rgba(32, 32, 32, .8);
+  --notifications-background: rgba(32, 32, 32, 1);
   --notification-title-background: var(--primary-color);
-  --notification-title: rgba(32, 32, 32, .8);
+  --notification-title: rgba(32, 32, 32, 0.8);
   --button-background: var(--full-gradient);
-  /* --xxx: var(--full-gradient); */
+  --scrollbar: var(--primary-color);
+  --popup-border: var(--primary-color);
+  --box-input-background: rgba(255, 255, 255, 0.06);
+  --plus-one-step: var(--primary-color);
 }
 
 :root {
   --primary-color: rgba(184, 254, 187, 1);
   --secundary-color: rgba(185, 232, 246, 1);
   --letter-color: rgba(50, 50, 50, 0.8);
-  --letter-color-opposite: #ffffffc0;
+  --letter-color-opposite: rgba(255, 255, 255, 1);
   --border-color: rgba(255, 255, 255, 0.8);
   --subcontainer-background: rgba(255, 255, 255, 0.8);
   --container-background: rgba(255, 255, 255, 0.3);
-  --full-gradient: rgba(57, 169, 245, 0.4);
+  --full-gradient: rgba(57, 169, 245, 0.6);
   --main-background: linear-gradient(
     to bottom,
     rgba(184, 254, 187, 1),
@@ -85,16 +88,19 @@
   --message-user-background: rgba(255, 255, 255, 0.5);
   --message-bot-background: rgba(255, 255, 255, 0.8);
   --message-writing: rgba(50, 50, 50, 0.8);
-  --chat-input-background: rgba(255, 255, 255, 0.8);
+  --chat-input-background: rgba(255, 255, 255, 1);
   --opt-selected: rgba(255, 255, 255, 1);
   --opt-deselected: rgba(50, 50, 50, 0.8);
-  --notifications-background: rgba(32, 32, 32, .8);
-  --notification-message-container: rgba(32, 32, 32, .8);
-  --notification-message-writing: rgba(255, 255, 255, .8);
+  --notifications-background: rgba(32, 32, 32, 0.8);
+  --notification-message-container: rgba(32, 32, 32, 0.8);
+  --notification-message-writing: rgba(255, 255, 255, 0.8);
   --notification-title-background: var(--primary-color);
-  --notification-title: rgba(32, 32, 32, .8);
-  --button-background: rgba(57, 169, 245, 0.4);
-  /* --xxx: rgba(); */
+  --notification-title: rgba(32, 32, 32, 0.8);
+  --button-background: rgba(57, 169, 245, 0.6);
+  --scrollbar: rgba(255, 255, 255, 0.8);
+  --popup-border: rgba(255, 255, 255, 0.8);
+  --box-input-background: rgba(255, 255, 255, 0.4);
+  --plus-one-step: rgba(57, 169, 245, 0.4);
 }
 
 * {
@@ -115,6 +121,7 @@ body {
 }
 :root::-webkit-scrollbar {
   display: none;
+  background-color: var(--scrollbar);
 }
 
 .app {

@@ -96,19 +96,25 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
               {steps.map((s, i) => {
                 return (
                   <div className="one-step">
-                    <div className="step-number">{i + 1}</div>
-                    <div className="delete-step" onClick={() => removeStep(i)}>
-                      <img src={Trash} className="delete-new-step-icon" />
+                    <div className="one-new-step-header-container">
+                      <div className="step-number">{i + 1}</div>
+
+                      <div
+                        className="delete-new-step"
+                        onClick={() => removeStep(i)}
+                      >
+                        <img src={Trash} className="delete-new-step" />
+                      </div>
                     </div>
                     <input
-                      className="standard-container-input box"
+                      className="standard-container-input box full"
                       type="text"
                       placeholder="Step title"
                       onChange={(e) => modifyStep(e, "title", i)}
                       value={s.name}
                     />
                     <input
-                      className="standard-container-input box"
+                      className="standard-container-input box full"
                       type="text"
                       placeholder="Step description"
                       onChange={(e) => modifyStep(e, "description", i)}

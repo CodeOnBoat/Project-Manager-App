@@ -27,11 +27,18 @@
   background: rgba(200, 200, 200, 0.3);
   transform: rotate(90deg) skewX(-30deg) scaleY(0.86) translate(25px, -50px);
 }
-.top {
+.top.dark {
   background: rgba(184, 254, 187, 0.3);
   transform: rotate(210deg) skew(-30deg) translate(-75px, -22px) scaleY(0.86);
   z-index: 2;
 }
+
+.top.light {
+  background: rgba(57, 169, 245, 0.2);
+  transform: rotate(210deg) skew(-30deg) translate(-75px, -22px) scaleY(0.86);
+  z-index: 2;
+}
+
 .face {
   height: 50px;
   width: 50px;

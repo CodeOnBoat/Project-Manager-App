@@ -5,6 +5,7 @@ import { ProjectContext } from "../../../context/ProjectContext";
 import { changeCompletionOfStep } from "../../../client/client";
 import LogoSmall from "../../../data/images/logoSmall.png";
 import { chatWithProjectAssistent } from "../../../client/client";
+import { AppContext } from "../../../context/AppContext";
 
 export interface TaskDisplayProps {
   task: Task;
@@ -21,8 +22,9 @@ export const TaskDisplay = ({
   setHome,
   setLoading,
 }: TaskDisplayProps) => {
-  const { setTasks, tasks, project, setMessages, messages } =
+  const { setTasks, tasks, project, setMessages, messages, setTags } =
     useContext(ProjectContext);
+  const { darkMode } = useContext(AppContext);
 
   const modifyStepState = (step: Step) => {
     const tempTasks = [...tasks];
@@ -35,7 +37,10 @@ export const TaskDisplay = ({
 
   const handleGetAssistance = (step?: string) => {
     setHome(true);
-    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
 
     setLoading(true);
     setTimeout(() => {
@@ -57,18 +62,13 @@ export const TaskDisplay = ({
           },
         ]);
       }
-    }, 2000);
+      setTags(["Explain me more", "Make it a task", "How can I start?"]);
+    }, 1500);
   };
 
   return (
     <>
       <div className="standard-container-title task-name">
-        <img
-          src={LogoSmall}
-          alt=""
-          className="header-logo-image smaller hover"
-          onClick={() => handleGetAssistance()}
-        />
         <h1>{task.title}</h1>
         <img
           className="standard-container-title-icon"
@@ -82,6 +82,15 @@ export const TaskDisplay = ({
           {task.state === "inprogress" && `In progress by ${task.collaborator}`}
           {task.state === "finished" && `Finished by ${task.collaborator}`}
         </label>
+        <div className="getHelp-container header">
+          <label className="getHelp-text header">Get Help</label>
+          <img
+            src={LogoSmall}
+            alt=""
+            className="header-logo-image smaller hover"
+            onClick={() => handleGetAssistance()}
+          />
+        </div>
       </div>
       <div className="task-detail-container">
         <div className="task-description">{task.description}</div>
@@ -91,20 +100,23 @@ export const TaskDisplay = ({
               <label>Here's the steps to follow:</label>
               {task.steps.map((step, i) => (
                 <div className="step-container">
-                  <div className="step-number">{i + 1}</div>
                   <div className="step">
+                    <div className="step-number">{i + 1}</div>
                     <div className="step-data-container">
                       <label>
                         <b>{step.name}</b>
                       </label>
-                      <p>{step.description}</p>
+                      <p className="step-description">{step.description}</p>
                     </div>
-                    <img
-                      src={LogoSmall}
-                      alt=""
-                      className="header-logo-image smaller hover shadow"
-                      onClick={() => handleGetAssistance(step.name)}
-                    />
+                    <div className="getHelp-container">
+                      <img
+                        src={LogoSmall}
+                        alt=""
+                        className={`header-logo-image smaller hover shadow ${darkMode}`}
+                        onClick={() => handleGetAssistance(step.name)}
+                      />
+                      <label className="getHelp-text">Assistant</label>
+                    </div>
                   </div>
                   {task.state === "inprogress" && (
                     <input

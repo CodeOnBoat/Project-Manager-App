@@ -13,6 +13,7 @@ import { ChatBot, MessageType } from "../../ChatBot/ChatBot";
 import App from "../../../App";
 import { AppContext } from "../../../context/AppContext";
 import e from "express";
+import { useRef } from "react";
 
 export const Project = ({ project }: ProjectProps) => {
   const [selectedTask, setSelectedTask] = useState<string>("");
@@ -20,16 +21,20 @@ export const Project = ({ project }: ProjectProps) => {
   const [tasksLoading, setTasksLoading] = useState(true);
   const [home, setHome] = useState(true);
   const [loading, setLoading] = useState(false);
-
   const { profile } = useContext(AppContext);
   const { setTasks, tasks, setProject, messages, setMessages } =
     useContext(ProjectContext);
+  const taskDisplayRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (selectedTask !== "") {
       setShowNewTask(false);
+      window.scrollTo({
+        top: document.body.scrollHeight / 3,
+        behavior: "smooth",
+      });
     }
   }, [selectedTask]);
 
@@ -46,7 +51,7 @@ export const Project = ({ project }: ProjectProps) => {
   };
 
   useEffect(() => {
-    const inverval = setInterval(getTasks, 100000);
+    const inverval = setInterval(getTasks, 1000);
     getTasks();
     setProject(project);
     return () => clearInterval(inverval);
