@@ -8,7 +8,7 @@ import { CollaboratorChatMessage } from "../../../data/Interfaces";
 
 export const Chat = () => {
   const { project } = useContext(ProjectContext);
-  const { profile } = useContext(AppContext);
+  const { profile, darkMode } = useContext(AppContext);
   const chatRef = useRef<HTMLInputElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false);
@@ -69,7 +69,7 @@ export const Chat = () => {
         />
         <img
           src={SendIcon}
-          className="chatbot-send-icon"
+          className={`chatbot-send-icon ${darkMode}`}
           onClick={handleChatSend}
         />
       </div>

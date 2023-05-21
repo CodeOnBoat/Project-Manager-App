@@ -14,7 +14,7 @@
 }
 
 .add-task-container::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
+  background-color: var(--scrollbar);
   border-radius: 10px; /* Roundness of the scroll thumb */
   padding-right: 0.2em;
 }
@@ -38,7 +38,7 @@
 .plus-step {
   padding: 0.5em 1em 0.5em 1em;
   border-radius: 10px;
-  background-color: var(--primary-color);
+  background-color: var(--plus-one-step);
   border: none;
   color: black;
   cursor: pointer;
@@ -47,14 +47,29 @@
 
 .box {
   width: 80%;
+  background-color: var(--box-input-background);
+}
+
+.standard-container-input.box.full {
+  width: 100%;
+}
+.one-new-step-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.delete-new-step {
+  height: 2em;
 }
 
 .one-step {
-  box-shadow: 3px 3px 3px 3px rgba(184, 254, 187, 0.5);
-  padding: 1em;
+  box-shadow: 0px 0px 6px var(--primary-color);
+  padding: 1.5em;
   margin: 1em;
   border-radius: 10px;
   position: relative;
+  background-color: var(--box-input-background);
 }
 
 .delete-step {
@@ -98,7 +113,7 @@
 }
 
 .task-detail-container::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
+  background-color: var(--scrollbar);
   border-radius: 10px; /* Roundness of the scroll thumb */
   padding-right: 0.2em;
 }
@@ -157,7 +172,9 @@
 
 .task-state-container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5em 0 1.5em;
   width: 100%;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -174,7 +191,6 @@
 }
 
 .task-state-container label {
-  margin-left: 10%;
   font-weight: bold;
 }
 
@@ -185,7 +201,8 @@
   border-radius: 24px;
   padding: 1em;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  gap: 2em;
   background: var(--subcontainer-background);
 }
 
@@ -194,7 +211,6 @@
   flex-direction: column;
   font-size: small;
   gap: 1em;
-  padding-right: 1em;
 }
 
 input[type="checkbox"] {
@@ -214,7 +230,8 @@ input[type="checkbox"] {
   justify-content: center;
   border-radius: 10px;
   margin: 0.5em;
-  background-color: rgba(242, 218, 65, 0.563);
+  background-color: var(--primary-color);
+  color: #000;
 }
 
 .step-container {
@@ -237,4 +254,37 @@ input[type="checkbox"] {
   padding: 1em;
   color: white;
   margin-top: 2em;
+}
+
+.getHelp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  padding: 0.354em;
+  border-radius: 10px;
+  gap: 0.1em;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.getHelp-container:hover {
+  transform: scale(1.1);
+}
+
+.getHelp-text {
+  font-size: x-small;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.getHelp-text.header {
+}
+
+.getHelp-container.header {
+  gap: 0.1em;
+}
+
+.step-description {
+  text-align: justify;
 }

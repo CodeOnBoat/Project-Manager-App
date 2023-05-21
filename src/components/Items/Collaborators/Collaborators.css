@@ -29,7 +29,7 @@
 
 /* Style the thumb of the scrollbar */
 .collaborators-container::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
+  background-color: var(--scrollbar);
   border-radius: 10px; /* Roundness of the scroll thumb */
   padding-right: 0.2em;
 }

@@ -22,7 +22,7 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
   useEffect(() => {
     const regexCode = /```([^`]+)```/g;
     const regexB = /\*\*([^`]+)\*\*/g;
-    const regexTask = /\[t\]([^`]+)\[t\]/;
+    const regexTask = /\[t\]([^`]+)\[\/t\]/;
     let result = "";
     if (role !== "user" && role !== "assistant" && role != profile?.name) {
       result += `<h4>${role}</h4><br/>`;

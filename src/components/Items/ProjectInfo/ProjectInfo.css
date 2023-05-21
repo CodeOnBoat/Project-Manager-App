@@ -83,7 +83,7 @@
 }
 
 .description-text::-webkit-scrollbar-thumb {
-  background-color: var(--primary-color);
+  background-color: var(--scrollbar);
   border-radius: 10px; /* Roundness of the scroll thumb */
   padding-right: 0.2em;
 }
@@ -153,14 +153,19 @@
 
 .popup-content {
   display: flex;
-  background-color: rgba(30, 30, 30, 1);
+  background-color: rgba(32, 32, 32, 0.8);
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   width: 90%;
   height: 230px;
   max-width: 500px;
+  border-color: var(--popup-border);
+}
+.popup-content > h1 {
+  color: white;
 }
 .pop-up-text {
+  color: white;
   padding: 0.5em;
 }

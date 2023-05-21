@@ -12,6 +12,8 @@ type ProjectContextType = {
   setMessages: (messages: MessageType[]) => void;
   currentConversation: CollaboratorChatMessage[];
   setCurrentConversation: (messages: CollaboratorChatMessage[]) => void;
+  tags: string[];
+  setTags: (tags: string[]) => void;
 };
 
 const initialValue: ProjectContextType = {
@@ -23,6 +25,8 @@ const initialValue: ProjectContextType = {
   setMessages: (messages: MessageType[]) => {},
   currentConversation: [],
   setCurrentConversation: (messages: CollaboratorChatMessage[]) => {},
+  tags: [],
+  setTags: (tags: string[]) => {},
 };
 
 export const ProjectContext = createContext(initialValue);
@@ -38,6 +42,11 @@ export const ProjectContextProvider = ({
   const [currentConversation, setCurrentConversation] = useState<
     CollaboratorChatMessage[]
   >([]);
+  const [tags, setTags] = useState<string[]>([
+    "Add Task",
+    "Overview",
+    "Priorities",
+  ]);
 
   return (
     <ProjectContext.Provider
@@ -50,6 +59,8 @@ export const ProjectContextProvider = ({
         setMessages,
         currentConversation,
         setCurrentConversation,
+        tags,
+        setTags,
       }}
     >
       {children}

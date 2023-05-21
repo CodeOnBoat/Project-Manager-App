@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import LogoSmall from "../../data/images/logoSmall.png";
 import "./ChatBot.css";
-import { chatWithProjectAssistant2, chatWithProjectAssistent } from "../../client/client";
+import { chatWithProjectAssistent } from "../../client/client";
 import { ProjectContext } from "../../context/ProjectContext";
 import { AppContext } from "../../context/AppContext";
 import SendIcon from "../../data/images/send.png";
@@ -21,36 +21,33 @@ export interface ChatBotRes {
 }
 
 export const ChatBot = ({ loading, setLoading }: props) => {
-  const { profile } = useContext(AppContext);
-  const { project, messages, setMessages } = useContext(ProjectContext);
+  const { profile, darkMode } = useContext(AppContext);
+  const { project, messages, setMessages, setTags, tags } =
+    useContext(ProjectContext);
   const chatRef = useRef<HTMLInputElement>(null);
   const messageContainerRef = useRef<HTMLDivElement>(null);
-  const [tags, setTags] = useState<string[]>([
-    "Add Task",
-    "Overview",
-    "Priorities",
-    "Suggestions",
-  ]);
 
   const handleChatSend = async () => {
+    setTags([]);
     setLoading(true);
     const value = chatRef.current!.value;
     chatRef.current!.value = "";
     const newMessages = [...messages, { role: "user", content: value }];
     setMessages(newMessages);
-    // const res = await chatWithProjectAssistent(value, project!, messages);
-    const res = await chatWithProjectAssistant2(project!, value, messages)
-    // setTags(res.suggestions);
+    const res = await chatWithProjectAssistent(value, project!, messages);
     setLoading(false);
-    setMessages([...newMessages, { role: "assistant", content: res }]);
+    setTags(res.suggestions);
+    setMessages([...newMessages, { role: "assistant", content: res.message }]);
   };
   const handleTagSend = async (value: string) => {
+    setTags([]);
     setLoading(true);
     const newMessages = [...messages, { role: "user", content: value }];
     setMessages(newMessages);
-    const res = await chatWithProjectAssistent(value, project!, messages);
+    const res = await chatWithProjectAssistent(value, project!, newMessages);
     setLoading(false);
-    setMessages([...newMessages, { role: "assistant", content: res }]);
+    setTags(res.suggestions);
+    setMessages([...newMessages, { role: "assistant", content: res.message }]);
   };
   useEffect(() => {
     if (messageContainerRef.current) {
@@ -84,20 +81,25 @@ export const ChatBot = ({ loading, setLoading }: props) => {
 
         {loading && (
           <div className="dot-pulse-container">
-            <div className="dot-pulse"></div>
+            <div className={`dot-pulse ${darkMode}`}></div>
           </div>
         )}
       </div>
-      {/* <div className="tags-container">
-        {tags.map((t, index) => {
-          return (
-            <div className="tags" onClick={() => handleTagSend(t)}>
-              {t}
-            </div>
-          );
-        })}
-      </div> */}
+
       <div className="chatbot-input-container">
+        <div className="tags-container">
+          {tags.map((t, index) => {
+            return (
+              <div
+                className="tags"
+                key={index}
+                onClick={() => handleTagSend(t)}
+              >
+                {t}
+              </div>
+            );
+          })}
+        </div>
         <input
           ref={chatRef}
           placeholder=""
@@ -107,7 +109,7 @@ export const ChatBot = ({ loading, setLoading }: props) => {
         />
         <img
           src={SendIcon}
-          className="chatbot-send-icon"
+          className={`chatbot-send-icon ${darkMode}`}
           onClick={handleChatSend}
         />
       </div>
