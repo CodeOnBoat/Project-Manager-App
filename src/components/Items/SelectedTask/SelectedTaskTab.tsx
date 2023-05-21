@@ -39,7 +39,7 @@ export const SelectedTaskTab = ({
       status,
       profile?.name!
     );
-    updateTaskState(status, profile!.name);
+    // updateTaskState(status, profile!.name);
   };
 
   const addTask = (newTask: Task) => {

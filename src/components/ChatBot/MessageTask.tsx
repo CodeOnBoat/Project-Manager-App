@@ -19,10 +19,9 @@ export const MessageTask = ({ task }: MessageTaskProps) => {
                 <div className="step-container">
                   <div className="step">
                     <div className="step-number">{i + 1}</div>
+                    <b>{step.name}</b>
                     <div className="step-data-container">
-                      <label className="message-task-step-title">
-                        <b>{step.name}</b>
-                      </label>
+                      <label className="message-task-step-title"></label>
                       <p className="message-task-step-description">
                         {step.description}
                       </p>

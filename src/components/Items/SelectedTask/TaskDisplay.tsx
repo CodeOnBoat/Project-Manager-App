@@ -27,11 +27,11 @@ export const TaskDisplay = ({
   const { darkMode } = useContext(AppContext);
 
   const modifyStepState = (step: Step) => {
-    const tempTasks = [...tasks];
-    tempTasks
-      .filter((t) => t.taskId === task.taskId)[0]
-      .steps.filter((s) => s.name === step.name)[0].completed = !step.completed;
-    setTasks(tempTasks);
+    // const tempTasks = [...tasks];
+    // tempTasks
+    //   .filter((t) => t.taskId === task.taskId)[0]
+    //   .steps.filter((s) => s.name === step.name)[0].completed = !step.completed;
+    // setTasks(tempTasks);
     changeCompletionOfStep(project?.project_id!, task.taskId!, step.name);
   };
 
@@ -83,7 +83,7 @@ export const TaskDisplay = ({
           {task.state === "finished" && `Finished by ${task.collaborator}`}
         </label>
         <div className="getHelp-container header">
-          <label className="getHelp-text header">Get Help</label>
+          <label className="getHelp-text header">Assistant</label>
           <img
             src={LogoSmall}
             alt=""
@@ -115,7 +115,7 @@ export const TaskDisplay = ({
                         className={`header-logo-image smaller hover shadow ${darkMode}`}
                         onClick={() => handleGetAssistance(step.name)}
                       />
-                      <label className="getHelp-text">Assistant</label>
+                      <label className="getHelp-text">Get Help</label>
                     </div>
                   </div>
                   {task.state === "inprogress" && (

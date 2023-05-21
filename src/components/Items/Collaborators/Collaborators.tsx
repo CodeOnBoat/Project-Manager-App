@@ -8,6 +8,7 @@ import "./Collaborators.css";
 import { Chat } from "./Chat";
 import collaboratorsImage from "../../../data/images/collaborators.png";
 import chatImage from "../../../data/images/chat.png";
+import emailjs from "@emailjs/browser";
 
 export const Collaborators = () => {
   const { project } = useContext(ProjectContext);
@@ -32,16 +33,19 @@ export const Collaborators = () => {
   }, [collaboratorNumber]);
 
   const handleSendNotification = () => {
-    console.log({
-      user_id: profile?.id,
-      collaborator_mail: mailRef.current?.value!,
-      project_id: project?.project_id,
-    });
     const result: boolean = mailRegex.test(mailRef.current?.value!);
     if (!result) {
       setShowWrongMail(true);
       return;
     }
+    const templateParams = {
+      from_name: profile?.name!,
+      project_name: project?.title!,
+      collaborator_mail: mailRef.current?.value!,
+    };
+
+    emailjs.init("NPt7mNcSpels1zThI");
+    emailjs.send("service_b615p2w", "template_a8n0o6k", templateParams);
     sendNotification(
       profile?.name!,
       mailRef.current?.value!,
@@ -78,7 +82,7 @@ export const Collaborators = () => {
             selectedCollaboratorTab === "invitation" ||
             selectedCollaboratorTab === "chat"
               ? collaboratorsImage
-              : chatImage        
+              : chatImage
           }
           className="project-option-icon"
           onClick={
@@ -132,13 +136,15 @@ export const Collaborators = () => {
               project.collaborators.map((c) => (
                 <OneCollaborator collaborator={c} />
               ))}
-            
-{   project?.owner === profile?.id + "" &&         <button
-              className="standard-container-button right small "
-              onClick={handleWriteMail}
-            >
-              +
-            </button>}
+
+            {project?.owner === profile?.id + "" && (
+              <button
+                className="standard-container-button right small "
+                onClick={handleWriteMail}
+              >
+                +
+              </button>
+            )}
           </div>
         </>
       ) : (

@@ -16,7 +16,8 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
   const newTask = () => {
     const newTask: Task = {
       title: titleRef.current!.value,
-      time: parseInt(estimatedTimeRef.current!.value),
+      // time: parseInt(estimatedTimeRef.current!.value),
+      time: 0,
       assignedTo: "",
       state: "notstarted",
       description: descriptionRef.current!.value,
@@ -71,14 +72,14 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
             />
           </div>
           <div className="new-task-input-container">
-            <label className="form-title">Estimated time</label>
+            {/* <label className="form-title">Estimated time</label>
             <input
               className="standard-container-input box"
               type="number"
               name="time"
               placeholder="Estimated time ..."
               ref={estimatedTimeRef}
-            />
+            /> */}
           </div>
           <div className="new-task-input-container">
             <label className="form-title">Description</label>
