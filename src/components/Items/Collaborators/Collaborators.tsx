@@ -98,7 +98,7 @@ export const Collaborators = () => {
           <div className=" standard-container popup-content send-invitation">
             <h1>Send invitation</h1>
             <input
-              className="standard-container-input"
+              className="standard-container-input mail"
               placeholder="user@email.com"
               type="text"
               ref={mailRef}

@@ -36,12 +36,16 @@
   align-items: center;
   justify-content: center;
   padding: 2em;
+  padding-top: 0px;
 }
 
 @media screen and (width > 1400px) {
   .dashboard-container {
     width: 100%;
     flex-direction: row-reverse;
+  }
+  .loading-text-container {
+    padding-top: 2em;
   }
 }
 

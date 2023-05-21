@@ -56,7 +56,6 @@ export const AppContextProvider = ({
     }
   }, []);
 
-
   useEffect(() => {
     const getNot = async () => {
       const notificationsReq = await getNotifications(profile!.id + "");

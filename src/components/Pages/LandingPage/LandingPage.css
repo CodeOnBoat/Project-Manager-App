@@ -22,10 +22,8 @@
   height: 25em;
 }
 .landing-logo-image {
- width: 80%;
- max-width: 400px;
-}
-.landing-logo-image.dark {
+  width: 80%;
+  max-width: 600px;
 }
 
 .landingPage-google-button {
