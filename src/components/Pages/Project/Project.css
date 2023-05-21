@@ -74,7 +74,6 @@
   color: var(--opt-deselected);
   font-size: xx-large;
   cursor: pointer;
-  text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.3);
 }
 
 .task-container {

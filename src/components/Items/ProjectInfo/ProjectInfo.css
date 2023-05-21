@@ -153,9 +153,9 @@
 
 .popup-content {
   display: flex;
-  background-color: rgba(32, 32, 32, 0.8);
+  background-color: var(--popup-background);
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   text-align: center;
   width: 90%;
   height: 230px;
@@ -163,9 +163,9 @@
   border-color: var(--popup-border);
 }
 .popup-content > h1 {
-  color: white;
+  color: var(--popup-text);
 }
 .pop-up-text {
-  color: white;
+  color: var(--popup-text);
   padding: 0.5em;
 }
