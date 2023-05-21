@@ -30,11 +30,11 @@
   --foreground-color: #000000;
   --background-color: #eeeeee;
 
-  --white-point-8: rgba(255, 255, 255, .8);
-  --white-point-5: rgba(255, 255, 255, .5);
-  --dark-32: rgba(32, 32, 32, .8);  
+  --white-point-8: rgba(255, 255, 255, 0.8);
+  --white-point-5: rgba(255, 255, 255, 0.5);
+  --dark-32: rgba(32, 32, 32, 0.8);
 
-  --letter-color: rgba(255, 255, 255, .8);
+  --letter-color: rgba(255, 255, 255, 0.8);
   --letter-color-opposite: #000;
   --primary-color: rgb(210, 122, 253);
   --secundary-color: rgb(110, 156, 255);
@@ -50,7 +50,7 @@
     rgba(184, 254, 187, 0.24),
     rgba(185, 232, 246, 0.24)
   );
-  --subcontainer-background: rgba(255, 255, 255, .06);
+  --subcontainer-background: rgba(255, 255, 255, 0.06);
   --main-background: linear-gradient(
     to bottom,
     rgba(59, 43, 122, 1),
@@ -63,9 +63,9 @@
   --chat-input-background: rgba(50, 50, 50, 1);
 
   --opt-selected: var(--primary-color);
-  --opt-deselected: rgb(107, 121, 255, .4);
+  --opt-deselected: rgb(107, 121, 255, 0.4);
 
-  --notifications-background: rgba(32, 32, 32, .96);
+  --notifications-background: rgba(32, 32, 32, 0.96);
   --notification-title-background: var(--primary-color);
   --notification-title: var(--dark-32);
   --button-background: var(--full-gradient);
@@ -76,9 +76,9 @@
 }
 
 :root {
-  --white-point-8: rgba(255, 255, 255, .8);
-  --white-point-5: rgba(255, 255, 255, .5);
-  --dark-32: rgba(32, 32, 32, .8);
+  --white-point-8: rgba(255, 255, 255, 0.8);
+  --white-point-5: rgba(255, 255, 255, 0.5);
+  --dark-32: rgba(32, 32, 32, 0.8);
 
   /* --primary-color: rgba(210, 122, 253, 1);
   --secundary-color: rgba(110, 156, 255,1); */
@@ -98,18 +98,15 @@
     rgb(181, 53, 250),
     rgb(102, 97, 254)
   );
-    var(--primary-color),
-    var(--secundary-color)
-  );
   --message-user-background: var(--secundary-color);
   --message-bot-background: var(--primary-color);
   --message-writing: var(--white-point-8);
   --chat-input-background: white;
 
   --opt-selected: var(--secundary-color);
-  --opt-deselected: rgba(255, 255, 255, .3);
-  
-  --notifications-background: rgba(255, 255, 255, .5);
+  --opt-deselected: rgba(255, 255, 255, 0.3);
+
+  --notifications-background: rgba(255, 255, 255, 0.5);
   --notification-message-container: var(--dark-32);
   --notification-message-writing: var(--white-point-8);
   /* --notification-title-background: var(--primary-color); */
