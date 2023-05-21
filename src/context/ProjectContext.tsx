@@ -43,9 +43,9 @@ export const ProjectContextProvider = ({
     CollaboratorChatMessage[]
   >([]);
   const [tags, setTags] = useState<string[]>([
-    "Add Task",
+    "Add new task",
     "Overview",
-    "Priorities",
+    "What can I do?",
   ]);
 
   return (

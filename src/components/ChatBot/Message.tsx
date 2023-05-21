@@ -23,11 +23,13 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
     const regexCode = /```([^`]+)```/g;
     const regexB = /\*\*([^`]+)\*\*/g;
     const regexTask = /\[t\]([^`]+)\[\/t\]/;
+    const regexQuotes = /`([^`]+)`/g;
     let result = "";
     if (role !== "user" && role !== "assistant" && role != profile?.name) {
       result += `<h4>${role}</h4><br/>`;
     }
     result += message;
+    console.log(message);
 
     if (regexTask.test(result)) {
       result = result.replace(
@@ -42,7 +44,7 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
       .replace(regexCode, "<code>$1</code>")
       .replace(regexB, "<b>$1</b>")
       .replace(/\n/g, "<br/>")
-      .replace(/`([^`]+)`/g, "");
+      .replace(regexQuotes, "<code>$1</code>");
 
     messageContainer.current!.innerHTML = result;
   }, []);

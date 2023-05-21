@@ -95,6 +95,9 @@
   --full-gradient: rgba(57, 169, 245, 0.6);
   --main-background: linear-gradient(
     to bottom,
+    rgb(181, 53, 250),
+    rgb(102, 97, 254)
+  );
     var(--primary-color),
     var(--secundary-color)
   );
