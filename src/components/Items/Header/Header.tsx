@@ -83,13 +83,10 @@ export const Header = ({ logOut }: HeaderProps) => {
     const circleHeaderElement = document.querySelector(
       ".circle-header.notification"
     );
-
     if (circleHeaderElement && notifications.length >= notificationsLength) {
       circleHeaderElement.classList.add("jump-animation");
-
       setTimeout(() => {
         circleHeaderElement.classList.remove("jump-animation");
-
         setTimeout(() => {
           circleHeaderElement.classList.add("jump-animation");
           setTimeout(() => {
@@ -104,7 +101,6 @@ export const Header = ({ logOut }: HeaderProps) => {
         }, 700);
       }, 700);
     }
-
     setNotificationsLength(notifications.length);
   }, [notifications, notificationsLength]);
 

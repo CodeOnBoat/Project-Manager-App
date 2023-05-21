@@ -12,7 +12,6 @@ export interface MessageProps {
   role: string;
   myUser: string;
 }
-
 export const Message = ({ message, role, myUser }: MessageProps) => {
   const messageContainer = useRef<HTMLDivElement>(null);
   const { profile } = useContext(AppContext);
@@ -25,7 +24,7 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
     const regexTask = /\[t\]([^`]+)\[\/t\]/;
     const regexQuotes = /`([^`]+)`/g;
     let result = "";
-    if (role !== "user" && role !== "assistant" && role != profile?.name) {
+    if (role !== "user" && role !== "assistant" && role !== profile?.name) {
       result += `<h4>${role}</h4><br/>`;
     }
     result += message;
@@ -47,7 +46,11 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
       .replace(regexQuotes, "<code>$1</code>");
 
     messageContainer.current!.innerHTML = result;
-  }, []);
+
+    if (message === "Something went wrong. Please try again") {
+      messageContainer.current!.classList.add("errorMessage");
+    }
+  }, [message]);
 
   const handleChatSend = async () => {
     const newMessages = [
@@ -66,11 +69,12 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
           role === myUser ? "chatbot-message user" : "chatbot-message bot"
         }
       ></div>
-      {role === "assistant" && (
-        <label className="send-to-chat-label" onClick={handleChatSend}>
-          Send to collaborators
-        </label>
-      )}
+      {role === "assistant" &&
+        message !== "Something went wrong. Please try again" && (
+          <label className="send-to-chat-label" onClick={handleChatSend}>
+            Send to collaborators
+          </label>
+        )}
     </>
   );
 };

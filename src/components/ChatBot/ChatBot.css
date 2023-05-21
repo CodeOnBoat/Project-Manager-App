@@ -300,7 +300,7 @@ code {
   white-space: nowrap;
 }
 .tags:hover {
-  background-color: rgba(204, 118, 247, .5);
+  background-color: rgba(204, 118, 247, 0.5);
 }
 
 .chatbot-send-icon.light {
@@ -314,4 +314,11 @@ code {
 .message-task-step-title,
 .message-task-step-description {
   color: var(--letter-color);
+}
+
+.chatbot-message.bot.errorMessage {
+  background-color: rgba(250, 44, 44, 0.271);
+  border: 1px solid red;
+  border-radius: 10px;
+  font-size: smaller;
 }
