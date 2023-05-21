@@ -25,7 +25,6 @@ export const Chat = () => {
     ];
     setCurrentConversation(newMessages);
     writeNewPost(profile?.name!, value, project?.project_id!);
-    console.log(currentConversation);
   };
 
   useEffect(() => {

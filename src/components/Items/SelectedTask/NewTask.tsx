@@ -47,9 +47,7 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
 
   const removeStep = (i: number) => {
     const tempSteps = [...steps];
-    console.log("steps", steps);
     tempSteps.splice(i, 1);
-    console.log("steps after", tempSteps);
     setSteps([...tempSteps]);
   };
 

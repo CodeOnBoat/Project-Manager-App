@@ -54,7 +54,6 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
     ];
     setCurrentConversation(newMessages);
     writeNewPost(`${profile?.name} [assistant]`, message, project?.project_id!);
-    console.log(currentConversation);
   };
 
   return (

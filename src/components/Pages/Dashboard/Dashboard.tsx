@@ -5,7 +5,6 @@ import { AppContext } from "../../../context/AppContext";
 import { ProjectList } from "../../Items/ProjectList/ProjectList";
 import { NewProject } from "../../Items/NewProject/NewProject";
 import { Gear } from "../../Items/Gear/Gear";
-import { writeNewPost } from "../../../firebase/chatFunctions";
 
 function Dashboard() {
   const { profile, setProjects, projects } = useContext(AppContext);
@@ -46,7 +45,6 @@ function Dashboard() {
       const projectArray = await getProjectsById(profile!.id);
       setProjects(projectArray);
     };
-    console.log(profile);
     if (profile) getProjects();
   }, [profile]);
 

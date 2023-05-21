@@ -6,6 +6,7 @@ import {
   SetStateAction,
 } from "react";
 import { NotificationType, Profile, ProjectType } from "../data/Interfaces";
+import { getNotifications } from "../client/client";
 
 type AppContextType = {
   profile: Profile | undefined;
@@ -44,7 +45,6 @@ export const AppContextProvider = ({
   useEffect(() => {
     const storedProfile = localStorage.getItem("profile");
     const storedProjects = localStorage.getItem("projects");
-    console.log({ profile: storedProfile, project: storedProjects });
     if (
       storedProfile &&
       storedProjects &&
@@ -55,6 +55,19 @@ export const AppContextProvider = ({
       setProjects(JSON.parse(storedProjects!));
     }
   }, []);
+
+
+  useEffect(() => {
+    const getNot = async () => {
+      const notificationsReq = await getNotifications(profile!.id + "");
+      setNotifications(notificationsReq);
+    };
+    if (profile) {
+      getNot();
+      const inverval = setInterval(getNot, 20000);
+      return () => clearInterval(inverval);
+    }
+  }, [profile]);
 
   const setProf = (profile: Profile | undefined) => {
     setProfile(profile);

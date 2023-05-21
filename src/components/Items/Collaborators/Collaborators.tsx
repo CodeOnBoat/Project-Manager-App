@@ -32,11 +32,6 @@ export const Collaborators = () => {
   }, [collaboratorNumber]);
 
   const handleSendNotification = () => {
-    console.log({
-      user_id: profile?.id,
-      collaborator_mail: mailRef.current?.value!,
-      project_id: project?.project_id,
-    });
     const result: boolean = mailRegex.test(mailRef.current?.value!);
     if (!result) {
       setShowWrongMail(true);

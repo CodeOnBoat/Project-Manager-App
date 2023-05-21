@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { ProjectProps, Task } from "../../../data/Interfaces";
+import { useContext, useEffect, useState } from "react";
+import { ProjectProps } from "../../../data/Interfaces";
 import { deleteProjectById, getTasksByProjectId } from "../../../client/client";
 import { useNavigate } from "react-router-dom";
 import "./Project.css";
@@ -9,10 +9,8 @@ import { Todo } from "../../Items/ToDo/Todo";
 import { SelectedTaskTab } from "../../Items/SelectedTask/SelectedTaskTab";
 import { FinishedTasks } from "../../Items/FinishedTasks/FinishedTasks";
 import { ProjectContext } from "../../../context/ProjectContext";
-import { ChatBot, MessageType } from "../../ChatBot/ChatBot";
-import App from "../../../App";
+import { ChatBot } from "../../ChatBot/ChatBot";
 import { AppContext } from "../../../context/AppContext";
-import e from "express";
 import { useRef } from "react";
 
 export const Project = ({ project }: ProjectProps) => {
@@ -51,9 +49,9 @@ export const Project = ({ project }: ProjectProps) => {
   };
 
   useEffect(() => {
-    const inverval = setInterval(getTasks, 1000);
     getTasks();
     setProject(project);
+    const inverval = setInterval(getTasks, 1000);
     return () => clearInterval(inverval);
   }, []);
 

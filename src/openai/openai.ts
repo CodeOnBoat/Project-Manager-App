@@ -30,6 +30,5 @@ export async function generateChatCompletion(message: string) {
     output_format: "json",
   });
 
-  console.log(response);
   return response.data.choices[0].message.content;
 }
