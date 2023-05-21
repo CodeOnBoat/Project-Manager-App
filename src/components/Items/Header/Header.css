@@ -42,7 +42,7 @@
  */
 .notification-container {
   position: fixed;
-  background-color: rgba(0,0,0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
   color: var(--letter-color);
   top: 8em;
   left: 2.5%;
@@ -114,8 +114,6 @@
 .circle-header {
   height: 2em;
   width: 2em;
-  border: 2px solid var(--primary-color);
-  box-shadow: 0px 0px 5px 0px var(--border-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -133,7 +131,9 @@
 }
 
 .circles-container img {
-  height: 1.2em;
+  height: 1.5em;
+  width: 1.5em;
+
   cursor: pointer;
 }
 
@@ -144,9 +144,8 @@
   padding-right: 1em;
   padding-left: 1em;
   cursor: pointer;
-  border: 2px solid var(--primary-color);
-  box-shadow: 0px 0px 5px 0px var(--primary-color);
-  border-radius: 20px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
 }
 
 .user-name-container img {
