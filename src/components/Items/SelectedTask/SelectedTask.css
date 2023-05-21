@@ -204,7 +204,9 @@
   width: 100%;
   justify-content: space-between;
   gap: 0.7em;
-  background: var(--subcontainer-background);
+  background-color: rgba(0,0,0,.5);
+  color: white;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.3);
 }
 
 .step-data-container {
@@ -215,7 +217,7 @@
 }
 
 input[type="checkbox"] {
-  accent-color: #48f678;
+  accent-color: var(--primary-color);
   margin-left: 1em;
 }
 
@@ -249,17 +251,10 @@ input[type="checkbox"] {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
-.dark-bg {
-  background-color: rgba(0, 0, 0, 0.636);
-  border-radius: 24px;
-  padding: 1em;
-  color: white;
-  margin-top: 2em;
-}
-
 .getHelp-container {
   display: flex;
   flex-direction: column;
+  align-self: flex-end;
   align-items: center;
   justify-content: center;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
@@ -267,7 +262,7 @@ input[type="checkbox"] {
   border-radius: 10px;
   gap: 0.1em;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--primary-color);
 }
 
 .getHelp-container:hover {
@@ -278,6 +273,7 @@ input[type="checkbox"] {
   font-size: x-small;
   text-align: center;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .getHelp-text.header {
@@ -289,6 +285,7 @@ input[type="checkbox"] {
 
 .step-description {
   text-align: justify;
+  font-size: medium;
 }
 
 .step-header-container {

@@ -112,15 +112,11 @@ export const Header = ({ logOut }: HeaderProps) => {
     <>
       {profile && (
         <div className="header-container">
-          <img
+          <h1
             className={`header-logo-image ${darkMode}`}
-            src={Logo}
             onClick={() => navigate("/dashboard")}
-          />
+          >TASKWISE</h1>
           <div className="header-right-container">
-            <div className="user-name-container">
-              <p className="user-name">{profile?.name}</p>
-            </div>
             <div className="circles-notification-container">
               <div className="circles-container">
                 <div className="notification-panel" ref={notificationPanelRef}>
@@ -139,6 +135,9 @@ export const Header = ({ logOut }: HeaderProps) => {
                     src={darkMode === "light" ? Moon : Sun}
                     alt={darkMode === "light" ? "Moon icon" : "Sun icon"}
                   />
+                </div>
+                <div className="user-name-container">
+                  <p className="user-name">{profile?.name}</p>
                 </div>
                 <div className="circle-header" onClick={logOut}>
                   <img className="logOut-img" src={LogOut} />

@@ -17,6 +17,7 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
   const { profile } = useContext(AppContext);
   const { currentConversation, setCurrentConversation, project } =
     useContext(ProjectContext);
+  const [isTask, setIsTask] = useState(false);
 
   useEffect(() => {
     const regexCode = /```([^`]+)```/g;
@@ -31,6 +32,7 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
     console.log(message);
 
     if (regexTask.test(result)) {
+      setIsTask(true);
       result = result.replace(
         regexTask,
         renderToString(
@@ -68,6 +70,7 @@ export const Message = ({ message, role, myUser }: MessageProps) => {
         className={
           role === myUser ? "chatbot-message user" : "chatbot-message bot"
         }
+        style={{ maxWidth: isTask ? "100%" : "80%" }}
       ></div>
       {role === "assistant" &&
         message !== "Something went wrong. Please try again" && (

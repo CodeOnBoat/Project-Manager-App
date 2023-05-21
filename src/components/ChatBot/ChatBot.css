@@ -59,7 +59,7 @@
   height: 6vh;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--chat-input-background);
+  background-color: rgba(70, 65, 65, 0.353);
   border-radius: 24px;
   position: absolute;
   bottom: 2em;
@@ -94,9 +94,8 @@
   padding: 1em;
   border-radius: 24px;
   width: fit-content;
-  max-width: 80%;
   word-wrap: break-word;
-  color: var(--message-writing);
+  color: white;
 }
 
 .chatbot-message-user-container {
@@ -122,13 +121,13 @@
 .chatbot-message.user {
   background-color: #c5fbd0;
   background-color: var(--message-user-background);
-  color: var(--message-writing);
+  color: white;
   align-self: flex-end;
 }
 
 .chatbot-message.bot {
   background-color: var(--message-bot-background);
-  color: var(--letter-color);
+  color: white;
 }
 
 .container.smaller {
@@ -278,7 +277,7 @@ code {
   top: -80%;
   gap: 0.2em;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   overflow-x: scroll;
   width: 100%;
   border-radius: 24px;
@@ -293,14 +292,14 @@ code {
   margin: 0.1em;
   padding: 0.5em 1em;
   border-radius: 24px;
-  color: var(--message-writing);
+  color: white;
   cursor: pointer;
   font-size: medium;
   flex-wrap: wrap;
   white-space: nowrap;
 }
 .tags:hover {
-  background-color: rgba(204, 118, 247, 0.5);
+  filter: brightness(1.1);
 }
 
 .chatbot-send-icon.light {
