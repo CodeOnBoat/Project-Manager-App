@@ -86,12 +86,7 @@ export const TaskDisplay = ({
           className="getHelp-container header "
           onClick={() => handleGetAssistance()}
         >
-          <label className="getHelp-text header">Assistant</label>
-          <img
-            src={LogoSmall}
-            alt=""
-            className="header-logo-image smaller hover"
-          />
+          <label className="getHelp-text header">Ask assistant</label>
         </div>
       </div>
       <div className="task-detail-container">
@@ -114,12 +109,7 @@ export const TaskDisplay = ({
                       className="getHelp-container"
                       onClick={() => handleGetAssistance(step.name)}
                     >
-                      <img
-                        src={LogoSmall}
-                        alt=""
-                        className={`header-logo-image smaller hover shadow ${darkMode}`}
-                      />
-                      <label className="getHelp-text">Get Help</label>
+                      <label className="getHelp-text">Ask assistant</label>
                     </div>
                   </div>
                   {task.state === "inprogress" && (
