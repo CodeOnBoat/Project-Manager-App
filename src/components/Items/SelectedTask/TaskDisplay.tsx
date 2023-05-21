@@ -82,13 +82,15 @@ export const TaskDisplay = ({
           {task.state === "inprogress" && `In progress by ${task.collaborator}`}
           {task.state === "finished" && `Finished by ${task.collaborator}`}
         </label>
-        <div className="getHelp-container header">
+        <div
+          className="getHelp-container header "
+          onClick={() => handleGetAssistance()}
+        >
           <label className="getHelp-text header">Assistant</label>
           <img
             src={LogoSmall}
             alt=""
             className="header-logo-image smaller hover"
-            onClick={() => handleGetAssistance()}
           />
         </div>
       </div>
@@ -101,19 +103,21 @@ export const TaskDisplay = ({
               {task.steps.map((step, i) => (
                 <div className="step-container">
                   <div className="step">
-                    <div className="step-number">{i + 1}</div>
-                    <div className="step-data-container">
-                      <label>
-                        <b>{step.name}</b>
-                      </label>
-                      <p className="step-description">{step.description}</p>
+                    <div className="step-header-container">
+                      <div className="step-number">{i + 1}</div>
+                      <b>{step.name}</b>
                     </div>
-                    <div className="getHelp-container">
+                    <div className="step-data-container">
+                      <p className="step-description"> {step.description}</p>
+                    </div>
+                    <div
+                      className="getHelp-container"
+                      onClick={() => handleGetAssistance(step.name)}
+                    >
                       <img
                         src={LogoSmall}
                         alt=""
                         className={`header-logo-image smaller hover shadow ${darkMode}`}
-                        onClick={() => handleGetAssistance(step.name)}
                       />
                       <label className="getHelp-text">Get Help</label>
                     </div>

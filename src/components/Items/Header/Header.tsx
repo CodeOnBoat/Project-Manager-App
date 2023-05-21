@@ -96,13 +96,17 @@ export const Header = ({ logOut }: HeaderProps) => {
               setTimeout(() => {
                 circleHeaderElement.classList.remove("jump-animation");
               }, 700);
-            }, 700);
+            }, 800);
           }, 700);
-        }, 700);
+        }, 800);
       }, 700);
     }
     setNotificationsLength(notifications.length);
   }, [notifications, notificationsLength]);
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  };
 
   return (
     <>
@@ -129,20 +133,12 @@ export const Header = ({ logOut }: HeaderProps) => {
                     <img src={NotificationOff} alt="" />
                   </div>
                 </div>
-                <div className="circle-header">
-                  {darkMode === "light" ? (
-                    <img
-                      className="moon-img"
-                      src={Moon}
-                      onClick={() => setDarkMode("dark")}
-                    />
-                  ) : (
-                    <img
-                      className="moon-img"
-                      src={Sun}
-                      onClick={() => setDarkMode("light")}
-                    />
-                  )}
+                <div className="circle-header" onClick={toggleDarkMode}>
+                  <img
+                    className="moon-img"
+                    src={darkMode === "light" ? Moon : Sun}
+                    alt={darkMode === "light" ? "Moon icon" : "Sun icon"}
+                  />
                 </div>
                 <div className="circle-header" onClick={logOut}>
                   <img className="logOut-img" src={LogOut} />

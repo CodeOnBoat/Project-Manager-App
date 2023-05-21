@@ -197,12 +197,13 @@
 .step {
   display: flex;
   align-items: center;
+  flex-direction: column;
   margin-top: 1em;
   border-radius: 24px;
   padding: 1em;
   width: 100%;
   justify-content: space-between;
-  gap: 2em;
+  gap: 0.7em;
   background: var(--subcontainer-background);
 }
 
@@ -223,7 +224,7 @@ input[type="checkbox"] {
   width: 2em;
   min-width: 2em;
   display: flex;
-  justify-self: flex-start;
+  align-self: flex-start;
   top: 0;
   left: 0;
   align-items: center;
@@ -288,4 +289,12 @@ input[type="checkbox"] {
 
 .step-description {
   text-align: justify;
+}
+
+.step-header-container {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  gap: 1em;
+  align-items: center;
 }

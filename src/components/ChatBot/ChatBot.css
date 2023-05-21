@@ -128,7 +128,7 @@
 
 .chatbot-message.bot {
   background-color: var(--message-bot-background);
-  color: var(--message-writing);
+  color: var(--letter-color);
 }
 
 .container.smaller {
