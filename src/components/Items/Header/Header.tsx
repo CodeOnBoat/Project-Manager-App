@@ -5,7 +5,7 @@ import LogOut from "../../../data/images/LogOut.png";
 import Moon from "../../../data/images/Moon.png";
 import Logo from "../../../data/images/logo.png";
 import NotificationOff from "../../../data/images/notificationOff.png";
-import { getNotifications, resolveNotification } from "../../../client/client";
+import { getProjectsById, resolveNotification } from "../../../client/client";
 import { NotificationType } from "../../../data/Interfaces";
 import { useNavigate } from "react-router-dom";
 
@@ -14,33 +14,21 @@ interface HeaderProps {
 }
 
 export const Header = ({ logOut }: HeaderProps) => {
-  const { profile, notifications, setNotifications, darkMode, setDarkMode } =
-    useContext(AppContext);
-  const [showCirclesContainer, setShowCirclesContainer] = useState(false);
+  const {
+    profile,
+    notifications,
+    setNotifications,
+    darkMode,
+    setDarkMode,
+    setProjects,
+    projects,
+  } = useContext(AppContext);
   const [showNotification, setShowNotification] = useState(false);
   const navigate = useNavigate();
 
-  const animationContainerRef = useRef<HTMLDivElement>(null);
   const handleNotification = () => {
     setShowNotification(!showNotification);
   };
-  const handleCirclesContainerClick = () => {
-    setShowCirclesContainer(!showCirclesContainer);
-    setShowNotification(false);
-  };
-
-  useEffect(() => {
-    const getNot = async () => {
-      const notificationsReq = await getNotifications(profile!.id + "");
-      setNotifications(notificationsReq);
-      console.log(notifications);
-    };
-    if (profile) getNot();
-  }, [profile]);
-
-  useEffect(() => {
-    console.log(notifications);
-  }, [notifications]);
 
   const handleNotificationResolve = (
     notification: NotificationType,
@@ -57,7 +45,12 @@ export const Header = ({ logOut }: HeaderProps) => {
     let tNotifications = tempNotifications.filter(
       (n) => n.projectName !== notification.projectName
     );
+
     setNotifications(tNotifications);
+    setTimeout(async () => {
+      const projectArray = await getProjectsById(profile!.id);
+      setProjects(projectArray);
+    }, 3000);
   };
 
   return (
@@ -103,7 +96,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                 notifications.map((n, index) => (
                   <div className="standard-container notification-standard-container">
                     <div key={index}>
-                      <div className="standard-container-title">
+                      <div className="notification-container-title">
                         <h1> {n.projectName}</h1>
                       </div>
                       <div className="notification-message-container">

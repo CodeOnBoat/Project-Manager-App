@@ -36,6 +36,7 @@ export interface CollaboratorType {
   user_id: string;
   user_name: string;
 }
+
 export interface Task {
   taskId?: string;
   title: string;
