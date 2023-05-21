@@ -96,7 +96,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                 notifications.map((n, index) => (
                   <div className="standard-container notification-standard-container">
                     <div key={index}>
-                      <div className="standard-container-title">
+                      <div className="notification-container-title">
                         <h1> {n.projectName}</h1>
                       </div>
                       <div className="notification-message-container">
