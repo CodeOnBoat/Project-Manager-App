@@ -40,7 +40,7 @@
   border-radius: 10px;
   background-color: var(--plus-one-step);
   border: none;
-  color: black;
+  color: #fff;
   cursor: pointer;
   font-size: large;
 }
@@ -62,14 +62,20 @@
 .delete-new-step {
   height: 2em;
 }
-
+.steps-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .one-step {
-  box-shadow: 0px 0px 6px var(--primary-color);
   padding: 1.5em;
+  width: 90%;
   margin: 1em;
-  border-radius: 10px;
+  border-radius: 14px;
   position: relative;
-  background-color: var(--box-input-background);
+  background: var(--subcontainer-background);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 .delete-step {
@@ -204,9 +210,9 @@
   width: 100%;
   justify-content: space-between;
   gap: 0.7em;
-  background-color: rgba(0,0,0,.5);
   color: white;
-  box-shadow: 0px 0px 10px rgba(0,0,0,.3);
+  background: var(--subcontainer-background);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 .step-data-container {
@@ -294,4 +300,11 @@ input[type="checkbox"] {
   justify-content: left;
   gap: 1em;
   align-items: center;
+}
+
+.delete-new-step.dark,
+.standard-container-title-icon {
+  filter: invert();
+  width: 1.5em;
+  height: 1.5em;
 }

@@ -57,7 +57,7 @@ export const SelectedTaskTab = ({
     setTasks(tempTasks);
   };
   return (
-    <div className="standard-container project-standard-container taller">
+    <>
       {task && (
         <TaskDisplay
           setLoading={setLoading}
@@ -68,11 +68,13 @@ export const SelectedTaskTab = ({
         />
       )}
       {!task && !showNewTask && (
-        <label className="no-task-yet">no task selected</label>
+        <div className="standard-container project-standard-container taller">
+          <label className="no-task-yet">no task selected</label>
+        </div>
       )}
       {showNewTask && (
         <NewTask setShowNewTask={setShowNewTask} addTask={addTask} />
       )}
-    </div>
+    </>
   );
 };

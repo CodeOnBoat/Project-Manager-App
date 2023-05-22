@@ -58,7 +58,7 @@ export const Chat = () => {
           );
         })}
       </div>
-      <div className="chatbot-input-container">
+      <div className={`chatbot-input-container ${darkMode}`}>
         <input
           ref={chatRef}
           placeholder=""

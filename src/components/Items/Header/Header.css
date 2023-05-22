@@ -42,7 +42,7 @@
  */
 .notification-container {
   position: fixed;
-  background-color: rgba(0,0,0, .1);
+  background-color: rgba(0, 0, 0, 0.1);
   color: var(--letter-color);
   top: 8em;
   left: 2.5%;
@@ -79,7 +79,7 @@
 }
 .circles-container {
   display: flex;
-  gap: 0.5em;
+  gap: 1em;
   margin-left: 0.5em;
   height: 2em;
   align-items: center;
@@ -112,10 +112,6 @@
   border-bottom-right-radius: 10px;
 }
 .circle-header {
-  height: 2em;
-  width: 2em;
-  border: 2px solid var(--primary-color);
-  box-shadow: 0px 0px 5px 0px var(--border-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -133,7 +129,7 @@
 }
 
 .circles-container img {
-  height: 1.2em;
+  height: 1.5em;
   cursor: pointer;
 }
 
@@ -145,8 +141,7 @@
   padding-left: 1em;
   cursor: pointer;
   border: 2px solid var(--primary-color);
-  box-shadow: 0px 0px 5px 0px var(--primary-color);
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .user-name-container img {
@@ -166,12 +161,10 @@
 }
 
 .header-logo-image {
-  height: 3.5em;
   cursor: pointer;
 }
 @media screen and (width > 1000px) {
   .header-logo-image {
-    height: 5em;
   }
 }
 .header-logo-image.light {
@@ -209,4 +202,12 @@
   100% {
     transform: translateY(0);
   }
+}
+
+.header-icon.dark {
+  filter: invert();
+}
+
+.header-icon.sun {
+  filter: invert();
 }

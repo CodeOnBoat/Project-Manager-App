@@ -5,6 +5,7 @@ import LogOut from "../../../data/images/LogOut.png";
 import Moon from "../../../data/images/Moon.png";
 import Logo from "../../../data/images/logo.png";
 import Sun from "../../../data/images/sun.png";
+import Home from "../../../data/images/home.png";
 
 import NotificationOff from "../../../data/images/notificationOff.png";
 import { getProjectsById, resolveNotification } from "../../../client/client";
@@ -115,7 +116,9 @@ export const Header = ({ logOut }: HeaderProps) => {
           <h1
             className={`header-logo-image ${darkMode}`}
             onClick={() => navigate("/dashboard")}
-          >TASKWISE</h1>
+          >
+            TASKWISE
+          </h1>
           <div className="header-right-container">
             <div className="circles-notification-container">
               <div className="circles-container">
@@ -126,21 +129,33 @@ export const Header = ({ logOut }: HeaderProps) => {
                     }`}
                     onClick={handleNotification}
                   >
-                    <img src={NotificationOff} alt="" />
+                    <img
+                      src={NotificationOff}
+                      alt=""
+                      className={`header-icon ${darkMode}`}
+                    />
                   </div>
                 </div>
                 <div className="circle-header" onClick={toggleDarkMode}>
                   <img
-                    className="moon-img"
+                    className={`header-icon ${
+                      darkMode === "light" ? "moon" : "sun"
+                    }`}
                     src={darkMode === "light" ? Moon : Sun}
                     alt={darkMode === "light" ? "Moon icon" : "Sun icon"}
                   />
+                </div>
+                <div
+                  className="circle-header"
+                  onClick={() => navigate("/dashboard")}
+                >
+                  <img src={Home} className={`header-icon ${darkMode}`} />
                 </div>
                 <div className="user-name-container">
                   <p className="user-name">{profile?.name}</p>
                 </div>
                 <div className="circle-header" onClick={logOut}>
-                  <img className="logOut-img" src={LogOut} />
+                  <img className={`header-icon ${darkMode}`} src={LogOut} />
                 </div>
               </div>
             </div>

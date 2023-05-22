@@ -117,8 +117,8 @@
 }
 
 .project-option-icon {
-  width: 2.5em;
-  height: 2.5em;
+  width: 1.5em;
+  height: 1.5em;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -165,4 +165,8 @@
 .pop-up-text {
   color: var(--popup-text);
   padding: 0.5em;
+}
+
+.project-option-icon.dark {
+  filter: invert();
 }

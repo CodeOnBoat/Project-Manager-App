@@ -67,11 +67,11 @@ export const TaskDisplay = ({
   };
 
   return (
-    <>
+    <div className="standard-container project-standard-container taller">
       <div className="standard-container-title task-name">
         <h1>{task.title}</h1>
         <img
-          className="standard-container-title-icon"
+          className={`standard-container-title-icon ${darkMode}`}
           src={Trash}
           onClick={() => deleteTask(task.taskId!)}
         />
@@ -150,6 +150,6 @@ export const TaskDisplay = ({
           </button>
         )}
       </div>
-    </>
+    </div>
   );
 };

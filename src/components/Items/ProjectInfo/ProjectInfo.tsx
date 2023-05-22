@@ -14,7 +14,7 @@ export interface ProjectInfoProps {
 }
 
 export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
-  const { profile } = useContext(AppContext);
+  const { profile, darkMode } = useContext(AppContext);
   const { project, setProject } = useContext(ProjectContext);
   const { projects, setProjects } = useContext(AppContext);
   const [showPopup, setShowPopup] = useState(false);
@@ -27,7 +27,7 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
       setTitle(project.title);
       setDescription(project.description);
     }
-    }, [project]);
+  }, [project]);
 
   const handleEditClick = () => {
     setIsEditable(true);
@@ -49,7 +49,6 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
     )[0].description = description;
     setProjects(tempProjects);
   };
-
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
@@ -83,22 +82,23 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
         </div>
       )}
       <div className="standard-container project-standard-container taller">
-          <div className="standard-container-title">
-            <h1 >
+        <div className="standard-container-title">
+          <h1>
             <textarea
               className="editable-title"
               value={title}
               disabled={!isEditable}
               onChange={handleTitleChange}
             />
-            </h1>
+          </h1>
 
-           {project?.owner === profile?.id + "" && <div className="project-info-btn-container">
+          {project?.owner === profile?.id + "" && (
+            <div className="project-info-btn-container">
               {!isEditable && (
                 <img
                   src={Edit}
                   alt=""
-                  className="project-option-icon"
+                  className={`project-option-icon ${darkMode}`}
                   onClick={handleEditClick}
                 />
               )}
@@ -106,17 +106,18 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
                 <img
                   src={Save}
                   alt=""
-                  className="project-option-icon"
+                  className={`project-option-icon ${darkMode}`}
                   onClick={handleSaveClick}
                 />
               )}
               <img
                 src={Trash}
                 alt=""
-                className="project-option-icon"
+                className={`project-option-icon ${darkMode}`}
                 onClick={() => setShowPopup(true)}
               />
-            </div>}
+            </div>
+          )}
         </div>
         <div className="project-info-description-container">
           <textarea

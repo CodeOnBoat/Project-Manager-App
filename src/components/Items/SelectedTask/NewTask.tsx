@@ -1,6 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Step, Task } from "../../../data/Interfaces";
 import Trash from "../../../data/images/trash.png";
+import { AppContext } from "../../../context/AppContext";
+import { log } from "console";
 
 export interface NewTaskPrompts {
   addTask: (t: Task) => void;
@@ -9,14 +11,15 @@ export interface NewTaskPrompts {
 
 export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
   const titleRef = useRef<HTMLInputElement>(null);
+  const { darkMode } = useContext(AppContext);
   const descriptionRef = useRef<HTMLInputElement>(null);
   const estimatedTimeRef = useRef<HTMLInputElement>(null);
   const [steps, setSteps] = useState<Step[]>([]);
+  const stepContainerRef = useRef<HTMLDivElement>(null);
 
   const newTask = () => {
     const newTask: Task = {
       title: titleRef.current!.value,
-      // time: parseInt(estimatedTimeRef.current!.value),
       time: 0,
       assignedTo: "",
       state: "notstarted",
@@ -34,7 +37,7 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
     element: string,
     stepIndex: number
   ) => {
-    const tempSteps = steps;
+    const tempSteps = [...steps];
     switch (element) {
       case "description":
         tempSteps[stepIndex].description = e.currentTarget.value;
@@ -43,17 +46,35 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
         tempSteps[stepIndex].name = e.currentTarget.value;
         break;
     }
-    setSteps([...tempSteps]);
+    setSteps(tempSteps);
   };
 
   const removeStep = (i: number) => {
     const tempSteps = [...steps];
     tempSteps.splice(i, 1);
-    setSteps([...tempSteps]);
+    setSteps(tempSteps);
   };
 
+  const addNewStep = () => {
+    const newStep: Step = { name: "", description: "", completed: false };
+    setSteps([...steps, newStep]);
+  };
+
+  useEffect(() => {
+    console.log("sdasd");
+    if (stepContainerRef.current) {
+      stepContainerRef.current.scrollTo(
+        0,
+        stepContainerRef.current.scrollHeight
+      );
+    }
+  }, [steps]);
+
   return (
-    <>
+    <div
+      className="standard-container project-standard-container taller"
+      ref={stepContainerRef}
+    >
       <div className="standard-container-title">
         <h1>New task</h1>
       </div>
@@ -91,49 +112,40 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
           </div>
           <div className="new-task-input-container">
             <label className="form-title">Steps</label>
-            <div>
-              {steps.map((s, i) => {
-                return (
-                  <div className="one-step">
-                    <div className="one-new-step-header-container">
-                      <div className="step-number">{i + 1}</div>
-
-                      <div
-                        className="delete-new-step"
-                        onClick={() => removeStep(i)}
-                      >
-                        <img src={Trash} className="delete-new-step" />
-                      </div>
+            <div className="steps-container">
+              {steps.map((s, i) => (
+                <div className="one-step" key={i}>
+                  <div className="one-new-step-header-container">
+                    <div className="step-number">{i + 1}</div>
+                    <div
+                      className="delete-new-step"
+                      onClick={() => removeStep(i)}
+                    >
+                      <img
+                        src={Trash}
+                        className={`delete-new-step ${darkMode}`}
+                      />
                     </div>
-                    <input
-                      className="standard-container-input box full"
-                      type="text"
-                      placeholder="Step title"
-                      onChange={(e) => modifyStep(e, "title", i)}
-                      value={s.name}
-                    />
-                    <input
-                      className="standard-container-input box full"
-                      type="text"
-                      placeholder="Step description"
-                      onChange={(e) => modifyStep(e, "description", i)}
-                      value={s.description}
-                    />
                   </div>
-                );
-              })}
+                  <input
+                    className="standard-container-input box full"
+                    type="text"
+                    placeholder="Step title"
+                    onChange={(e) => modifyStep(e, "title", i)}
+                    value={s.name}
+                  />
+                  <input
+                    className="standard-container-input box full"
+                    type="text"
+                    placeholder="Step description"
+                    onChange={(e) => modifyStep(e, "description", i)}
+                    value={s.description}
+                  />
+                </div>
+              ))}
             </div>
           </div>
-          <button
-            className="plus-step"
-            type="button"
-            onClick={() =>
-              setSteps([
-                ...steps,
-                { name: "", description: "", completed: false },
-              ])
-            }
-          >
+          <button className="plus-step" type="button" onClick={addNewStep}>
             +
           </button>
 
@@ -154,6 +166,6 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

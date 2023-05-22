@@ -66,9 +66,6 @@ export const ChatBot = ({ loading, setLoading }: props) => {
     <div className="standard-container project-standard-container taller">
       <div className="standard-container-title">
         <h1>Project Assistant</h1>
-        {!loading && (
-          <img src={LogoSmall} className="header-logo-image smaller " />
-        )}
       </div>
       <div className="chatbot-message-container" ref={messageContainerRef}>
         {messages.map((m) => {
@@ -86,7 +83,7 @@ export const ChatBot = ({ loading, setLoading }: props) => {
         )}
       </div>
 
-      <div className="chatbot-input-container">
+      <div className={`chatbot-input-container ${darkMode}`}>
         <div className="tags-container">
           {tags.map((t, index) => {
             return (
@@ -104,7 +101,7 @@ export const ChatBot = ({ loading, setLoading }: props) => {
           ref={chatRef}
           placeholder=""
           type="text"
-          className="chatbot-chat-input"
+          className={`chatbot-chat-input ${darkMode}`}
           onKeyDown={handleKeyDown}
         />
         <img

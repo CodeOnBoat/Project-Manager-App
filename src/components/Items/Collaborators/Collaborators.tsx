@@ -12,7 +12,7 @@ import chatImage from "../../../data/images/chat.png";
 
 export const Collaborators = () => {
   const { project } = useContext(ProjectContext);
-  const { profile } = useContext(AppContext);
+  const { profile, darkMode } = useContext(AppContext);
   const [showPopup, setShowPopup] = useState(false);
 
   const mailRef = useRef<HTMLInputElement>(null);
@@ -84,7 +84,7 @@ export const Collaborators = () => {
               ? collaboratorsImage
               : chatImage
           }
-          className="project-option-icon"
+          className={`project-option-icon ${darkMode}`}
           onClick={
             selectedCollaboratorTab === "invitation" ||
             selectedCollaboratorTab === "chat"
