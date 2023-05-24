@@ -26,7 +26,12 @@
   color: var(--letter-color);
   padding: 5%;
   resize: none;
+  height: 15%;
   background-color: var(--subcontainer-background);
+}
+
+.standard-container-input ::-webkit-scrollbar {
+  display: none;
 }
 
 .new-project-description {
@@ -36,6 +41,7 @@
 .newProject-form {
   width: 90%;
   height: 75%;
+  gap: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;

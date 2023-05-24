@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Task } from "../../data/Interfaces";
-import { TaskDisplay } from "../Items/SelectedTask/TaskDisplay";
+import { Task } from "../../../data/Interfaces";
+import { TaskDisplay } from "../SelectedTask/TaskDisplay";
 import { renderToString } from "react-dom/server";
 import { MessageTask } from "./MessageTask";
-import { AppContext } from "../../context/AppContext";
-import { ProjectContext } from "../../context/ProjectContext";
-import { writeNewPost } from "../../firebase/chatFunctions";
+import { AppContext } from "../../../context/AppContext";
+import { ProjectContext } from "../../../context/ProjectContext";
+import { writeNewPost } from "../../../firebase/chatFunctions";
 
 export interface MessageProps {
   message: string;

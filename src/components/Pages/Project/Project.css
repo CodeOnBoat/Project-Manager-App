@@ -17,7 +17,7 @@
 }
 
 .taller {
-  height: 70vh;
+  height: 100vh;
 }
 
 @media only screen and (width > 1200px) {
@@ -29,6 +29,19 @@
   .project-info-container {
     max-width: 1200px;
     width: 90%;
+  }
+
+  .taller {
+    height: 70vh;
+  }
+
+  .project-info-container {
+    height: 70vh;
+  }
+
+  .project-standard-container {
+    height: 70vh;
+    max-width: 100%;
   }
 }
 

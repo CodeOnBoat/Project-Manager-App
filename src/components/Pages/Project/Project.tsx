@@ -9,7 +9,7 @@ import { Todo } from "../../Items/ToDo/Todo";
 import { SelectedTaskTab } from "../../Items/SelectedTask/SelectedTaskTab";
 import { FinishedTasks } from "../../Items/FinishedTasks/FinishedTasks";
 import { ProjectContext } from "../../../context/ProjectContext";
-import { ChatBot } from "../../ChatBot/ChatBot";
+import { ChatBot } from "../../Items/ChatBot/ChatBot";
 import { AppContext } from "../../../context/AppContext";
 import { useRef } from "react";
 

@@ -81,7 +81,7 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
           </div>
         </div>
       )}
-      <div className="standard-container project-standard-container taller">
+      <div className="standard-container project-standard-container">
         <div className="standard-container-title">
           <h1>
             <textarea

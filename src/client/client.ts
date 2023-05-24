@@ -1,7 +1,7 @@
 import { TokenResponse } from "@react-oauth/google";
 import axios from "axios";
 import { ProjectType, Task } from "../data/Interfaces";
-import { ChatBotRes, MessageType } from "../components/ChatBot/ChatBot";
+import { ChatBotRes, MessageType } from "../components/Items/ChatBot/ChatBot";
 
 const root = "https://us-central1-taskwise-14398.cloudfunctions.net/app";
 // const root = "http://127.0.0.1:5001/taskwise-14398/us-central1/app";

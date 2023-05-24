@@ -65,7 +65,7 @@ function Dashboard() {
             />
           </div>
           <div className="block projectList">
-            <div className="standard-container taller">
+            <div className="standard-container">
               {projects && (
                 <ProjectList
                   projects={projects!}

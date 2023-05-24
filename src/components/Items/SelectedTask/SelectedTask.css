@@ -293,7 +293,7 @@ input[type="checkbox"] {
 }
 
 .step-description {
-  text-align: justify;
+  text-align: left;
   font-size: medium;
 }
 
