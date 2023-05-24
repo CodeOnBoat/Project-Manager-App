@@ -44,7 +44,7 @@ export const LandingPage = ({ logOut }: LandingPageProps) => {
     <div className="landingPage-container">
       <div className="landingPage-login-container">
         <div>
-          <img className={`landing-logo-image ${darkMode}`} src={Logo} />
+          <h1 className="taskwise-text">TASKWISE</h1>
         </div>
         <button className="landingPage-google-button" onClick={() => login()}>
           <img className="landingPage-google-button-image" src={GoogleIcon} />

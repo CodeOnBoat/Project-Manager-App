@@ -62,6 +62,7 @@ export const AppContextProvider = ({
       setNotifications(notificationsReq);
     };
     if (profile) {
+      console.log("getNot");
       getNot();
       const inverval = setInterval(getNot, 20000);
       return () => clearInterval(inverval);

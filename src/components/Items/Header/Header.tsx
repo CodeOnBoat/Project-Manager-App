@@ -161,7 +161,7 @@ export const Header = ({ logOut }: HeaderProps) => {
             </div>
           </div>
           {showNotification && (
-            <div className="notification-container">
+            <div className={`notification-container ${darkMode}`}>
               {notifications.length === 0 ? (
                 <div className="noInvites">No Invites</div>
               ) : (

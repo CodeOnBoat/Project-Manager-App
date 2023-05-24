@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 1s ease-in;
 }
 
 .project-info-container {
@@ -12,12 +13,13 @@
 }
 
 .project-standard-container {
-  height: 30vh;
+  height: 0;
+  min-height: 30vh;
   max-width: 100%;
 }
 
 .taller {
-  height: 70vh;
+  height: 100vh;
 }
 
 @media only screen and (width > 1200px) {
@@ -29,6 +31,10 @@
   .project-info-container {
     max-width: 1200px;
     width: 90%;
+    height: 70vh;
+  }
+  .project-standard-container {
+    height: 70vh;
   }
 }
 
@@ -76,6 +82,7 @@
 }
 
 .task-container {
+  transition: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
   padding: 0.8em;
   width: 90%;
   flex-direction: row;

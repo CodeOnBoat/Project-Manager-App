@@ -272,7 +272,7 @@ input[type="checkbox"] {
 }
 
 .getHelp-container:hover {
-  transform: scale(1.1);
+  filter: brightness(1.1);
 }
 
 .getHelp-text {

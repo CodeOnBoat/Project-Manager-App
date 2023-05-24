@@ -99,7 +99,7 @@ export const Project = ({ project }: ProjectProps) => {
           className={home ? "option-label selected" : "option-label"}
           onClick={() => setHome(true)}
         >
-          Home
+          Main
         </label>
         <label>|</label>
         <label

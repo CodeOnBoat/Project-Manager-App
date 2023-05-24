@@ -54,6 +54,8 @@
 }
 
 .chatbot-input-container {
+  transition: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
   display: flex;
   width: 90%;
   height: 6vh;
@@ -113,6 +115,8 @@
 }
 
 .chatbot-chat-input {
+  transition: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
   width: 100%;
   margin-right: 0.5em;
   height: 100%;
