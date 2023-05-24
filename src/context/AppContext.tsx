@@ -16,7 +16,7 @@ type AppContextType = {
   notifications: NotificationType[];
   setNotifications: (notifications: NotificationType[]) => void;
   darkMode: "dark" | "light";
-  setDarkMode: Dispatch<SetStateAction<"dark" | "light">>;
+  setDarkMode: (darkMode: "dark" | "light") => void;
 };
 
 const initialValue: AppContextType = {
@@ -45,14 +45,18 @@ export const AppContextProvider = ({
   useEffect(() => {
     const storedProfile = localStorage.getItem("profile");
     const storedProjects = localStorage.getItem("projects");
+    const storedDarkMode = localStorage.getItem("darkMode");
     if (
       storedProfile &&
       storedProjects &&
+      storedDarkMode &&
       storedProfile !== "undefined" &&
-      storedProjects !== "undefined"
+      storedProjects !== "undefined" &&
+      storedDarkMode !== "undefined"
     ) {
       setProfile(JSON.parse(storedProfile!));
       setProjects(JSON.parse(storedProjects!));
+      setDarkMode(storedDarkMode! as "dark" | "light");
     }
   }, []);
 
@@ -79,6 +83,11 @@ export const AppContextProvider = ({
     localStorage.setItem("projects", JSON.stringify(projects));
   };
 
+  const setDM = (darkMode: "dark" | "light") => {
+    setDarkMode(darkMode);
+    localStorage.setItem("darkMode", darkMode);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -89,7 +98,7 @@ export const AppContextProvider = ({
         notifications: notifications,
         setNotifications: setNotifications,
         darkMode: darkMode,
-        setDarkMode: setDarkMode,
+        setDarkMode: setDM,
       }}
     >
       {children}

@@ -68,8 +68,8 @@ export const SelectedTaskTab = ({
         />
       )}
       {!task && !showNewTask && (
-        <div className="standard-container project-standard-container taller">
-          <label className="no-task-yet">no task selected</label>
+        <div className="standard-container project-standard-container taller ">
+          <label className="no-task-selected">No task selected</label>
         </div>
       )}
       {showNewTask && (

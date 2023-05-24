@@ -149,7 +149,7 @@
 
 .popup-content {
   display: flex;
-  background-color: var(--popup-background);
+  background-color: var(--container-background);
   padding: 20px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   text-align: center;

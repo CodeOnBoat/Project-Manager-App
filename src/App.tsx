@@ -17,6 +17,7 @@ import { ProjectContextProvider } from "./context/ProjectContext";
 import "./data/colors/colors.css";
 import "./firebase/init";
 import { FeedBack } from "./components/Pages/Form/FeedBack";
+import { LeaveFeedBack } from "./components/Pages/Form/LeaveFeedBack";
 
 function App() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ function App() {
   return (
     <div className="app" data-theme={darkMode}>
       <Header logOut={logOut} />
+      <LeaveFeedBack />
       <Routes>
         <Route path="/" element={<LandingPage logOut={logOut} />} />
         <Route path="/dashboard" element={<Dashboard />} />

@@ -1,0 +1,11 @@
+.feedback-container {
+  position: absolute;
+  text-align: right;
+  bottom: 0.2em;
+  right: 1em;
+  color: var(--letter-color);
+  text-decoration: none;
+}
+.feedback-text:hover {
+  color: var(--primary-color);
+}

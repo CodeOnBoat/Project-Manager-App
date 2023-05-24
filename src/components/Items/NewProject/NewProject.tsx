@@ -70,7 +70,7 @@ export const NewProject = ({
         <textarea
           name="title"
           ref={titleFieldRef}
-          placeholder="Input project title (max 20 characters)"
+          placeholder="Input project title"
           className="standard-container-input title "
           maxLength={20}
         />

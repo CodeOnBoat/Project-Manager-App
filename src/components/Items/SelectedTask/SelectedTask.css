@@ -204,7 +204,7 @@
   background-color: rgba(85, 171, 232, 0.747);
 }
 .task-state-container.inprogress {
-  background-color: rgba(232, 200, 85, 0.747);
+  background-color: rgba(255, 191, 54, 0.747);
 }
 .task-state-container.finished {
   background-color: rgba(141, 232, 85, 0.747);
@@ -324,4 +324,10 @@ input[type="checkbox"] {
   scale: 1.1;
   cursor: pointer;
   animation: 0.2 all;
+}
+.no-task-selected {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

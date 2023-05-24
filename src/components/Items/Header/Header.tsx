@@ -108,7 +108,7 @@ export const Header = ({ logOut }: HeaderProps) => {
   }, [notifications, notificationsLength]);
 
   const toggleDarkMode = () => {
-    setDarkMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+    setDarkMode(darkMode === "dark" ? "light" : "dark");
   };
 
   return (

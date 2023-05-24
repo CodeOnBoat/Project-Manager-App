@@ -56,7 +56,7 @@ export const Todo = ({
                 })}
             </div>
           ) : (
-            <div className="no-task-yet">No task yet</div>
+            <div className="no-task-yet">Add your first task</div>
           )}
           <div className="standard-container-button left medium noHover">
             {counter} {counter == 1 ? "Task" : "Tasks"}

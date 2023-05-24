@@ -40,6 +40,8 @@
 
 .standard-container.popup-content.send-invitation {
   height: 230px;
+  display: flex;
+  gap: 1.5em;
 }
 .sent-succesfully {
   margin-top: 0.5em;

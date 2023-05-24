@@ -20,6 +20,9 @@ export const FinishedTasks = ({
       <div className="standard-container-title">
         <h1>Completed tasks</h1>
       </div>
+      {counter === 0 && (
+        <div className="no-task-yet">Complete your first task</div>
+      )}
       <div className="project-tasksTodo-container">
         {tasks
           .filter((t) => t.state === "finished")
@@ -29,6 +32,7 @@ export const FinishedTasks = ({
               <OneTask setSelected={setSelectedTask} task={t} key={index} />
             );
           })}
+
         <button className="standard-container-button medium right noHover">
           {counter} {counter == 1 ? "Task" : "Tasks"}
         </button>

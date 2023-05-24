@@ -213,7 +213,7 @@ h1 {
   border-right: none;
   font-size: small;
   color: #fff;
-  font-weight: 200;
+  font-weight: 500;
   font-size: medium;
   display: flex;
   align-items: center;
@@ -336,4 +336,7 @@ h1 {
 .standard-container-button:hover {
   filter: brightness(1.2);
   color: var(--letter-color-opposite);
+}
+input {
+  cursor: pointer;
 }

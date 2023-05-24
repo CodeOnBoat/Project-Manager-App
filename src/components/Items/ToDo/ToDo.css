@@ -1,5 +1,6 @@
 .no-task-yet {
-  height: 70%;
+  position: absolute;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
