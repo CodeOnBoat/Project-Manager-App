@@ -160,7 +160,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                   <img src={Home} className={`header-icon ${darkMode}`} />
                 </div>
                 <div className="user-name-container">
-                  <p className="user-name">{profile?.family_name}</p>
+                  <p className="user-name">{profile?.given_name}</p>
                 </div>
                 <div className="circle-header" onClick={logOut}>
                   <img className={`header-icon ${darkMode}`} src={LogOut} />

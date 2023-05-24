@@ -32,7 +32,7 @@
   flex-direction: column;
   align-items: center;
   margin: 1em 0 1em 0;
-  gap: 2em;
+  gap: 0.5em;
 }
 
 .plus-step {
@@ -44,17 +44,21 @@
   cursor: pointer;
   font-size: large;
 }
-.standard-container-input.step{
+.standard-container-input.step {
   width: 90%;
 
   margin-top: 0em;
 }
-.standard-container-input.title.step{
+.standard-container-input.title.step {
   height: 40%;
 }
-.standard-container-input.description.step{
-  height: 100%;
 
+.standard-container-input.title.onestep {
+  height: 20%;
+}
+
+.standard-container-input.description {
+  height: 100px;
 }
 .one-new-step-header-container {
   display: flex;
@@ -72,6 +76,11 @@
   align-items: center;
 }
 .one-step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
   padding: 1.5em;
   width: 90%;
   margin: 1em;
@@ -309,4 +318,10 @@ input[type="checkbox"] {
   filter: invert();
   width: 1.5em;
   height: 1.5em;
+}
+
+.delete-new-step:hover {
+  scale: 1.1;
+  cursor: pointer;
+  animation: 0.2 all;
 }
