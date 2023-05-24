@@ -49,10 +49,13 @@ export const Project = ({ project }: ProjectProps) => {
   };
 
   useEffect(() => {
-    getTasks();
+    if(!home){
+      getTasks();
+    }
+  }, [home])
+
+  useEffect(() => {
     setProject(project);
-    const inverval = setInterval(getTasks, 1000);
-    return () => clearInterval(inverval);
   }, []);
 
   useEffect(() => {
@@ -99,7 +102,7 @@ export const Project = ({ project }: ProjectProps) => {
           className={home ? "option-label selected" : "option-label"}
           onClick={() => setHome(true)}
         >
-          Home
+          Main
         </label>
         <label>|</label>
         <label

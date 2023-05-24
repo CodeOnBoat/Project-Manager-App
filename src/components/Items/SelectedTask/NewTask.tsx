@@ -10,10 +10,10 @@ export interface NewTaskPrompts {
 }
 
 export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
-  const titleRef = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLTextAreaElement>(null);
   const { darkMode } = useContext(AppContext);
-  const descriptionRef = useRef<HTMLInputElement>(null);
-  const estimatedTimeRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+  const estimatedTimeRef = useRef<HTMLTextAreaElement>(null);
   const [steps, setSteps] = useState<Step[]>([]);
   const stepContainerRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +33,7 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
   };
 
   const modifyStep = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLTextAreaElement>,
     element: string,
     stepIndex: number
   ) => {
@@ -61,7 +61,6 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
   };
 
   useEffect(() => {
-    console.log("sdasd");
     if (stepContainerRef.current) {
       stepContainerRef.current.scrollTo(
         0,
@@ -82,10 +81,9 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
         <div className="add-task-form">
           <div className="new-task-input-container">
             <label className="form-title">Task title</label>
-            <input
+            <textarea
               className="standard-container-input box"
               placeholder="Input task title ..."
-              type="text"
               name="title"
               ref={titleRef}
             />
@@ -102,10 +100,9 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
           </div>
           <div className="new-task-input-container">
             <label className="form-title">Description</label>
-            <input
+            <textarea
               ref={descriptionRef}
               className="standard-container-input box description"
-              type="text"
               name="description"
               placeholder="Description"
             />
@@ -127,16 +124,14 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
                       />
                     </div>
                   </div>
-                  <input
+                  <textarea
                     className="standard-container-input box full"
-                    type="text"
                     placeholder="Step title"
                     onChange={(e) => modifyStep(e, "title", i)}
                     value={s.name}
                   />
-                  <input
+                  <textarea
                     className="standard-container-input box full"
-                    type="text"
                     placeholder="Step description"
                     onChange={(e) => modifyStep(e, "description", i)}
                     value={s.description}

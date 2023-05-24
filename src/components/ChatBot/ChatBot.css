@@ -126,8 +126,7 @@
 }
 
 .chatbot-message.user {
-  background-color: #c5fbd0;
-  background-color: var(--message-user-background);
+  background-color: rgba(45, 167, 249, 1);
   color: white;
   align-self: flex-end;
 }
@@ -281,7 +280,7 @@ code {
 
 .tags-container {
   position: absolute;
-  top: -80%;
+  top: -85%;
   gap: 0.2em;
   display: flex;
   flex-direction: row;

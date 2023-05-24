@@ -14,6 +14,7 @@ import GoogleIcon from "../../../data/images/Google-button.png";
 import Img from "../../../data/images/landingImg.png";
 import Logo from "../../../data/images/logo.png";
 import { AppContext } from "../../../context/AppContext";
+import { ContinueWithGoogle } from "../../Items/ContinueWithGoogle/ContinueWithGoogle";
 
 export const LandingPage = ({ logOut }: LandingPageProps) => {
   const [user, setUser] = useState<TokenResponse>();
@@ -44,12 +45,10 @@ export const LandingPage = ({ logOut }: LandingPageProps) => {
     <div className="landingPage-container">
       <div className="landingPage-login-container">
         <div>
-          <img className={`landing-logo-image ${darkMode}`} src={Logo} />
+          <h1>TASKWISE</h1>
+          <p>The AI powered Kanban board</p>
         </div>
-        <button className="landingPage-google-button" onClick={() => login()}>
-          <img className="landingPage-google-button-image" src={GoogleIcon} />
-          <div className="google-text">Start with Google</div>
-        </button>
+        <ContinueWithGoogle login={login} />
       </div>
     </div>
   );

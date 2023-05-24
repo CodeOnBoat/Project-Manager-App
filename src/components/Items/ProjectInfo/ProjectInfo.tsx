@@ -91,7 +91,6 @@ export const ProjectInfo = ({ id, deleteProject }: ProjectInfoProps) => {
               onChange={handleTitleChange}
             />
           </h1>
-
           {project?.owner === profile?.id + "" && (
             <div className="project-info-btn-container">
               {!isEditable && (

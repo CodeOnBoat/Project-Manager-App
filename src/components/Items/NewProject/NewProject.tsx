@@ -72,6 +72,7 @@ export const NewProject = ({
           ref={titleFieldRef}
           placeholder="Input project title"
           className="standard-container-input "
+          maxLength={20}
         />
         {emptyTitle && (
           <label className="new-project-error">

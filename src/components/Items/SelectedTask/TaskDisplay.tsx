@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Step, Task } from "../../../data/Interfaces";
 import Trash from "../../../data/images/trash.png";
 import { ProjectContext } from "../../../context/ProjectContext";
 import { changeCompletionOfStep } from "../../../client/client";
-import LogoSmall from "../../../data/images/logoSmall.png";
-import { chatWithProjectAssistent } from "../../../client/client";
 import { AppContext } from "../../../context/AppContext";
 
 export interface TaskDisplayProps {
@@ -27,11 +25,11 @@ export const TaskDisplay = ({
   const { darkMode } = useContext(AppContext);
 
   const modifyStepState = (step: Step) => {
-    // const tempTasks = [...tasks];
-    // tempTasks
-    //   .filter((t) => t.taskId === task.taskId)[0]
-    //   .steps.filter((s) => s.name === step.name)[0].completed = !step.completed;
-    // setTasks(tempTasks);
+    const tempTasks = [...tasks];
+    tempTasks
+      .filter((t) => t.taskId === task.taskId)[0]
+      .steps.filter((s) => s.name === step.name)[0].completed = !step.completed;
+    setTasks(tempTasks);
     changeCompletionOfStep(project?.project_id!, task.taskId!, step.name);
   };
 
