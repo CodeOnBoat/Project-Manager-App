@@ -116,6 +116,7 @@
   margin: 0;
   padding: 0;
   font-family: "PoppinsRegular", sans-serifs;
+  transition: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
 }
 *,
 ::before,
@@ -127,6 +128,7 @@
 body {
   min-height: 100vh;
   max-width: 100vw;
+  overflow-x: hidden;
 }
 :root::-webkit-scrollbar {
   display: none;

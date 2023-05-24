@@ -115,4 +115,5 @@
 
 .task-title {
   width: 80%;
+  word-break: break-word;
 }

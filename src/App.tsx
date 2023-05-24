@@ -15,7 +15,6 @@ import { Header } from "./components/Items/Header/Header";
 import { ProjectContextProvider } from "./context/ProjectContext";
 import "./data/colors/colors.css";
 import "./firebase/init";
-import { LandingPage2 } from "./components/Pages/LandingPage2/LandingPage2";
 
 function App() {
   const navigate = useNavigate();

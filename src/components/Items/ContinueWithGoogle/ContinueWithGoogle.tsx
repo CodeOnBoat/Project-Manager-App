@@ -1,9 +1,13 @@
 import './ContinueWithGoogle.css';
 
 
-export const ContinueWithGoogle = () => {
+export interface ContinueWithGoogleProps  {
+  login : () => void;
+}
+
+export const ContinueWithGoogle = ({login} : ContinueWithGoogleProps) => {
   return (
-    <button className="continueWithGoogle-btn">
+    <button className="continueWithGoogle-btn" onClick={login}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid"

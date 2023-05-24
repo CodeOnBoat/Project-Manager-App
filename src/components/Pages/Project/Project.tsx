@@ -49,10 +49,13 @@ export const Project = ({ project }: ProjectProps) => {
   };
 
   useEffect(() => {
-    getTasks();
+    if(!home){
+      getTasks();
+    }
+  }, [home])
+
+  useEffect(() => {
     setProject(project);
-    const inverval = setInterval(getTasks, 1000);
-    return () => clearInterval(inverval);
   }, []);
 
   useEffect(() => {
