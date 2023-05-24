@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import LogoSmall from "../../data/images/logoSmall.png";
 import "./ChatBot.css";
-import { chatWithProjectAssistent } from "../../client/client";
-import { ProjectContext } from "../../context/ProjectContext";
-import { AppContext } from "../../context/AppContext";
-import SendIcon from "../../data/images/send.png";
+import { chatWithProjectAssistent } from "../../../client/client";
+import { ProjectContext } from "../../../context/ProjectContext";
+import { AppContext } from "../../../context/AppContext";
+import SendIcon from "../../../data/images/send.png";
 import { Message } from "./Message";
 export interface MessageType {
   role: string;
@@ -83,20 +82,16 @@ export const ChatBot = ({ loading, setLoading }: props) => {
         )}
       </div>
 
+      <div className="tags-container">
+        {tags.map((t, index) => {
+          return (
+            <div className="tags" key={index} onClick={() => handleTagSend(t)}>
+              {t}
+            </div>
+          );
+        })}
+      </div>
       <div className={`chatbot-input-container ${darkMode}`}>
-        <div className="tags-container">
-          {tags.map((t, index) => {
-            return (
-              <div
-                className="tags"
-                key={index}
-                onClick={() => handleTagSend(t)}
-              >
-                {t}
-              </div>
-            );
-          })}
-        </div>
         <input
           ref={chatRef}
           placeholder=""

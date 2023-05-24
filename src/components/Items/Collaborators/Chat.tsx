@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { realTimeUpdates, writeNewPost } from "../../../firebase/chatFunctions";
 import { ProjectContext } from "../../../context/ProjectContext";
-import { Message } from "../../ChatBot/Message";
+import { Message } from "../ChatBot/Message";
 import SendIcon from "../../../data/images/send.png";
 import { AppContext } from "../../../context/AppContext";
 import { CollaboratorChatMessage } from "../../../data/Interfaces";

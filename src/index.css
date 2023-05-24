@@ -52,7 +52,7 @@
     rgba(36, 22, 43, 1)
   );
   --subcontainer-message: var(--primary-color);
-  --message-user-background: var(--primary-color);
+  --message-user-background: rgba(120, 120, 130, 1);
   --message-bot-background: var(--primary-color);
   --message-writing: rgba(50, 50, 50, 1);
   --chat-input-background: rgba(50, 50, 50, 1);
@@ -92,7 +92,7 @@
     rgb(181, 53, 250),
     rgb(102, 97, 254)
   );
-  --message-user-background: var(--primary-color);
+  --message-user-background: rgba(80, 80, 90, 1);
   --message-bot-background: var(--primary-color);
   --message-writing: var(--white-point-8);
   --chat-input-background: white;
@@ -116,7 +116,6 @@
   margin: 0;
   padding: 0;
   font-family: "PoppinsRegular", sans-serifs;
-  transition: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
 }
 *,
 ::before,

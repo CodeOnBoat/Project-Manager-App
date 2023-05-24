@@ -66,6 +66,9 @@
     top: 4em;
     right: 1%;
   }
+  .header-logo-image {
+    font-size: x-large;
+  }
 }
 
 .notification-container.light {
@@ -77,7 +80,7 @@
 .noInvites {
   margin: 4%;
   font-size: x-large;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--letter-color);
 }
 @media screen and (width > 410px) {
   .notification-container {
@@ -180,6 +183,8 @@
 
 .header-logo-image {
   cursor: pointer;
+  font-size: 3em;
+  font-weight: 600;
 }
 
 .header-back-image {

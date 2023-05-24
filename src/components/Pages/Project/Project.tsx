@@ -1,6 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { ProjectProps } from "../../../data/Interfaces";
-import { deleteProjectById, getTasksByProjectId } from "../../../client/client";
+import {
+  deleteProjectById,
+  getTasksByProjectId,
+  uploadChatBot,
+} from "../../../client/client";
 import { useNavigate } from "react-router-dom";
 import "./Project.css";
 import { Collaborators } from "../../Items/Collaborators/Collaborators";
@@ -9,7 +13,7 @@ import { Todo } from "../../Items/ToDo/Todo";
 import { SelectedTaskTab } from "../../Items/SelectedTask/SelectedTaskTab";
 import { FinishedTasks } from "../../Items/FinishedTasks/FinishedTasks";
 import { ProjectContext } from "../../../context/ProjectContext";
-import { ChatBot } from "../../ChatBot/ChatBot";
+import { ChatBot } from "../../Items/ChatBot/ChatBot";
 import { AppContext } from "../../../context/AppContext";
 import { useRef } from "react";
 
@@ -49,13 +53,16 @@ export const Project = ({ project }: ProjectProps) => {
   };
 
   useEffect(() => {
-    if(!home){
+    if (!home) {
       getTasks();
     }
-  }, [home])
+  }, [home]);
 
   useEffect(() => {
     setProject(project);
+    return () => {
+      uploadChatBot(project?.project_id!, profile?.name!, messages);
+    };
   }, []);
 
   useEffect(() => {

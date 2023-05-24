@@ -1,6 +1,6 @@
 import { child, get, onValue, push, ref, update } from "firebase/database";
 import { database } from "./init";
-import { MessageType } from "../components/ChatBot/ChatBot";
+import { MessageType } from "../components/Items/ChatBot/ChatBot";
 import { CollaboratorChatMessage } from "../data/Interfaces";
 
 export const writeNewPost = (

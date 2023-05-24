@@ -5,7 +5,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 1s ease-in;
 }
 
 .project-info-container {
@@ -19,7 +18,7 @@
 }
 
 .taller {
-  height: 100vh;
+  height: 85vh;
 }
 
 @media only screen and (width > 1200px) {
@@ -35,6 +34,19 @@
   }
   .project-standard-container {
     height: 70vh;
+  }
+
+  .taller {
+    height: 70vh;
+  }
+
+  .project-info-container {
+    height: 70vh;
+  }
+
+  .project-standard-container {
+    height: 70vh;
+    max-width: 100%;
   }
 }
 

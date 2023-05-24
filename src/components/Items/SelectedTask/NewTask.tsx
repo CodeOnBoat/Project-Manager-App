@@ -131,7 +131,7 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
                     value={s.name}
                   />
                   <textarea
-                    className="standard-container-input box full"
+                    className="standard-container-input box full new-project-description"
                     placeholder="Step description"
                     onChange={(e) => modifyStep(e, "description", i)}
                     value={s.description}

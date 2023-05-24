@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Task } from "../../data/Interfaces";
+import { Task } from "../../../data/Interfaces";
 
 export interface MessageTaskProps {
   task: Task;

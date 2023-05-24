@@ -1,17 +1,16 @@
 import { TokenResponse } from "@react-oauth/google";
 import axios from "axios";
 import { ProjectType, Task } from "../data/Interfaces";
-import { ChatBotRes, MessageType } from "../components/ChatBot/ChatBot";
+import { ChatBotRes, MessageType } from "../components/Items/ChatBot/ChatBot";
 
 const root = "https://us-central1-taskwise-14398.cloudfunctions.net/app";
 // const root = "http://127.0.0.1:5001/taskwise-14398/us-central1/app";
 
 export const postUser = async (google_id: string, email: string) => {
-  axios
-    .post(`${root}/users`, {
-      google_id: google_id,
-      email: email,
-    })
+  axios.post(`${root}/users`, {
+    google_id: google_id,
+    email: email,
+  });
 };
 
 export const getUser = async (user_id: string) => {
@@ -81,7 +80,6 @@ export const updateTaskStatus = async (
   status: string,
   collaborator: string
 ) => {
-
   const res = await axios.patch(`${root}/projects/${project_id}/${task_id}`, {
     status: status,
     collaborator: collaborator,
@@ -186,4 +184,14 @@ export const updateProjectInfo = async (
     description: projectDescription,
   });
   return res.data;
+};
+
+export const uploadChatBot = async (
+  project_id: string,
+  sender_username: string,
+  messageHistory: MessageType[]
+) => {
+  axios.post(`${root}/chatbot-unit/${project_id}/${sender_username}`, {
+    messageHistory: messageHistory,
+  });
 };
