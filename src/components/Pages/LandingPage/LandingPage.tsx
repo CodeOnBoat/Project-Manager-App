@@ -6,10 +6,12 @@ import "./LandingPage.css";
 import { LandingPageProps } from "../../../data/Interfaces";
 import { AppContext } from "../../../context/AppContext";
 import { ContinueWithGoogle } from "../../Items/ContinueWithGoogle/ContinueWithGoogle";
+import LightCube from "../../../data/images/lightCube.png";
+import darkCube from "../../../data/images/darkCube.png";
 
 export const LandingPage = ({ logOut }: LandingPageProps) => {
   const [user, setUser] = useState<TokenResponse>();
-  const { setProfile } = useContext(AppContext);
+  const { setProfile, darkMode } = useContext(AppContext);
   const navigate = useNavigate();
   const login = useGoogleLogin({
     onSuccess: (codeResponse: TokenResponse) => {
@@ -39,6 +41,7 @@ export const LandingPage = ({ logOut }: LandingPageProps) => {
           <h1>TASKWISE</h1>
           <p>The AI powered Kanban board</p>
         </div>
+        <img src={darkMode === "dark" ? darkCube : LightCube} className="landing-page-logo"/>
         <ContinueWithGoogle login={login} />
       </div>
     </div>

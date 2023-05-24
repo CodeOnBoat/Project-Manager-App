@@ -82,7 +82,7 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
           <div className="new-task-input-container">
             <label className="form-title">Task title</label>
             <textarea
-              className="standard-container-input box"
+              className="standard-container-input title step"
               placeholder="Input task title ..."
               name="title"
               ref={titleRef}
@@ -102,7 +102,7 @@ export const NewTask = ({ addTask, setShowNewTask }: NewTaskPrompts) => {
             <label className="form-title">Description</label>
             <textarea
               ref={descriptionRef}
-              className="standard-container-input box description"
+              className="standard-container-input description step"
               name="description"
               placeholder="Description"
             />

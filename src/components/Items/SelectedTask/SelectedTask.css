@@ -44,14 +44,17 @@
   cursor: pointer;
   font-size: large;
 }
+.standard-container-input.step{
+  width: 90%;
 
-.box {
-  width: 80%;
-  background-color: var(--box-input-background);
+  margin-top: 0em;
 }
+.standard-container-input.title.step{
+  height: 40%;
+}
+.standard-container-input.description.step{
+  height: 100%;
 
-.standard-container-input.box.full {
-  width: 100%;
 }
 .one-new-step-header-container {
   display: flex;
@@ -214,7 +217,6 @@
   justify-content: space-between;
   gap: 0.7em;
   color: var(--letter-color);
-  background-color: var(--background-color);
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -222,6 +224,7 @@
   display: flex;
   flex-direction: column;
   font-size: small;
+  width: 100%;
   gap: 1em;
 }
 
@@ -248,7 +251,6 @@ input[type="checkbox"] {
 
 .step-container {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -262,10 +264,7 @@ input[type="checkbox"] {
 
 .getHelp-container {
   display: flex;
-  flex-direction: column;
   align-self: flex-end;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   padding: 0.354em;
   border-radius: 10px;
@@ -280,7 +279,6 @@ input[type="checkbox"] {
 
 .getHelp-text {
   font-size: x-small;
-  text-align: center;
   white-space: nowrap;
   cursor: pointer;
 }

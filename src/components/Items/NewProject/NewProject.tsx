@@ -70,8 +70,8 @@ export const NewProject = ({
         <textarea
           name="title"
           ref={titleFieldRef}
-          placeholder="Input project title"
-          className="standard-container-input "
+          placeholder="Input project title (max 20 characters)"
+          className="standard-container-input title "
           maxLength={20}
         />
         {emptyTitle && (
@@ -82,7 +82,7 @@ export const NewProject = ({
         <h1 className="form-input-title">Project description</h1>
         <textarea
           name="description"
-          className="standard-container-input new-project-description"
+          className="standard-container-input description"
           placeholder="Input project description"
         />
         <div className="selector-container">

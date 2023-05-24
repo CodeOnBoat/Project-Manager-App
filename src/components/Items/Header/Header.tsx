@@ -11,6 +11,8 @@ import NotificationOff from "../../../data/images/notificationOff.png";
 import { getProjectsById, resolveNotification } from "../../../client/client";
 import { NotificationType } from "../../../data/Interfaces";
 import { useNavigate } from "react-router-dom";
+import lightCube from "../../../data/images/lightCube.png";
+import darkCube from "../../../data/images/darkCube.png";
 
 interface HeaderProps {
   logOut: () => void;
@@ -113,12 +115,18 @@ export const Header = ({ logOut }: HeaderProps) => {
     <>
       {profile && (
         <div className="header-container">
-          <h1
-            className={`header-logo-image ${darkMode}`}
-            onClick={() => navigate("/dashboard")}
-          >
-            TASKWISE
-          </h1>
+          <div className="header-logo-container">
+            <img
+              className="header-logo"
+              src={darkMode === "dark" ? darkCube : lightCube}
+            />
+            <h1
+              className={`header-logo-image ${darkMode}`}
+              onClick={() => navigate("/dashboard")}
+            >
+              TASKWISE
+            </h1>
+          </div>
           <div className="header-right-container">
             <div className="circles-notification-container">
               <div className="circles-container">
@@ -152,7 +160,7 @@ export const Header = ({ logOut }: HeaderProps) => {
                   <img src={Home} className={`header-icon ${darkMode}`} />
                 </div>
                 <div className="user-name-container">
-                  <p className="user-name">{profile?.name}</p>
+                  <p className="user-name">{profile?.family_name}</p>
                 </div>
                 <div className="circle-header" onClick={logOut}>
                   <img className={`header-icon ${darkMode}`} src={LogOut} />

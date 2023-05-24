@@ -224,3 +224,13 @@
 .header-icon.sun {
   filter: invert();
 }
+
+.header-logo {
+  height: 5em;
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

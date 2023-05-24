@@ -158,6 +158,7 @@ export const chatWithProjectAssistent = async (
       project: project,
       messageHistory: messageHistory,
     });
+    console.log(res);
     if (res.status !== 200) {
       return res.data;
     } else {
@@ -167,6 +168,7 @@ export const chatWithProjectAssistent = async (
       };
     }
   } catch (e) {
+    console.log(e);
     return {
       message: "Something went wrong. Please try again",
       suggestions: [],
