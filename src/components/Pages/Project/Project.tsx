@@ -1,9 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { ProjectProps } from "../../../data/Interfaces";
-import {
-  deleteProjectById,
-  getTasksByProjectId,
-} from "../../../client/client";
+import { deleteProjectById, getTasksByProjectId } from "../../../client/client";
 import { useNavigate } from "react-router-dom";
 import "./Project.css";
 import { Collaborators } from "../../Items/Collaborators/Collaborators";

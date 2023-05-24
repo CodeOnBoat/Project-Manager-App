@@ -7,6 +7,7 @@ import {
   Route,
   Routes,
   useNavigate,
+  Form,
 } from "react-router-dom";
 import { Project } from "./components/Pages/Project/Project";
 import { LandingPage } from "./components/Pages/LandingPage/LandingPage";
@@ -15,6 +16,7 @@ import { Header } from "./components/Items/Header/Header";
 import { ProjectContextProvider } from "./context/ProjectContext";
 import "./data/colors/colors.css";
 import "./firebase/init";
+import { FeedBack } from "./components/Pages/Form/FeedBack";
 
 function App() {
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage logOut={logOut} />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/feedback" element={<FeedBack />} />
         {projects &&
           projects &&
           projects.map((p, index) => (
