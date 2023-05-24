@@ -42,11 +42,10 @@
  */
 .notification-container {
   transition: 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53);
-
   position: absolute;
   background-color: rgba(20, 20, 20, 0.4);
   color: var(--letter-color);
-  top: 7em;
+  top: 10em;
   display: flex;
   flex-direction: column;
   justify-content: top;
@@ -63,7 +62,7 @@
 
 @media screen and (width > 1000px) {
   .notification-container {
-    top: 4em;
+    top: 6em;
     right: 1%;
   }
   .header-logo-image {

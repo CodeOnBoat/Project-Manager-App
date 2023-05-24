@@ -38,7 +38,7 @@ export const LandingPage = ({ logOut }: LandingPageProps) => {
     <div className="landingPage-container">
       <div className="landingPage-login-container">
         <div>
-          <h1>TASKWISE</h1>
+          <h1 className="landingPage-title">TASKWISE</h1>
           <p>The AI powered Kanban board</p>
         </div>
         <img src={darkMode === "dark" ? darkCube : LightCube} className="landing-page-logo"/>

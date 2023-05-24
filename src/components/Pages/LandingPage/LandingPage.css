@@ -58,3 +58,8 @@
 .landing-page-logo {
   width: 200px;
 }
+
+.landingPage-title {
+  font-size: 3em;
+  font-weight: 600;
+}
