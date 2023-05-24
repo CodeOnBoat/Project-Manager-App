@@ -185,13 +185,3 @@ export const updateProjectInfo = async (
   });
   return res.data;
 };
-
-export const uploadChatBot = async (
-  project_id: string,
-  sender_username: string,
-  messageHistory: MessageType[]
-) => {
-  axios.post(`${root}/chatbot-unit/${project_id}/${sender_username}`, {
-    messageHistory: messageHistory,
-  });
-};

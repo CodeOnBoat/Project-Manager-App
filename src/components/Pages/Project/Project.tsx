@@ -3,7 +3,6 @@ import { ProjectProps } from "../../../data/Interfaces";
 import {
   deleteProjectById,
   getTasksByProjectId,
-  uploadChatBot,
 } from "../../../client/client";
 import { useNavigate } from "react-router-dom";
 import "./Project.css";
@@ -60,9 +59,6 @@ export const Project = ({ project }: ProjectProps) => {
 
   useEffect(() => {
     setProject(project);
-    return () => {
-      uploadChatBot(project?.project_id!, profile?.name!, messages);
-    };
   }, []);
 
   useEffect(() => {

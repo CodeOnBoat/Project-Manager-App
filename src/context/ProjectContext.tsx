@@ -1,9 +1,7 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState } from "react";
 import { CollaboratorChatMessage, ProjectType, Task } from "../data/Interfaces";
-import { log } from "console";
 import { MessageType } from "../components/Items/ChatBot/ChatBot";
-import { uploadChatBot } from "../client/client";
-import { AppContext } from "./AppContext";
+
 
 type ProjectContextType = {
   tasks: Task[];
